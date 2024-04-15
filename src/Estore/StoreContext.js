@@ -31,7 +31,7 @@ export const StoreProvider = ({ children }) => {
             categoriesPosition: { x: 0, y: 0 },
             searchBarPosition: { x: 0, y: 0 }
         },
-        isPreview: false // Default value for isPreview
+        previewMode: false // Default value for isPreview,
     });
 
     // Function to add a new category

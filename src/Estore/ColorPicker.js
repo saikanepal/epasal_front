@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useStore } from './StoreContext';
-import { motion, useMotionValue, useTransform } from 'framer-motion';
+import { motion, useMotionValue } from 'framer-motion';
 
 const ColorPicker = () => {
     const { store, setStore } = useStore();
     const { color } = store;
+    const {previewMode} = store;
     const [showColorPicker, setShowColorPicker] = useState(true);
 
     // Calculate maximum allowable positions based on viewport size and component size
@@ -49,7 +50,6 @@ const ColorPicker = () => {
             },
         }));
     };
-    
 
     const handleHexCodeChange = (e, field) => {
         const hexCode = e.target.value;
@@ -71,10 +71,13 @@ const ColorPicker = () => {
             },
         }));
     };
-
-    const toggleColorPicker = () => {
-        setShowColorPicker(!showColorPicker);
-    };
+   // Function to toggle preview mode
+   const togglePreviewMode = () => {
+    setStore((prevState) => ({
+        ...prevState,
+        previewMode: !prevState.previewMode, // Toggle the value of previewMode
+    }));
+};
 
     return (
         <motion.div
@@ -85,39 +88,39 @@ const ColorPicker = () => {
             initial={{ x: 350, y: 50 }}
             style={{ x, y }}
         >
-            <button onClick={toggleColorPicker} className="w-8 h-8 rounded-full bg-blue-500 flex items-center justify-center focus:outline-none">
+           <button onClick={togglePreviewMode} className="w-8 h-8 rounded-full bg-blue-500 flex items-center justify-center focus:outline-none">
             </button>
+           
             {showColorPicker && (
                 <div className="relative   w-60 right-60  bg-[#EEEDEB] p-4 border border-gray-300 rounded-md shadow-lg z-10">
-                    <h3 className="text-lg font-semibold mb-2">Choose Colors</h3>
                     <div className="flex flex-col gap-4">
-                        {Object.entries(color).map(([colorKey, colorValue], index) => {
-                           if (typeof colorValue === 'object') {
-                            return (
-                                <div key={index}>
-                                    <h4 className="text-lg font-semibold mb-2">{colorKey}</h4>
-                                    {Object.entries(colorValue).map(([nestedKey, nestedValue], nestedIndex) => (
-                                        <div key={nestedIndex} className="flex flex-col justify-start items-start">
-                                            <label className="text-gray-700  w-24">{nestedKey}</label>
-                                            <div className="flex md:flex-row  items-start justify-start flex-grow ml-4">
-                                                <input
-                                                    type="color"
-                                                    value={nestedValue}
-                                                    onChange={(e) => handleColorChange(e.target.value, nestedKey, colorKey)}
-                                                    className="rounded-full  px-1 border border-gray-300 shadow-md focus:outline-none"
-                                                />
-                                                <input
-                                                    type="text"
-                                                    value={nestedValue}
-                                                    onChange={(e) => handleHexCodeChange(e, nestedKey)}
-                                                    className="ml-4 w-20 rounded-md border border-gray-300 px-2 focus:outline-none"
-                                                />
+                        {!previewMode && Object.entries(color).map(([colorKey, colorValue], index) => {
+                            if (typeof colorValue === 'object') {
+                                return (
+                                    <div key={index}>
+                                        <h4 className="text-lg font-semibold mb-2">{colorKey}</h4>
+                                        {Object.entries(colorValue).map(([nestedKey, nestedValue], nestedIndex) => (
+                                            <div key={nestedIndex} className="flex flex-col justify-start items-start">
+                                                <label className="text-gray-700  w-24">{nestedKey}</label>
+                                                <div className="flex md:flex-row  items-start justify-start flex-grow ml-4">
+                                                    <input
+                                                        type="color"
+                                                        value={nestedValue}
+                                                        onChange={(e) => handleColorChange(e.target.value, nestedKey, colorKey)}
+                                                        className="rounded-full  px-1 border border-gray-300 shadow-md focus:outline-none"
+                                                    />
+                                                    <input
+                                                        type="text"
+                                                        value={nestedValue}
+                                                        onChange={(e) => handleHexCodeChange(e, nestedKey)}
+                                                        className="ml-4 w-20 rounded-md border border-gray-300 px-2 focus:outline-none"
+                                                    />
+                                                </div>
                                             </div>
-                                        </div>
-                                    ))}
-                                </div>
-                            );
-                        } else {
+                                        ))}
+                                    </div>
+                                );
+                            } else {
                                 return (
                                     <div key={index} className="flex flex-col items-start">
                                         <label className="text-gray-700 w-24">{colorKey}</label>
@@ -131,7 +134,7 @@ const ColorPicker = () => {
                                             <input
                                                 type="text"
                                                 value={colorValue}
-                                                onChange={(e) =>handleSingleColorChange(e, colorKey)}
+                                                onChange={(e) => handleSingleColorChange(e, colorKey)}
                                                 className="ml-4 w-20 rounded-md border border-gray-300 px-2 focus:outline-none"
                                             />
                                         </div>
