@@ -6,7 +6,7 @@ import { useDraggable } from "react-use-draggable-scroll";
 
 const SubProduct = () => {
     const ref = useRef();
-    const { store } = useStore();
+    const { store ,setStore} = useStore();
     const { products, selectedSubCategory, categories, subCategories } = store;
     const [filteredProducts, setFilteredProducts] = useState([]);
     const [selectedStyles, setSelectedStyles] = useState({});
@@ -33,6 +33,14 @@ const SubProduct = () => {
         }));
     };
 
+    const handleRemoveProduct = (productId) => {
+        setStore(prevStore => ({
+            ...prevStore,
+            products: prevStore.products.filter(product => product.id !== productId)
+        }));
+    };
+
+
     const toggleAddProduct = () => {
         setShowAddProduct(prev => !prev);
     };
@@ -54,6 +62,7 @@ const SubProduct = () => {
                                 product={product}
                                 selectedStyle={selectedStyles[product.id]}
                                 handleStyleSelect={handleStyleSelect}
+                                handleRemoveProduct={handleRemoveProduct}
                                 store={store} // Pass the store object as a prop
                             />
                         </div>

@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useStore } from '../StoreContext';
+import {  FaTimes } from 'react-icons/fa'; // Import FaTimes for the remove icon
 
-const ProductListCard = ({ product }) => {
+const ProductListCard = ({ product, handleDeleteProduct }) => {
     const [addedToCart, setAddedToCart] = useState(false);
 
     const [selectedVariantIndex, setSelectedVariantIndex] = useState(0);
     const { store } = useStore();
+    const { previewMode } = store;
+
     const {
         backgroundColor,
         textColor,
@@ -31,12 +34,22 @@ const ProductListCard = ({ product }) => {
 
     return (
         <motion.div
-            className="md:w-4/5 w-full h-auto overflow-hidden flex flex-col items-start justify-start bg-white  p-4 cursor-pointer transform transition duration-300"
+            className="md:w-4/5 w-full h-auto overflow-hidden flex flex-col items-start justify-start bg-white  p-4 cursor-pointer transform transition duration-300 relative" // Added relative class
             style={{ backgroundColor, borderColor }}
-            whileHover={{ scale: 1.05, }}
+            whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.98 }}
         >
-            <img className="w-full h-48 sm:h-64 object-cover mb-2 rounded-none " src={image} alt={name} />
+               {/* Add remove button/icon */}
+               {!previewMode && (
+                <button
+                    className="absolute top-2 right-2 p-2 rounded-full bg-red-500 z-10 text-white flex items-center justify-center" // Added flex and justify-center
+                    onClick={() => handleDeleteProduct(product.id)} // Call handleRemoveProduct on click
+                >
+                    <FaTimes /> {/* Moved the FaTimes icon outside of the button text */}
+                </button>
+            )}
+
+            <img className="w-full h-48 sm:h-64 object-cover mb-2 rounded-none" src={image} alt={name} />
             <div className="w-full flex justify-between items-center">
                 <h2 className="text-base sm:text-lg font-semibold mb-1" style={{ color: textColor }}>{name}</h2>
                 <span className="text-lg font-bold" style={{ color: textColor }}>${price}</span>

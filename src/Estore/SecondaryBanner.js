@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useDropzone } from 'react-dropzone';
 import { useStore } from './StoreContext';
-import secondary from '../Assets/secondarybanner.jpg';
+import secondary from '../Assets/banner3.jpg';
 const SecondaryBanner = () => {
     const { store, updateSecondaryBanner } = useStore();
     const [bgImage, setBgImage] = useState(secondary);

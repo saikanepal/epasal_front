@@ -9,6 +9,7 @@ import { useMediaQuery } from 'react-responsive';
 import SubProduct from './SubProduct/SubProduct';
 import SecondaryBanner from './SecondaryBanner';
 import ProductList from './ProductList/ProductList';
+import Footer from './Footer/Footer';
 const EStore = () => {
     const { store } = useStore();
     const { color } = store;
@@ -30,6 +31,7 @@ const EStore = () => {
             <SubProduct />
             <SecondaryBanner/>
             <ProductList/>
+            <Footer/>
         </div>
     );
 };

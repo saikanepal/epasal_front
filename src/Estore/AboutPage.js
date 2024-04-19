@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useDropzone } from 'react-dropzone';
-import banner from "../Assets/defbg.jpg";
+import banner from "../Assets/banner2.jpg";
 
 const AboutPage = ({ logoUrl }) => {
     const defaultLogoUrl = 'https://png.pngtree.com/element_pic/16/12/21/cf574539c6d9b2594eb0d550031119a5.jpg';

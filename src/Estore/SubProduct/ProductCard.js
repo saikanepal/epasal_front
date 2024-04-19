@@ -1,18 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { FaShoppingCart } from 'react-icons/fa';
+import { FaShoppingCart, FaTimes } from 'react-icons/fa'; // Import FaTimes for the remove icon
 import { useStore } from '../StoreContext'; // Import the StoreContext
 
-const ProductCard = ({ product, handleStyleSelect }) => {
+const ProductCard = ({ product, handleStyleSelect, handleRemoveProduct }) => { // Pass handleRemoveProduct prop
+
+    // Component state
     const [selectedStyle, setSelectedStyle] = useState(0);
     const [addedToCart, setAddedToCart] = useState(false);
     const { store } = useStore(); // Access the store context
-
+    const { previewMode } = store;
     useEffect(() => {
         // Check if the product is in the cart when the component mounts
         // This logic should be replaced with your actual implementation for checking the cart
         // For demonstration purposes, it's set to false by default
         setAddedToCart(false);
+        console.log(previewMode);
     }, [product.id]);
 
     const handleAddToCart = () => {
@@ -28,11 +31,22 @@ const ProductCard = ({ product, handleStyleSelect }) => {
 
     return (
         <motion.div
-            className="w-80 rounded overflow-hidden shadow-md cursor-pointer"
+            className="w-80 rounded overflow-hidden shadow-md cursor-pointer relative" // Add relative class
             whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.98 }}
             style={{ backgroundColor: store.color.subProductColor.backgroundColor, color: store.color.subProductColor.textColor }}
         >
+            {/* Add remove button/icon */}
+            {!previewMode && (
+                <button
+                    className="absolute top-2 right-2 p-2 rounded-full bg-red-500 z-10 text-white flex items-center justify-center" // Added flex and justify-center
+                    onClick={() => handleRemoveProduct(product.id)} // Call handleRemoveProduct on click
+                >
+                    <FaTimes /> {/* Moved the FaTimes icon outside of the button text */}
+                </button>
+            )}
+
+
             <div className="relative">
                 <motion.img
                     className="w-full h-60 p-2 object-cover"

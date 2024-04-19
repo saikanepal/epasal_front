@@ -9,7 +9,7 @@ export const useStore = () => {
 export const StoreProvider = ({ children }) => {
     const [store, setStore] = useState({
         name: 'Store Name',
-        logo: '',
+        logo: 'https://d1csarkz8obe9u.cloudfront.net/posterpreviews/company-logo-design-template-e089327a5c476ce5c70c74f7359c5898_screen.jpg?ts=1672291305',
         categories: [
             { name: 'Men' },
             { name: 'Women' },
@@ -24,7 +24,7 @@ export const StoreProvider = ({ children }) => {
             {
                 id: 1,
                 name: 'Watch1',
-                image: 'https://www.titan.co.in/dw/image/v2/BKDD_PRD/on/demandware.static/-/Sites-titan-master-catalog/default/dw34d84041/images/Titan/Catalog/1698KM02_1.jpg?sw=800&sh=800',
+                image: 'https://cdn4.ethoswatches.com/the-watch-guide/wp-content/uploads/2020/01/Parmigiani-Fleurier-Toric-Chronometer-Michel-Vintage-Inspired-Watch-Retro-Nostalgic-1-1.jpg?tr=q-70',
                 categories: ['Men'],
                 subcategories: ['Watch'],
                 sizes: ['S', 'M', 'L'],
@@ -36,7 +36,7 @@ export const StoreProvider = ({ children }) => {
             }, {
                 id: 2,
                 name: 'Watch2',
-                image: 'https://cdn.thewirecutter.com/wp-content/media/2023/10/smartwatches-2048px-3x2-1.jpg?auto=webp&quality=75&crop=3:2&width=1024',
+                image: 'https://i.etsystatic.com/8887640/r/il/630e09/5842875807/il_fullxfull.5842875807_poyj.jpg',
                 categories: ['Men'],
                 subcategories: ['Watch'],
                 sizes: ['S', 'M', 'L'],
@@ -49,7 +49,7 @@ export const StoreProvider = ({ children }) => {
             {
                 id: 3,
                 name: 'Watch3',
-                image: 'https://media.wired.com/photos/650c80a777e4baffa125b82b/4:3/w_1805,h_1354,c_limit/Apple-Watch-SE-Gen-2-Featured-Gear.jpg',
+                image: 'https://www.awco.nl/wp-content/uploads/2022/07/cartier-baignoire-awco-2-e1658830551133.jpg',
                 categories: ['Men'],
                 subcategories: ['Watch'],
                 sizes: ['S', 'M', 'L'],
@@ -61,7 +61,7 @@ export const StoreProvider = ({ children }) => {
             }, {
                 id: 4,
                 name: 'Watch4',
-                image: 'https://images.unsplash.com/photo-1619134778706-7015533a6150?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fHdhdGNoZXN8ZW58MHx8MHx8fDA%3D',
+                image: 'https://img.kwcdn.com/product/Fancyalgo/VirtualModelMatting/4538ed94e47b06cb2b5325636236e6a5.jpg?imageView2/2/w/500/q/60/format/webp',
                 categories: ['Men'],
                 subcategories: ['Watch'],
                 sizes: ['S', 'M', 'L'],
@@ -73,7 +73,7 @@ export const StoreProvider = ({ children }) => {
             }, {
                 id: 5,
                 name: 'Watch5',
-                image: 'https://www.fastrack.in/dw/image/v2/BKDD_PRD/on/demandware.static/-/Sites-titan-master-catalog/default/dwbc347167/images/Fastrack/Catalog/38074AP04_1.jpg?sw=800&sh=800',
+                image: 'https://img.chrono24.com/images/uhren/31781576-yxk1zakhh64ioxtbwozl4tqj-ExtraLarge.jpg',
                 categories: ['Men'],
                 subcategories: ['Watch'],
                 sizes: ['S', 'M', 'L'],
@@ -85,7 +85,7 @@ export const StoreProvider = ({ children }) => {
             }, {
                 id: 6,
                 name: 'Watch6',
-                image: 'https://www.cnet.com/a/img/resize/939c151970e70d040f0e2b8f1ff4ed0c8f650939/hub/2023/07/28/30aaf33c-b641-40b2-99f8-4022c0209bb3/t5a6683.jpg?auto=webp&fit=crop&height=675&width=1200',
+                image: 'https://i.pinimg.com/originals/2f/7a/9f/2f7a9f72f64dfb34a9942cf3f15f6ed4.jpg',
                 categories: ['Men'],
                 subcategories: ['Watch'],
                 sizes: ['S', 'M', 'L'],
@@ -98,7 +98,7 @@ export const StoreProvider = ({ children }) => {
             {
                 id: 7,
                 name: 'Product 2 - Jacket',
-                image: 'https://i.ebayimg.com/images/g/4vcAAOSwgIBjwnYO/s-l1200.jpg',
+                image: 'https://img4.dhresource.com/webp/m/0x0/f3/albu/km/y/03/8527bf64-ccfa-4ba8-869d-d27318be5fe5.jpg',
                 categories: ['Women'],
                 subcategories: ['Jacket'],
                 sizes: ['S', 'M', 'L'],
@@ -111,7 +111,7 @@ export const StoreProvider = ({ children }) => {
             {
                 id: 8,
                 name: 'Product 3 - Pants',
-                image: 'https://example.com/pants_product3.jpg',
+                image: 'https://urbanwearoutsiders.com/cdn/shop/products/H1fe8973abaae4b30aa2e18a0a3e8bec3V.jpg?v=1660239498',
                 categories: ['Unisex'],
                 subcategories: ['Pants'],
                 sizes: ['S', 'M', 'L'],
@@ -121,6 +121,7 @@ export const StoreProvider = ({ children }) => {
                     { type: 'Color', option: 'Navy', prices: [50, 55, 60] }
                 ]
             },
+
             // Add more products here...
         ]
         ,
@@ -133,8 +134,8 @@ export const StoreProvider = ({ children }) => {
                 searchBarColor: '#fcf3f3',
             },
             headerColor: {
-                headerText: "#59CE8F",
-                headerBackground: "#000000"
+                headerText: "#ffffff",
+                headerBackground: "#7a5C5c"
             },
             subcategoryColor: {
                 background: '#ffffff',
@@ -148,17 +149,33 @@ export const StoreProvider = ({ children }) => {
                 borderColor: '#cccccc',
                 selectedBackground: '##c8bcbc'
             },
+            productSection: "ffffff",
             productListColor: { // Define productListColor object
+                productBackground: "ffffff",
                 backgroundColor: '#fefbfb',
                 textColor: '#333333',
                 borderColor: '#cccccc',
                 selectedBackground: '#c8bcbc'
+            },
+            footerColor: {
+                background: '#333333',
+                textColor: '#ffffff',
+                linkColor: '#59CE8F'
             }
         },
+
         secondaryBanner: '../Assets/secondarybanner.jpg',
         previewMode: true,
         selectedSubCategory: 'Watch',
         cart: [], // New cart array to store product IDs
+
+        socialMediaLinks: {
+            facebook: '',
+            twitter: '',
+            instagram: '',
+            linkedin: ''
+        },
+        footerDescription: 'A modern online store for all your needs.'
     });
 
     const addProduct = (newProduct) => {
