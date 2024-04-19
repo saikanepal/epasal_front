@@ -6,7 +6,7 @@ import { FaShoppingCart } from 'react-icons/fa';
 import LeftSidebar from "./LeftSidebar"
 
 const EStoreNavbar = ({ toggleColorPicker }) => {
-    const { store, setStore } = useStore();
+    const { store, setStore, addCategory, removeCategory } = useStore(); // Destructure removeCategory from useStore
     const { color, navbar } = store;
     const { previewMode } = store;
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -16,25 +16,6 @@ const EStoreNavbar = ({ toggleColorPicker }) => {
 
     const toggleSidebar = () => {
         setIsSidebarOpen(!isSidebarOpen);
-    };
-
-    const addCategory = () => {
-        if (!previewMode && newCategory.trim() !== '') {
-            setStore(prevState => ({
-                ...prevState,
-                categories: [...prevState.categories, { name: newCategory }]
-            }));
-            setNewCategory('');
-        }
-    };
-
-    const removeCategory = (index) => {
-        if (!previewMode) {
-            setStore(prevState => ({
-                ...prevState,
-                categories: prevState.categories.filter((_, i) => i !== index)
-            }));
-        }
     };
 
     const handleInputChange = (e) => {
@@ -94,12 +75,12 @@ const EStoreNavbar = ({ toggleColorPicker }) => {
                 value={store.name}
                 onChange={(e) => !previewMode && setStore(prevState => ({ ...prevState, name: e.target.value }))}
                 readOnly={previewMode} // Set readOnly based on previewMode
-                className=" md:block font-Orbitron w-60  font-bold text-lg outline-none border-none"
+                className=" md:block font-Cinzel w-60  font-bold text-lg outline-none border-none"
                 style={{ color: color.navColor.storeNameTextColor, backgroundColor: color.navColor.backgroundnavColor }}
             />
 
             {/* Categories */}
-            <div className="hidden md:flex md:flex-grow justify-center ml-16 font-semibold font-Genos text-2xl space-x-2">
+            <div className="hidden md:flex md:flex-grow justify-center ml-16 font-semibold font-Cinzel text-xl space-x-2">
                 <ul className="flex">
                     {store.categories.map((category, index) => (
                         <motion.li key={index} className="flex items-center justify-between px-4 py-2 cursor-pointer">
@@ -121,7 +102,8 @@ const EStoreNavbar = ({ toggleColorPicker }) => {
                         onChange={handleInputChange}
                         onKeyPress={(e) => {
                             if (e.key === 'Enter') {
-                                addCategory();
+                                addCategory(newCategory); // Call addCategory directly here
+                                setNewCategory('');
                             }
                         }}
                         className="relative bg-gray-50 ring-0 outline-none border border-neutral-500 text-neutral-900 placeholder-blue-500 text-sm rounded-lg focus:ring-violet-500 focus:border-violet-500 block w-32 h-8 p-2.5 checked:bg-emerald-500"
@@ -129,7 +111,10 @@ const EStoreNavbar = ({ toggleColorPicker }) => {
                     <button
                         title="Add New"
                         className="group cursor-pointer outline-none hover:rotate-90 duration-300 flex items-center justify-center -mt-1"
-                        onClick={addCategory}
+                        onClick={() => {
+                            addCategory(newCategory); // Call addCategory directly here
+                            setNewCategory('');
+                        }}
                     >
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -148,9 +133,14 @@ const EStoreNavbar = ({ toggleColorPicker }) => {
                     </button>
                 </div>}
             </div>
+            <div className=" flex mr-6 flex-row items-center space-x-4">
+                <button className="focus:outline-none" onClick={handleCartClick}>
+                    <FaShoppingCart className="text-xl" style={{ color: color.navColor.storeNameTextColor }} />
+                </button>
+            </div> 
 
             {/* Searchbar */}
-            <div className="hidden md:flex justify-center items-center sm:justify-center md:w-auto sm:w-screen">
+            <div className="hidden md:flex mr-5 justify-center items-center sm:justify-center md:w-auto sm:w-screen">
                 <input
                     type="text"
                     value={searchInput}
@@ -162,11 +152,7 @@ const EStoreNavbar = ({ toggleColorPicker }) => {
             </div>
 
             {/* Cart Icon */}
-            <div className="md:hidden flex flex-row items-center space-x-4">
-                <button className="focus:outline-none" onClick={handleCartClick}>
-                    <FaShoppingCart className="text-xl" style={{ color: color.navColor.storeNameTextColor }} />
-                </button>
-            </div>
+      
 
             {/* Sidebar Toggle Button for Small Devices */}
             <div className="md:hidden box-border">

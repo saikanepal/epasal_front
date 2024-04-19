@@ -6,7 +6,9 @@ import ColorPicker from './ColorPicker';
 import StoreHeader from './StoreHeader';
 import CategorySelector from './CategorySelector';
 import { useMediaQuery } from 'react-responsive';
-
+import SubProduct from './SubProduct/SubProduct';
+import SecondaryBanner from './SecondaryBanner';
+import ProductList from './ProductList/ProductList';
 const EStore = () => {
     const { store } = useStore();
     const { color } = store;
@@ -19,14 +21,15 @@ const EStore = () => {
     const isMobile = useMediaQuery({ maxWidth: 768 }); // Define a breakpoint for mobile devices
 
     return (
-        <div className='h-screen' style={{ backgroundColor: color.backgroundThemeColor }}>
+        <div className=' h-full' style={{ backgroundColor: color.backgroundThemeColor }}>
             <StoreHeader />
             <ColorPicker />
             <EStoreNavbar toggleColorPicker={toggleColorPicker} />
-            {isMobile && <CategorySelector />} {/* Render CategorySelector only on mobile devices */}
-            <div className="px-5 py-5 box-border">
-                <AboutPage />
-            </div>
+            <AboutPage />
+            <CategorySelector /> {/* Render CategorySelector only on mobile devices */}
+            <SubProduct />
+            <SecondaryBanner/>
+            <ProductList/>
         </div>
     );
 };

@@ -5,14 +5,14 @@ import { motion } from 'framer-motion';
 
 const AddCategoryModal = ({ onClose }) => {
     const [newCategory, setNewCategory] = useState('');
-    const { addCategory } = useStore();
+    const { addSubCategory } = useStore();
 
     const handleSubmit = (e) => {
         e.preventDefault();
         if (newCategory.trim() !== '') {
-            addCategory(newCategory.trim());
+            addSubCategory(newCategory.trim());
             setNewCategory('');
-            onClose(); // Close the modal after adding the category
+            onClose(); // Close the modal after adding the subcategory
         }
     };
 
@@ -27,14 +27,14 @@ const AddCategoryModal = ({ onClose }) => {
                 animate={{ scale: 1 }}
                 transition={{ type: 'spring', stiffness: 200, damping: 20 }}
             >
-                <h2 className="text-2xl font-semibold mb-4">Add New Category</h2>
+                <h2 className="text-2xl font-semibold mb-4">Add New Subcategory</h2>
                 <form onSubmit={handleSubmit} className="space-y-4">
                     <input
                         type="text"
                         value={newCategory}
                         onChange={(e) => setNewCategory(e.target.value)}
                         className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none"
-                        placeholder="Enter category name"
+                        placeholder="Enter subcategory name"
                     />
                     <div className="flex justify-end space-x-4">
                         <button type="button" className="px-6 py-2 border border-gray-300 rounded-lg focus:outline-none" onClick={onClose}>Cancel</button>
@@ -47,3 +47,4 @@ const AddCategoryModal = ({ onClose }) => {
 };
 
 export default AddCategoryModal;
+

@@ -56,10 +56,10 @@ const LeftSidebar = ({ isOpen, onClose }) => {
                         initial={{ scale: 0 }}
                         animate={{ scale: 1 }}
                         transition={{ delay: 0.2, duration: 0.5, type: 'spring', stiffness: 120 }} />
-                    <motion.span className="font-bold text-2xl mr-10"
+                    <motion.span className="font-bold text-2xl mr-10 font-Orbitron"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
-                        transition={{ delay: 0.3, duration: 0.5 }}>E-Store</motion.span>
+                        transition={{ delay: 0.3, duration: 0.5 }}>{store.name}</motion.span>
                 </div>
                 {/* Searchbar */}
                 <motion.div className="p-4 cursor-pointer"

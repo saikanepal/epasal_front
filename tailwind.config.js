@@ -14,6 +14,8 @@ module.exports = {
         'Mansalva':['Mansalva','sans-serif'],
         'Genos':['Genos','sans-serif'],
         'Orbitron':['Orbitron','sans-serif'],
+        'Cinzel':['Cinzel','sans-serif'],
+        'Exo-2':['Exo 2','sans-serif'],
       },
     },
   },

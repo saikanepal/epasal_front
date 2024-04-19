@@ -7,10 +7,10 @@ const StoreHeader = () => {
 
     return (
         <div
-            className="font-Sixtyfour w-full h-8 flex justify-center items-center"
+            className="  font-sans w-full h-8 flex justify-center items-center"
             style={{ backgroundColor: color.headerColor.headerBackground}}
         >
-            <h1 className="font-bold text-sm" style={{color: color.headerColor.headerText }}>10% Sale!</h1>
+            <h1 className=" font-Cinzel text-sm" style={{color: color.headerColor.headerText }}>10% Sale!</h1>
         </div>
     );
 };
