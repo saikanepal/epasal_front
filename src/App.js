@@ -11,12 +11,11 @@ function App() {
   const { token, login, logout, userID } = useAuth();
   const auth = useContext(AuthContext);
   let routes;
-  if (true) {
+  if (token) {
     routes = (
       <React.Fragment>
         <Route path="/" element={<HomePage />} />
         <Route path="/buildstore" element={<EStore />} />
-
       </React.Fragment>
     );
   } else {
@@ -24,6 +23,7 @@ function App() {
       <React.Fragment>
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<SignInPage />}></Route>
+
       </React.Fragment>
     );
   }

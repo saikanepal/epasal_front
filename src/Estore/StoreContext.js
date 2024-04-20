@@ -9,6 +9,9 @@ export const useStore = () => {
 export const StoreProvider = ({ children }) => {
     const [store, setStore] = useState({
         name: 'Store Name',
+        location: 'Your Store Location',
+        email: 'store@example.com',
+        phoneNumber: '+1234567890',
         logo: 'https://d1csarkz8obe9u.cloudfront.net/posterpreviews/company-logo-design-template-e089327a5c476ce5c70c74f7359c5898_screen.jpg?ts=1672291305',
         categories: [
             { name: 'Men' },

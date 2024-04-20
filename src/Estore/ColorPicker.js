@@ -5,7 +5,7 @@ const ColorPicker = () => {
     const { store, setStore } = useStore();
     const { color } = store;
     const { previewMode } = store;
-    const [showColorPicker, setShowColorPicker] = useState(true);
+    const [showColorPicker, setShowColorPicker] = useState(false);
 
     const handleColorChange = (value, field, colorValueObject) => {
         setStore((prevState) => ({
@@ -52,7 +52,7 @@ const ColorPicker = () => {
     };
 
     return (
-        <div className={`fixed ${showColorPicker ? 'w-0' : 'w-0'} md:top-40  md:right-10 border bg-transparent rounded-md shadow-l z-10 `}>
+        <div className={`fixed ${showColorPicker ?  'w-0 ' : 'w-0'} right-28 top-40  md:top-40  md:right-10 border bg-transparent rounded-md shadow-l z-10 `}>
             <button onClick={toggleColorPicker} className="w-8 h-8 rounded-full bg-blue-500 flex items-center justify-center focus:outline-none ">
             </button>
 
