@@ -10,6 +10,9 @@ import SubProduct from './SubProduct/SubProduct';
 import SecondaryBanner from './SecondaryBanner';
 import ProductList from './ProductList/ProductList';
 import Footer from './Footer/Footer';
+import SaveStoreButton from './SaveButton/SaveStoreButton';
+
+
 const EStore = () => {
     const { store } = useStore();
     const { color } = store;
@@ -32,6 +35,7 @@ const EStore = () => {
             <SecondaryBanner/>
             <ProductList/>
             <Footer/>
+            <SaveStoreButton/>
         </div>
     );
 };

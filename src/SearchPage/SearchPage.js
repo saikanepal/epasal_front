@@ -4,7 +4,6 @@ import epasalbg from '../Assets/epasalbg.png';
 import epasalmobile from '../Assets/epasalmobile.png';
 import cart from "../Assets/trolley.json";
 import Lottie from "lottie-react";
-import Card from '../Card/Card';
 import { ReactTyped } from "react-typed";
 
 const SearchPage = () => {

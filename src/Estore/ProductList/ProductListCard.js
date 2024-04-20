@@ -34,7 +34,7 @@ const ProductListCard = ({ product, handleDeleteProduct }) => {
 
     return (
         <motion.div
-            className="md:w-4/5 w-full h-auto overflow-hidden flex flex-col items-start justify-start bg-white  p-4 cursor-pointer transform transition duration-300 relative" // Added relative class
+            className="md:w-4/5 w-full h-auto overflow-hidden flex flex-col items-start justify-start bg-white hover:shadow-[0px_10px_1px_rgba(221,_221,_221,_1),_0_10px_20px_rgba(204,_204,_204,_1)]  p-4 cursor-pointer transform transition duration-300 relative" // Added relative class
             style={{ backgroundColor, borderColor }}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.98 }}
