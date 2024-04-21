@@ -1,7 +1,8 @@
 import React, { createContext, useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom'; // Import useParams
 import { BrowserRouter } from 'react-router-dom'; // Import BrowserRouter
-
+import useFetch from '../Hooks/useFetch';
+import { AuthContext } from '../Hooks/AuthContext';
 const StoreContext = createContext();
 
 export const useStore = () => {
@@ -9,35 +10,10 @@ export const useStore = () => {
 };
 
 export const StoreProvider = ({ children }) => {
+    const auth = useContext(AuthContext);
+
     const { storeID } = useParams(); // Extract storeID using useParams
     console.log(storeID);
-    const [store, setStore] = useState(null); // Start with null while fetching
-
-    useEffect(() => {
-        const fetchStoreData = async () => {
-            try {
-                // Fetch store data from the server using the provided store ID
-                const response = await fetch(`/store/${storeID}`); // Use storeID from useParams
-                if (!response.ok) {
-                    // If store not found or error in fetching, set default store data
-                    setStore(defaultStoreData);
-                    console.error('Failed to fetch store data');
-                    return;
-                }
-                const data = await response.json();
-                setStore(data);
-            } catch (error) {
-                // If an error occurs during fetch, set default store data
-                setStore(defaultStoreData);
-                console.error('Error fetching store data:', error);
-            }
-        };
-
-        if (storeID) {
-            fetchStoreData();
-        }
-    }, [storeID]); // Refetch when storeID changes
-
     const defaultStoreData = {
         name: 'Store Name',
         location: 'Your Store Location',
@@ -213,8 +189,43 @@ export const StoreProvider = ({ children }) => {
         // Rest of the default store data...
     };
 
+    const [store, setStore] = useState(defaultStoreData); // Start with null while fetching
+    const { isLoading, error, sendRequest, onCloseError } = useFetch();
+
+
+
+    useEffect(() => {
+
+
+        const fetchStoreData = async () => {
+            try {
+                // Fetch store data from the server using the provided store ID
+                const response = await sendRequest(
+                    `store/get/${storeID}`, // Replace 'your-api-endpoint' with your actual API endpoint
+                    'GET',
+                    null,
+                    {
+                        'Content-Type': 'application/json',
+                        Authorization: 'Bearer ' + auth.token,
+                    }
+                ); // Use storeID from useParams
+                console.log(response);
+                setStore(response.store);
+            } catch (error) {
+                // If an error occurs during fetch, set default store data
+                setStore(defaultStoreData);
+                console.error('Error fetching store data:', error);
+            }
+        };
+
+        if (storeID) {
+            fetchStoreData();
+        }
+    }, [storeID]); // Refetch when storeID changes
+
+
     // Remaining functions for managing store state...
-    
+
     const addProduct = (newProduct) => {
         setStore((prevState) => ({
             ...prevState,
@@ -304,6 +315,7 @@ export const StoreProvider = ({ children }) => {
     };
 
     return (
+
         <StoreContext.Provider
             value={{
                 store,

@@ -23,14 +23,16 @@ const EStore = () => {
         return <div>Loading...</div>;
     }
 
-    const { color } = store;
 
     const toggleColorPicker = () => {
         setShowColorPicker(!showColorPicker);
     };
 
+    console.log(store);
+
     return (
-        <div className=' h-full' style={{ backgroundColor: color.backgroundThemeColor }}>
+        store &&
+        <div className=' h-full' style={{ backgroundColor: store.color.backgroundThemeColor }}>
             <StoreHeader />
             <ColorPicker />
             <EStoreNavbar toggleColorPicker={toggleColorPicker} />

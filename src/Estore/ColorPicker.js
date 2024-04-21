@@ -6,7 +6,7 @@ const ColorPicker = () => {
     const { color } = store;
     const { previewMode } = store;
     const [showColorPicker, setShowColorPicker] = useState(false);
-
+    console.log(color);
     const handleColorChange = (value, field, colorValueObject) => {
         setStore((prevState) => ({
             ...prevState,
