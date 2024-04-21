@@ -12,17 +12,22 @@ import ProductList from './ProductList/ProductList';
 import Footer from './Footer/Footer';
 import SaveStoreButton from './SaveButton/SaveStoreButton';
 
-
 const EStore = () => {
     const { store } = useStore();
-    const { color } = store;
+
+    // Ensure useState and useMediaQuery are called unconditionally
     const [showColorPicker, setShowColorPicker] = useState(true);
+        const isMobile = useMediaQuery({ maxWidth: 768 });
+
+    if (!store) {
+        return <div>Loading...</div>;
+    }
+
+    const { color } = store;
 
     const toggleColorPicker = () => {
         setShowColorPicker(!showColorPicker);
     };
-
-    const isMobile = useMediaQuery({ maxWidth: 768 }); // Define a breakpoint for mobile devices
 
     return (
         <div className=' h-full' style={{ backgroundColor: color.backgroundThemeColor }}>
@@ -39,6 +44,7 @@ const EStore = () => {
         </div>
     );
 };
+
 
 const EStoreWithStoreProvider = () => {
     return (

@@ -6,8 +6,8 @@ import { useDraggable } from "react-use-draggable-scroll";
 
 const SubProduct = () => {
     const ref = useRef();
-    const { store ,setStore} = useStore();
-    const { products, selectedSubCategory, categories, subCategories } = store;
+    const { store, setStore } = useStore();
+    const { products, selectedSubCategory, categories, subCategories, previewMode } = store;
     const [filteredProducts, setFilteredProducts] = useState([]);
     const [selectedStyles, setSelectedStyles] = useState({});
     const [showAddProduct, setShowAddProduct] = useState(false);
@@ -67,14 +67,17 @@ const SubProduct = () => {
                             />
                         </div>
                     ))}
-                    <div className="flex-none mr-4">
-                        <button onClick={toggleAddProduct} className="flex flex-col items-center justify-center w-32 h-40 border border-dashed border-gray-300 rounded-md hover:bg-gray-50/50 focus:outline-none">
-                            <svg className="w-12 h-12 text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
-                            </svg>
-                            <span className="text-gray-900">Add Product</span>
-                        </button>
-                    </div>
+                    {!previewMode && ( // Render AddProduct only if previewMode is false
+                        <div className="flex-none mr-4">
+                            <button onClick={toggleAddProduct} className="flex flex-col items-center justify-center w-32 h-40 border border-dashed border-gray-300 rounded-md hover:bg-gray-50/50 focus:outline-none">
+                                <svg className="w-12 h-12 text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                                </svg>
+                                <span className="text-gray-900">Add Product</span>
+                            </button>
+                        </div>
+                    )}
+
                 </div>
                 {showAddProduct && <AddProduct onClose={toggleAddProduct} />}
             </div>

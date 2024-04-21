@@ -1,4 +1,6 @@
-import React, { createContext, useState, useContext } from 'react';
+import React, { createContext, useState, useEffect, useContext } from 'react';
+import { useParams } from 'react-router-dom'; // Import useParams
+import { BrowserRouter } from 'react-router-dom'; // Import BrowserRouter
 
 const StoreContext = createContext();
 
@@ -7,7 +9,36 @@ export const useStore = () => {
 };
 
 export const StoreProvider = ({ children }) => {
-    const [store, setStore] = useState({
+    const { storeID } = useParams(); // Extract storeID using useParams
+    console.log(storeID);
+    const [store, setStore] = useState(null); // Start with null while fetching
+
+    useEffect(() => {
+        const fetchStoreData = async () => {
+            try {
+                // Fetch store data from the server using the provided store ID
+                const response = await fetch(`/store/${storeID}`); // Use storeID from useParams
+                if (!response.ok) {
+                    // If store not found or error in fetching, set default store data
+                    setStore(defaultStoreData);
+                    console.error('Failed to fetch store data');
+                    return;
+                }
+                const data = await response.json();
+                setStore(data);
+            } catch (error) {
+                // If an error occurs during fetch, set default store data
+                setStore(defaultStoreData);
+                console.error('Error fetching store data:', error);
+            }
+        };
+
+        if (storeID) {
+            fetchStoreData();
+        }
+    }, [storeID]); // Refetch when storeID changes
+
+    const defaultStoreData = {
         name: 'Store Name',
         location: 'Your Store Location',
         email: 'store@example.com',
@@ -179,8 +210,11 @@ export const StoreProvider = ({ children }) => {
             linkedin: ''
         },
         footerDescription: 'A modern online store for all your needs.'
-    });
+        // Rest of the default store data...
+    };
 
+    // Remaining functions for managing store state...
+    
     const addProduct = (newProduct) => {
         setStore((prevState) => ({
             ...prevState,
@@ -194,6 +228,7 @@ export const StoreProvider = ({ children }) => {
             secondaryBanner: newBannerUrl,
         }));
     };
+
     const addToCart = (productId) => {
         if (!store.cart.includes(productId)) {
             setStore((prevState) => ({
@@ -202,7 +237,6 @@ export const StoreProvider = ({ children }) => {
             }));
         }
     };
-
 
     const setSelectedSubCategory = (subcategoryName) => {
         setStore((prevState) => ({
@@ -288,3 +322,4 @@ export const StoreProvider = ({ children }) => {
         </StoreContext.Provider>
     );
 };
+
