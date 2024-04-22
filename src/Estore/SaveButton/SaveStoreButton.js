@@ -26,7 +26,7 @@ const SaveStoreButton = () => {
             console.error('Error saving store data:', error);
         }
     };
-    if (!previewMode) {
+    if (!store.fetchedFromBackend) {
         return (
             <div className='mt-4 h-20 flex justify-center'>
                 {isLoading ? (

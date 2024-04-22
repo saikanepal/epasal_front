@@ -16,7 +16,7 @@ function App() {
       <React.Fragment>
         <Route path="/" element={<HomePage />} />
         <Route path="/store/:storeID" element={<EStore />} />
-        <Route path="/buildstore/:storeID" element={<EStore />} />
+        <Route path="/buildstore" element={<EStore />} />
       </React.Fragment>
     );
   } else {
