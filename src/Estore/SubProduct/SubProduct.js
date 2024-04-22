@@ -7,7 +7,8 @@ import { useDraggable } from "react-use-draggable-scroll";
 const SubProduct = () => {
     const ref = useRef();
     const { store, setStore } = useStore();
-    const { products, selectedSubCategory, categories, subCategories, previewMode } = store;
+    const { products, categories, subCategories, previewMode } = store;
+    const selectedSubCategory = store.selectedSubCategory || subCategories[0].name;
     const [filteredProducts, setFilteredProducts] = useState([]);
     const [selectedStyles, setSelectedStyles] = useState({});
     const [showAddProduct, setShowAddProduct] = useState(false);
@@ -49,7 +50,7 @@ const SubProduct = () => {
 
     return (
         <div className=' px-5'>
-            <div className="px-8 pb-8 font-Cinzel overflow-x-auto" style={{
+            <div className="px-8 pb-8 font-Cinzel overflow-x-scroll" style={{
                 maxWidth: '100vw', backgroundColor: subProductColor.categoryColor
             }}
                 {...events}

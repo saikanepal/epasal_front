@@ -137,7 +137,7 @@ const Footer = () => {
         );
     } else {
         return (
-            <footer style={{ backgroundColor: color.footerColor.background, color: color.footerColor.textColor }} className="py-8">
+            <footer style={{ backgroundColor: color.footerColor.background, color: color.footerColor.textColor }} className="py-8 mt-20">
             <div className="container mx-auto flex flex-col md:flex-row justify-between items-center px-4">
                 <div className="md:w-1/3 mb-4 md:mb-0">
                     {store.name}

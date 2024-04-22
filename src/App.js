@@ -15,6 +15,7 @@ function App() {
     routes = (
       <React.Fragment>
         <Route path="/" element={<HomePage />} />
+        <Route path="/store/:storeID" element={<EStore />} />
         <Route path="/buildstore/:storeID" element={<EStore />} />
       </React.Fragment>
     );

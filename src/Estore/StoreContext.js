@@ -11,6 +11,7 @@ export const useStore = () => {
 
 export const StoreProvider = ({ children }) => {
     const auth = useContext(AuthContext);
+    const { isLoading, error, sendRequest, onCloseError } = useFetch();
 
     const { storeID } = useParams(); // Extract storeID using useParams
     console.log(storeID);
@@ -185,20 +186,19 @@ export const StoreProvider = ({ children }) => {
             instagram: '',
             linkedin: ''
         },
-        footerDescription: 'A modern online store for all your needs.'
+        footerDescription: 'A modern online store for all your needs.',
+        fetchedFromBackend:false,
         // Rest of the default store data...
     };
 
     const [store, setStore] = useState(defaultStoreData); // Start with null while fetching
-    const { isLoading, error, sendRequest, onCloseError } = useFetch();
 
 
 
     useEffect(() => {
-
-
         const fetchStoreData = async () => {
             try {
+                console.log("inside fetching");
                 // Fetch store data from the server using the provided store ID
                 const response = await sendRequest(
                     `store/get/${storeID}`, // Replace 'your-api-endpoint' with your actual API endpoint
@@ -210,21 +210,24 @@ export const StoreProvider = ({ children }) => {
                     }
                 ); // Use storeID from useParams
                 console.log(response);
-                setStore(response.store);
+                setStore({
+                    ...response.store,
+                    fetchedFromBackend: true, // Set fetchedFromBackend to true when data is fetched
+                });
             } catch (error) {
                 // If an error occurs during fetch, set default store data
                 setStore(defaultStoreData);
                 console.error('Error fetching store data:', error);
             }
         };
-
-        if (storeID) {
+    
+        if (window.location.pathname.includes('/store/')) {
             fetchStoreData();
+        } else {
+            setStore(defaultStoreData);
         }
-    }, [storeID]); // Refetch when storeID changes
-
-
-    // Remaining functions for managing store state...
+    }, [storeID]);
+    
 
     const addProduct = (newProduct) => {
         setStore((prevState) => ({
@@ -314,6 +317,15 @@ export const StoreProvider = ({ children }) => {
         }));
     };
 
+
+    if (isLoading) {
+        return( 
+            <div>
+                is Loading
+            </div>
+        )
+    }
+    else 
     return (
 
         <StoreContext.Provider

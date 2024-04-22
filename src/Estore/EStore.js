@@ -11,10 +11,10 @@ import SecondaryBanner from './SecondaryBanner';
 import ProductList from './ProductList/ProductList';
 import Footer from './Footer/Footer';
 import SaveStoreButton from './SaveButton/SaveStoreButton';
-
+import Loading from './Loading/Loading';
 const EStore = () => {
     const { store } = useStore();
-
+    const {previewMode} = store;
     // Ensure useState and useMediaQuery are called unconditionally
     const [showColorPicker, setShowColorPicker] = useState(true);
         const isMobile = useMediaQuery({ maxWidth: 768 });
@@ -29,7 +29,13 @@ const EStore = () => {
     };
 
     console.log(store);
-
+    if(window.location.pathname.includes('/store/') && !store.fetchedFromBackend){
+        return (
+            <div className=' w-screen'>
+           <Loading></Loading>
+           </div>
+        )
+    }else
     return (
         store &&
         <div className=' h-full' style={{ backgroundColor: store.color.backgroundThemeColor }}>
@@ -42,8 +48,10 @@ const EStore = () => {
             <SecondaryBanner/>
             <ProductList/>
             <Footer/>
+            {previewMode &&
             <SaveStoreButton/>
-        </div>
+            }
+            </div>
     );
 };
 

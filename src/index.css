@@ -167,8 +167,3 @@
     @apply bg-gray-500 dark:bg-green-400;
 }
 
-#scrollbar2{
-    -ms-overflow-style: none;  /* Internet Explorer 10+ */
-    scrollbar-width: none;  /* Firefox */
-    
-}
