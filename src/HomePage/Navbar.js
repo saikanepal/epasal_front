@@ -65,7 +65,7 @@ const SideBar = () => {
     };
 
     const handleBuildStoreClick = () => {
-        window.location.href = "/buildstore/";
+        window.location.href = "/buildstore";
 
         console.log('Build Store clicked');
         setIsHovered(false);
@@ -139,7 +139,7 @@ const SideBar = () => {
     );
 };
 
-const SideBarContent = ({ isHovered, setIsHovered, onHomeClick, onContactsClick, onProductsClick, onStoreClick, onCartClick, handleSignInClick, auth,onBuildStoreClick}) => (
+const SideBarContent = ({ isHovered, setIsHovered, onHomeClick, onContactsClick, onProductsClick, onStoreClick, onCartClick, handleSignInClick, auth, onBuildStoreClick }) => (
     <div
         className={`fixed pt-5 px-2 z-10 top-0 left-0 h-full lg:h-screen  rounded-r-xl md:w-15 flex flex-col lg:bg-transparent dark:bg-gray-900 shadow-lg ${isHovered ? 'w-60 ' : 'w-15  duration-500 '}`}
         onMouseEnter={() => setIsHovered(true)}

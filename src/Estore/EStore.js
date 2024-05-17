@@ -1,4 +1,4 @@
-import React, { Component, useState } from 'react';
+import React, { Component, useEffect, useState } from 'react';
 import { StoreProvider, useStore } from './StoreContext';
 import EStoreNavbar from './EStoreNavbar';
 import AboutPage from './AboutPage';
@@ -29,13 +29,13 @@ import {
     verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
 
-const EStore = () => {
+const EStore = ({ Passedstore }) => {
     const [tasks, setTasks] = useState([
         { id: 1, component: <StoreHeader /> },
         { id: 2, component: <EStoreNavbar /> },
         { id: 3, component: <AboutPage /> },
         { id: 4, component: <ColorPicker /> },
-        { id: 5, component: <CategorySelector/> },
+        { id: 5, component: <CategorySelector /> },
         { id: 6, component: <SubProduct /> },
         { id: 7, component: <SecondaryBanner /> },
         { id: 8, component: <ProductList /> },
@@ -46,11 +46,12 @@ const EStore = () => {
         setTasks((tasks) => [...tasks, { id: tasks.length + 1, component }]);
     };
 
+
     const sensors = useSensors(
-        useSensor(PointerSensor,{
+        useSensor(PointerSensor, {
             activationConstraint: {
                 distance: 5
-              }
+            }
         }),
         useSensor(KeyboardSensor, {
             coordinateGetter: sortableKeyboardCoordinates,
@@ -58,7 +59,7 @@ const EStore = () => {
     );
 
     const getTaskPos = (id) => tasks.findIndex((task) => task.id === id);
-        
+
     const handleDragEnd = (event) => {
         const { active, over } = event;
         console.log({ event });
@@ -72,17 +73,16 @@ const EStore = () => {
         });
     };
 
-
+    useEffect(() => {
+        console.log(tasks);
+    }, [tasks])
     const { store } = useStore();
     const { previewMode } = store;
-    const {fetchedFromBackend} = store
+    const { fetchedFromBackend } = store
     // Ensure useState and useMediaQuery are called unconditionally
     const [showColorPicker, setShowColorPicker] = useState(true);
     const isMobile = useMediaQuery({ maxWidth: 768 });
-    
-    if (!store) {
-        return <div>Loading...</div>;
-    }
+
 
 
     const toggleColorPicker = () => {
@@ -124,9 +124,12 @@ const EStore = () => {
 };
 
 
-const EStoreWithStoreProvider = () => {
+const EStoreWithStoreProvider = (passedStore={passedStore}) => {
+    useEffect(()=>{
+        console.log(passedStore)
+    },[passedStore])
     return (
-        <StoreProvider>
+        <StoreProvider passedStore={passedStore}   >
             <EStore />
         </StoreProvider>
     );

@@ -9,12 +9,13 @@ export const useStore = () => {
     return useContext(StoreContext);
 };
 
-export const StoreProvider = ({ children }) => {
+export const StoreProvider = ({ children ,passedStore}) => {
     const auth = useContext(AuthContext);
     const { isLoading, error, sendRequest, onCloseError } = useFetch();
 
     const { storeID } = useParams(); // Extract storeID using useParams
     console.log(storeID);
+    
     const defaultStoreData = {
         name: 'Store Name',
         location: 'Your Store Location',
@@ -187,13 +188,14 @@ export const StoreProvider = ({ children }) => {
             linkedin: ''
         },
         footerDescription: 'A modern online store for all your needs.',
-        fetchedFromBackend:false,
+        fetchedFromBackend: false,
         // Rest of the default store data...
     };
 
+    useEffect(()=>{
+        console.log(passedStore)
+    },[passedStore]);
     const [store, setStore] = useState(defaultStoreData); // Start with null while fetching
-
-
 
     useEffect(() => {
         const fetchStoreData = async () => {
@@ -220,14 +222,14 @@ export const StoreProvider = ({ children }) => {
                 console.error('Error fetching store data:', error);
             }
         };
-    
+
         if (window.location.pathname.includes('/store/')) {
             fetchStoreData();
         } else {
             setStore(defaultStoreData);
         }
     }, [storeID]);
-    
+
 
     const addProduct = (newProduct) => {
         setStore((prevState) => ({
@@ -319,31 +321,31 @@ export const StoreProvider = ({ children }) => {
 
 
     if (isLoading) {
-        return( 
+        return (
             <div>
                 is Loading
             </div>
         )
     }
-    else 
-    return (
+    else
+        return (
 
-        <StoreContext.Provider
-            value={{
-                store,
-                setStore,
-                addCategory,
-                addSubCategory,
-                removeCategory,
-                removeSubCategory,
-                setSelectedSubCategory,
-                addToCart,
-                updateSecondaryBanner,
-                addProduct
-            }}
-        >
-            {children}
-        </StoreContext.Provider>
-    );
+            <StoreContext.Provider
+                value={{
+                    store,
+                    setStore,
+                    addCategory,
+                    addSubCategory,
+                    removeCategory,
+                    removeSubCategory,
+                    setSelectedSubCategory,
+                    addToCart,
+                    updateSecondaryBanner,
+                    addProduct
+                }}
+            >
+                {children}
+            </StoreContext.Provider>
+        );
 };
 

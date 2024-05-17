@@ -7,6 +7,7 @@ import SignInPage from "./Login/SignInPage";
 import { AuthContext } from "./Hooks/AuthContext";
 import { useAuth } from "./Hooks/useAuth";
 import EStore from "./Estore/EStore";
+import Theme from "./Theme/Theme";
 function App() {
   const { token, login, logout, userID } = useAuth();
   const auth = useContext(AuthContext);
@@ -15,8 +16,8 @@ function App() {
     routes = (
       <React.Fragment>
         <Route path="/" element={<HomePage />} />
-        <Route path="/store/:storeID" element={<EStore />} />
-        <Route path="/buildstore" element={<EStore />} />
+        <Route path="/store/:storeID" element={<Theme />} />
+        <Route path="/buildstore" element={<Theme />} />
       </React.Fragment>
     );
   } else {
