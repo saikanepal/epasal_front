@@ -1,15 +1,15 @@
 import React, { Component, useEffect, useState } from 'react';
-import { StoreProvider, useStore } from './StoreContext';
-import EStoreNavbar from './EStoreNavbar';
-import AboutPage from './AboutPage';
+import { StoreProvider, useStore } from './T1Context';
+import T1Navbar from './T1Navbar';
+import AboutPage from './T1HeroSection';
 import ColorPicker from './ColorPicker';
 import StoreHeader from './StoreHeader';
-import CategorySelector from './CategorySelector';
+import CategorySelector from './T1Category';
 import { useMediaQuery } from 'react-responsive';
 import SubProduct from './SubProduct/SubProduct';
 import SecondaryBanner from './SecondaryBanner';
 import ProductList from './ProductList/ProductList';
-import Footer from './Footer/Footer';
+import Footer from './Footer/T1Footer';
 import SaveStoreButton from './SaveButton/SaveStoreButton';
 import Loading from './Loading/Loading';
 import Task from './Task/Task';
@@ -31,15 +31,14 @@ import {
 
 const EStore = ({ Passedstore }) => {
     const [tasks, setTasks] = useState([
-        { id: 1, component: <StoreHeader /> },
-        { id: 2, component: <EStoreNavbar /> },
+        // { id: 1, component: <StoreHeader /> },
+        { id: 2, component: <T1Navbar /> },
         { id: 3, component: <AboutPage /> },
         { id: 4, component: <ColorPicker /> },
-        { id: 5, component: <CategorySelector /> },
-        { id: 6, component: <SubProduct /> },
-        { id: 7, component: <SecondaryBanner /> },
-        { id: 8, component: <ProductList /> },
-        { id: 9, component: <Footer /> },
+        { id: 5, component: <SubProduct /> },
+        { id: 6, component: <SecondaryBanner /> },
+        { id: 7, component: <ProductList /> },
+        { id: 8, component: <Footer /> },
     ]);
 
     const addTask = (component) => {
@@ -124,10 +123,10 @@ const EStore = ({ Passedstore }) => {
 };
 
 
-const EStoreWithStoreProvider = (passedStore={passedStore}) => {
-    useEffect(()=>{
+const EStoreWithStoreProvider = (passedStore = { passedStore }) => {
+    useEffect(() => {
         console.log(passedStore)
-    },[passedStore])
+    }, [passedStore])
     return (
         <StoreProvider passedStore={passedStore}   >
             <EStore />

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useStore } from './StoreContext';
+import { useStore } from './T1Context';
 
 const ColorPicker = () => {
     const { store, setStore } = useStore();

@@ -6,7 +6,6 @@ import Navbar from "./HomePage/Navbar"
 import SignInPage from "./Login/SignInPage";
 import { AuthContext } from "./Hooks/AuthContext";
 import { useAuth } from "./Hooks/useAuth";
-import EStore from "./Estore/EStore";
 import Theme from "./Theme/Theme";
 function App() {
   const { token, login, logout, userID } = useAuth();

@@ -1,9 +1,9 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { useStore } from '../StoreContext';
+import { useStore } from '../T1Context';
 import ProductCard from './ProductCard'; // Import the ProductCard component
 import AddProduct from './AddProduct'; // Import the AddProduct component
 import { useDraggable } from "react-use-draggable-scroll";
-
+import CategorySelector from '../T1Category';
 const SubProduct = () => {
     const ref = useRef();
     const { store, setStore } = useStore();
@@ -50,6 +50,7 @@ const SubProduct = () => {
 
     return (
         <div className=' px-5'>
+            <CategorySelector></CategorySelector>
             <div className="px-8 pb-8 font-Cinzel overflow-x-scroll" style={{
                 maxWidth: '100vw', backgroundColor: subProductColor.categoryColor
             }}

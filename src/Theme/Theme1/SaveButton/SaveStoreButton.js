@@ -1,9 +1,8 @@
 import React, { useContext } from 'react';
-import { useStore } from '../StoreContext';
-import useFetch from '../../Hooks/useFetch';
-import { AuthContext } from '../../Hooks/AuthContext';
+import { useStore } from '../T1Context';
+import { AuthContext } from '../../../Hooks/AuthContext';
 import Loading from '../Loading/Loading';
-
+import useFetch from "../../../Hooks/useFetch";
 const SaveStoreButton = () => {
     const auth = useContext(AuthContext);
     const { store } = useStore();

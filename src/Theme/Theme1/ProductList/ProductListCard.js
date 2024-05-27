@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { useStore } from '../StoreContext';
+import { useStore } from '../T1Context';
 import {  FaTimes } from 'react-icons/fa'; // Import FaTimes for the remove icon
 
 const ProductListCard = ({ product, handleDeleteProduct }) => {

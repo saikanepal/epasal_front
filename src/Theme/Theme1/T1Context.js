@@ -1,8 +1,8 @@
 import React, { createContext, useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom'; // Import useParams
 import { BrowserRouter } from 'react-router-dom'; // Import BrowserRouter
-import useFetch from '../Hooks/useFetch';
-import { AuthContext } from '../Hooks/AuthContext';
+import useFetch from '../../Hooks/useFetch';
+import { AuthContext } from '../../Hooks/AuthContext';
 const StoreContext = createContext();
 
 export const useStore = () => {
@@ -138,9 +138,9 @@ export const StoreProvider = ({ children ,passedStore}) => {
         ]
         ,
         color: {
-            backgroundThemeColor: '#fcfdfd',
+            backgroundThemeColor: '#B6947D',
             navColor: {
-                backgroundnavColor: '#fcfdfd',
+                backgroundnavColor: '#B6947D',
                 storeNameTextColor: '#000000',
                 categoryTextColor: '#1d2830',
                 searchBarColor: '#fcf3f3',

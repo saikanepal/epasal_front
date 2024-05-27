@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { FaShoppingCart, FaTimes } from 'react-icons/fa'; // Import FaTimes for the remove icon
-import { useStore } from '../StoreContext'; // Import the StoreContext
+import { useStore } from '../T1Context'; // Import the StoreContext
 
 const ProductCard = ({ product, handleStyleSelect, handleRemoveProduct }) => { // Pass handleRemoveProduct prop
 

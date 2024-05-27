@@ -1,25 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useDropzone } from 'react-dropzone';
-import banner from "../Assets/banner2.jpg";
-import { useStore } from './StoreContext';
-
-const AboutPage = ({ logoUrl }) => {
-    const { store } = useStore();
-    const { previewMode } = store;
-    const defaultLogoUrl = 'https://png.pngtree.com/element_pic/16/12/21/cf574539c6d9b2594eb0d550031119a5.jpg';
-    const [editableText, setEditableText] = useState(null);
-    const [storeContent, setStoreContent] = useState("Store Name");
+import banner from "../../Assets/banner2.png"
+const HeroSection1 = ({ previewMode }) => {
     const [bgImage, setBgImage] = useState(banner);
     const [logoImage, setLogoImage] = useState(null);
-
-    useEffect(() => {
-        setEditableText(document.createElement("h1"));
-    }, []);
-
-    useEffect(() => {
-        console.log(storeContent);
-    }, [storeContent]);
 
     const onDropBackground = acceptedFiles => {
         const backgroundImage = acceptedFiles[0];
@@ -40,12 +25,13 @@ const AboutPage = ({ logoUrl }) => {
     };
 
     const { getRootProps: getRootPropsBackground, getInputProps: getInputPropsBackground } = useDropzone({ onDrop: onDropBackground });
+    const { getRootProps: getRootPropsLogo, getInputProps: getInputPropsLogo } = useDropzone({ onDrop: onDropLogo });
 
     if (previewMode) {
         return (
-            <div className='box-border md:px-5 py-5'>
+            <div className='box-border   py-19'>
                 <motion.div
-                    className="bg-white box-border font-kode-mono relative shadow-[rgba(50,50,93,0.25)_0px_6px_12px_-2px,_rgba(0,0,0,0.3)_0px_3px_7px_-3px] min-h-[600px] flex flex-col justify-center items-start text-black"
+                    className="bg-white h-full box-border font-kode-mono relative shadow-[rgba(50,50,93,0.25)_0px_6px_12px_-2px,_rgba(0,0,0,0.3)_0px_3px_7px_-3px] min-h-[600px] flex flex-col justify-center items-start text-black"
                     initial={{ opacity: 0, y: -50 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5 }}
@@ -55,9 +41,8 @@ const AboutPage = ({ logoUrl }) => {
                         backgroundPosition: 'center',
                         backgroundRepeat: 'no-repeat',
                         opacity: 0.4,
-                        width: '100%', // Set width to 100% for responsiveness
+                        width: '100%',
                     }}
-                   
                 >
                 </motion.div>
             </div>
@@ -76,7 +61,7 @@ const AboutPage = ({ logoUrl }) => {
                         backgroundPosition: 'center',
                         backgroundRepeat: 'no-repeat',
                         opacity: 0.4,
-                        width: '100%', // Set width to 100% for responsiveness
+                        width: '100%',
                     }}
                     {...getRootPropsBackground()}
                 >
@@ -92,4 +77,4 @@ const AboutPage = ({ logoUrl }) => {
     }
 };
 
-export default AboutPage;
+export default HeroSection1;

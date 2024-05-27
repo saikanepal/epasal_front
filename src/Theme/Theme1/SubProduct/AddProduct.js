@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useDropzone } from 'react-dropzone';
-import { useStore } from '../StoreContext';
-import jeans from '../../Assets/jeans.jpg';
+import { useStore } from '../T1Context';
+import jeans from '../../../Assets/jeans.jpg';
 
 const AddProduct = ({ onClose }) => {
     const { addProduct } = useStore();

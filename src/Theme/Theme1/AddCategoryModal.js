@@ -1,6 +1,6 @@
 // AddCategoryModal.js
 import React, { useState } from 'react';
-import { useStore } from './StoreContext';
+import { useStore } from './T1Context';
 import { motion } from 'framer-motion';
 
 const AddCategoryModal = ({ onClose }) => {

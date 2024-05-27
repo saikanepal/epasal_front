@@ -1,13 +1,12 @@
 // Theme.js
 import React, { useEffect, useState, useContext } from 'react';
-import Estore from '../Estore/EStore';
 import { useParams } from 'react-router-dom'; // Import useParams
 import useFetch from '../Hooks/useFetch';
 import { AuthContext } from '../Hooks/AuthContext';
-
+import Theme1 from './Theme1/Theme1';
 export default function Theme() {
   const [activeTheme, setActiveTheme] = useState(1);
-  const [themeNumber,setThemeNumber]= useState(1);
+  const [themeNumber, setThemeNumber] = useState(1);
   const { storeID } = useParams(); // Extract storeID using useParams
   const auth = useContext(AuthContext);
   const { isLoading, error, sendRequest, onCloseError } = useFetch();
@@ -43,7 +42,7 @@ export default function Theme() {
 
   return (
     <div>
-      <Estore  />
+      <Theme1/>
     </div>
   );
 }

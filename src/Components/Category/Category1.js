@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { useStore } from './StoreContext';
-import AddCategoryModal from './AddCategoryModal';
+import AddCategoryModal from "../../Theme/Theme1/AddCategoryModal";
 
-const CategorySelector = () => {
-    const { store, setSelectedSubCategory, removeSubCategory } = useStore();
-    const { subCategories, previewMode, color } = store;
+
+const Category1 = ({ subCategories, previewMode, color,setSelectedSubCategory,removeSubCategory }) => {
+
     const [showModal, setShowModal] = useState(false);
+
     const [selectedSubCategory, setSelectedSubCategoryLocally] = useState('');
 
     const handleAddCategory = () => {
@@ -27,6 +27,7 @@ const CategorySelector = () => {
         setSelectedSubCategoryLocally(subcategory); // Update the local state
         setSelectedSubCategory(subcategory.name); // Update the selectedSubCategory in the store
     };
+
 
     return (
         <div className=' px-0'>
@@ -65,4 +66,4 @@ const CategorySelector = () => {
     );
 };
 
-export default CategorySelector;
+export default Category1;
