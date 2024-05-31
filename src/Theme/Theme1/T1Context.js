@@ -9,13 +9,13 @@ export const useStore = () => {
     return useContext(StoreContext);
 };
 
-export const StoreProvider = ({ children ,passedStore}) => {
+export const StoreProvider = ({ children, passedStore }) => {
     const auth = useContext(AuthContext);
     const { isLoading, error, sendRequest, onCloseError } = useFetch();
 
     const { storeID } = useParams(); // Extract storeID using useParams
     console.log(storeID);
-    
+
     const defaultStoreData = {
         name: 'Store Name',
         location: 'Your Store Location',
@@ -33,106 +33,106 @@ export const StoreProvider = ({ children ,passedStore}) => {
             { name: 'Pants' }
         ],
         products: [
-            {
-                id: 1,
-                name: 'Watch1',
-                image: 'https://cdn4.ethoswatches.com/the-watch-guide/wp-content/uploads/2020/01/Parmigiani-Fleurier-Toric-Chronometer-Michel-Vintage-Inspired-Watch-Retro-Nostalgic-1-1.jpg?tr=q-70',
-                categories: ['Men'],
-                subcategories: ['Watch'],
-                sizes: ['S', 'M', 'L'],
-                variants: [
-                    { type: 'Color', option: 'Black', prices: [50, 60, 70] },
-                    { type: 'Color', option: 'White', prices: [55, 65, 75] },
-                    { type: 'Color', option: 'Red', prices: [60, 70, 80] }
-                ]
-            }, {
-                id: 2,
-                name: 'Watch2',
-                image: 'https://i.etsystatic.com/8887640/r/il/630e09/5842875807/il_fullxfull.5842875807_poyj.jpg',
-                categories: ['Men'],
-                subcategories: ['Watch'],
-                sizes: ['S', 'M', 'L'],
-                variants: [
-                    { type: 'Color', option: 'Black', prices: [50, 60, 70] },
-                    { type: 'Color', option: 'White', prices: [55, 65, 75] },
-                    { type: 'Color', option: 'Red', prices: [60, 70, 80] }
-                ]
-            },
+            // {
+            //     id: 1,
+            //     name: 'Watch1',
+            //     image: 'https://cdn4.ethoswatches.com/the-watch-guide/wp-content/uploads/2020/01/Parmigiani-Fleurier-Toric-Chronometer-Michel-Vintage-Inspired-Watch-Retro-Nostalgic-1-1.jpg?tr=q-70',
+            //     categories: ['Men'],
+            //     subcategories: ['Watch'],
+            //     sizes: ['S', 'M', 'L'],
+            //     variants: [
+            //         { type: 'Color', option: 'Black', prices: [50, 60, 70] },
+            //         { type: 'Color', option: 'White', prices: [55, 65, 75] },
+            //         { type: 'Color', option: 'Red', prices: [60, 70, 80] }
+            //     ]
+            // },
+            // {
+            //     id: 2,
+            //     name: 'Watch2',
+            //     image: 'https://i.etsystatic.com/8887640/r/il/630e09/5842875807/il_fullxfull.5842875807_poyj.jpg',
+            //     categories: ['Men'],
+            //     subcategories: ['Watch'],
+            //     sizes: ['S', 'M', 'L'],
+            //     variants: [
+            //         { type: 'Color', option: 'Black', prices: [50, 60, 70] },
+            //         { type: 'Color', option: 'White', prices: [55, 65, 75] },
+            //         { type: 'Color', option: 'Red', prices: [60, 70, 80] }
+            //     ]
+            // },
             {
                 id: 3,
                 name: 'Watch3',
-                image: 'https://www.awco.nl/wp-content/uploads/2022/07/cartier-baignoire-awco-2-e1658830551133.jpg',
+                image: 'https://w7.pngwing.com/pngs/416/422/png-transparent-wrist-watch.png',
                 categories: ['Men'],
                 subcategories: ['Watch'],
                 sizes: ['S', 'M', 'L'],
                 variants: [
-                    { type: 'Color', option: 'Black', prices: [50, 60, 70] },
-                    { type: 'Color', option: 'White', prices: [55, 65, 75] },
-                    { type: 'Color', option: 'Red', prices: [60, 70, 80] }
+                    { type: 'Image', option: 'https://w7.pngwing.com/pngs/416/422/png-transparent-wrist-watch.png', prices: [50, 60, 70] },
+                    { type: 'Image', option: 'https://w7.pngwing.com/pngs/416/422/png-transparent-wrist-watch.png', prices: [55, 65, 75] },
                 ]
             }, {
                 id: 4,
                 name: 'Watch4',
-                image: 'https://img.kwcdn.com/product/Fancyalgo/VirtualModelMatting/4538ed94e47b06cb2b5325636236e6a5.jpg?imageView2/2/w/500/q/60/format/webp',
+                image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSI4d5te_kUPD-pUQ69hVjP1x1yuS59y-ksjw&s',
                 categories: ['Men'],
                 subcategories: ['Watch'],
                 sizes: ['S', 'M', 'L'],
                 variants: [
-                    { type: 'Color', option: 'Black', prices: [50, 60, 70] },
-                    { type: 'Color', option: 'White', prices: [55, 65, 75] },
-                    { type: 'Color', option: 'Red', prices: [60, 70, 80] }
+                    { type: 'Image', option: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSI4d5te_kUPD-pUQ69hVjP1x1yuS59y-ksjw&s', prices: [50, 60, 70] },
+                    { type: 'Image', option: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSI4d5te_kUPD-pUQ69hVjP1x1yuS59y-ksjw&s', prices: [55, 65, 75] },
                 ]
-            }, {
+            },
+            {
                 id: 5,
                 name: 'Watch5',
-                image: 'https://img.chrono24.com/images/uhren/31781576-yxk1zakhh64ioxtbwozl4tqj-ExtraLarge.jpg',
+                image: 'https://d2xamzlzrdbdbn.cloudfront.net/products/5a3c2380-816a-43a9-a34d-88a743874d55_416x416.jpg',
                 categories: ['Men'],
                 subcategories: ['Watch'],
                 sizes: ['S', 'M', 'L'],
                 variants: [
-                    { type: 'Color', option: 'Black', prices: [50, 60, 70] },
-                    { type: 'Color', option: 'White', prices: [55, 65, 75] },
-                    { type: 'Color', option: 'Red', prices: [60, 70, 80] }
-                ]
-            }, {
-                id: 6,
-                name: 'Watch6',
-                image: 'https://i.pinimg.com/originals/2f/7a/9f/2f7a9f72f64dfb34a9942cf3f15f6ed4.jpg',
-                categories: ['Men'],
-                subcategories: ['Watch'],
-                sizes: ['S', 'M', 'L'],
-                variants: [
-                    { type: 'Color', option: 'Black', prices: [50, 60, 70] },
-                    { type: 'Color', option: 'White', prices: [55, 65, 75] },
-                    { type: 'Color', option: 'Red', prices: [60, 70, 80] }
+                    { type: 'Image', option: 'https://d2xamzlzrdbdbn.cloudfront.net/products/5a3c2380-816a-43a9-a34d-88a743874d55_416x416.jpg', prices: [50, 60, 70] },
+                    { type: 'Image', option: 'https://d2xamzlzrdbdbn.cloudfront.net/products/5a3c2380-816a-43a9-a34d-88a743874d55_416x416.jpg', prices: [55, 65, 75] },
                 ]
             },
-            {
-                id: 7,
-                name: 'Product 2 - Jacket',
-                image: 'https://img4.dhresource.com/webp/m/0x0/f3/albu/km/y/03/8527bf64-ccfa-4ba8-869d-d27318be5fe5.jpg',
-                categories: ['Women'],
-                subcategories: ['Jacket'],
-                sizes: ['S', 'M', 'L'],
-                variants: [
-                    { type: 'Color', option: 'Blue', prices: [70, 80, 90] },
-                    { type: 'Color', option: 'Green', prices: [75, 85, 95] },
-                    { type: 'Color', option: 'Yellow', prices: [80, 90, 100] }
-                ]
-            },
-            {
-                id: 8,
-                name: 'Product 3 - Pants',
-                image: 'https://urbanwearoutsiders.com/cdn/shop/products/H1fe8973abaae4b30aa2e18a0a3e8bec3V.jpg?v=1660239498',
-                categories: ['Unisex'],
-                subcategories: ['Pants'],
-                sizes: ['S', 'M', 'L'],
-                variants: [
-                    { type: 'Color', option: 'Black', prices: [40, 45, 50] },
-                    { type: 'Color', option: 'Gray', prices: [45, 50, 55] },
-                    { type: 'Color', option: 'Navy', prices: [50, 55, 60] }
-                ]
-            },
+            // {
+            //     id: 6,
+            //     name: 'Watch6',
+            //     image: 'https://i.pinimg.com/originals/2f/7a/9f/2f7a9f72f64dfb34a9942cf3f15f6ed4.jpg',
+            //     categories: ['Men'],
+            //     subcategories: ['Watch'],
+            //     sizes: ['S', 'M', 'L'],
+            //     variants: [
+            //         { type: 'Color', option: 'Black', prices: [50, 60, 70] },
+            //         { type: 'Color', option: 'White', prices: [55, 65, 75] },
+            //         { type: 'Color', option: 'Red', prices: [60, 70, 80] }
+            //     ]
+            // },
+            // {
+            //     id: 7,
+            //     name: 'Product 2 - Jacket',
+            //     image: 'https://img4.dhresource.com/webp/m/0x0/f3/albu/km/y/03/8527bf64-ccfa-4ba8-869d-d27318be5fe5.jpg',
+            //     categories: ['Women'],
+            //     subcategories: ['Jacket'],
+            //     sizes: ['S', 'M', 'L'],
+            //     variants: [
+            //         { type: 'Color', option: 'Blue', prices: [70, 80, 90] },
+            //         { type: 'Color', option: 'Green', prices: [75, 85, 95] },
+            //         { type: 'Color', option: 'Yellow', prices: [80, 90, 100] }
+            //     ]
+            // },
+            // {
+            //     id: 8,
+            //     name: 'Product 3 - Pants',
+            //     image: 'https://urbanwearoutsiders.com/cdn/shop/products/H1fe8973abaae4b30aa2e18a0a3e8bec3V.jpg?v=1660239498',
+            //     categories: ['Unisex'],
+            //     subcategories: ['Pants'],
+            //     sizes: ['S', 'M', 'L'],
+            //     variants: [
+            //         { type: 'Color', option: 'Black', prices: [40, 45, 50] },
+            //         { type: 'Color', option: 'Gray', prices: [45, 50, 55] },
+            //         { type: 'Color', option: 'Navy', prices: [50, 55, 60] }
+            //     ]
+            // },
 
             // Add more products here...
         ]
@@ -165,9 +165,10 @@ export const StoreProvider = ({ children ,passedStore}) => {
             productListColor: { // Define productListColor object
                 productBackground: "ffffff",
                 backgroundColor: '#fefbfb',
-                textColor: '#333333',
-                borderColor: '#cccccc',
-                selectedBackground: '#c8bcbc'
+                priceColor: "B5A297",
+                textColor: '#4F3100',
+                borderColor: '#4F3100',
+                buttonBackgroundColor: '#ffffff'
             },
             footerColor: {
                 background: '#333333',
@@ -192,9 +193,9 @@ export const StoreProvider = ({ children ,passedStore}) => {
         // Rest of the default store data...
     };
 
-    useEffect(()=>{
+    useEffect(() => {
         console.log(passedStore)
-    },[passedStore]);
+    }, [passedStore]);
     const [store, setStore] = useState(defaultStoreData); // Start with null while fetching
 
     useEffect(() => {

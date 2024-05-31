@@ -29,6 +29,8 @@ import {
     verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
 
+import T1ProductList from './T1ProductList';
+
 const EStore = ({ Passedstore }) => {
     const [tasks, setTasks] = useState([
         // { id: 1, component: <StoreHeader /> },
@@ -37,7 +39,7 @@ const EStore = ({ Passedstore }) => {
         { id: 4, component: <ColorPicker /> },
         { id: 5, component: <SubProduct /> },
         { id: 6, component: <SecondaryBanner /> },
-        { id: 7, component: <ProductList /> },
+        { id: 7, component: <T1ProductList /> },
         { id: 8, component: <Footer /> },
     ]);
 
@@ -104,7 +106,7 @@ const EStore = ({ Passedstore }) => {
                     collisionDetection={closestCorners}
                     onDragEnd={handleDragEnd}
                 >
-                    <SortableContext disabled={fetchedFromBackend} items={tasks} strategy={horizontalListSortingStrategy}>
+                    <SortableContext disabled={true} items={tasks} strategy={horizontalListSortingStrategy}>
                         {/* <Task id={tasks[0].id} component={<Comp1 />} />
           <Task id={tasks[1].id} component={<Comp2 />} />
           <Task id={tasks[2].id} component={<Comp3 />} /> */}
