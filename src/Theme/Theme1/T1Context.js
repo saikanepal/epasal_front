@@ -94,19 +94,18 @@ export const StoreProvider = ({ children, passedStore }) => {
                     { type: 'Image', option: 'https://d2xamzlzrdbdbn.cloudfront.net/products/5a3c2380-816a-43a9-a34d-88a743874d55_416x416.jpg', prices: [55, 65, 75] },
                 ]
             },
-            // {
-            //     id: 6,
-            //     name: 'Watch6',
-            //     image: 'https://i.pinimg.com/originals/2f/7a/9f/2f7a9f72f64dfb34a9942cf3f15f6ed4.jpg',
-            //     categories: ['Men'],
-            //     subcategories: ['Watch'],
-            //     sizes: ['S', 'M', 'L'],
-            //     variants: [
-            //         { type: 'Color', option: 'Black', prices: [50, 60, 70] },
-            //         { type: 'Color', option: 'White', prices: [55, 65, 75] },
-            //         { type: 'Color', option: 'Red', prices: [60, 70, 80] }
-            //     ]
-            // },
+            {
+                id: 6,
+                name: 'Watch6',
+                image: 'https://w7.pngwing.com/pngs/578/800/png-transparent-leather-jacket-sleeve-jacket-textile-leather-black-thumbnail.png',
+                categories: ['Men'],
+                subcategories: ['Watch'],
+                sizes: ['S', 'M', 'L'],
+                variants: [
+                    { type: 'Image', option: 'https://w7.pngwing.com/pngs/578/800/png-transparent-leather-jacket-sleeve-jacket-textile-leather-black-thumbnail.png', prices: [50, 60, 70] },
+                    { type: 'Image', option: 'https://w7.pngwing.com/pngs/578/800/png-transparent-leather-jacket-sleeve-jacket-textile-leather-black-thumbnail.png', prices: [55, 65, 75] },
+                ]
+            },
             // {
             //     id: 7,
             //     name: 'Product 2 - Jacket',

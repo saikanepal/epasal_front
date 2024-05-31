@@ -38,7 +38,7 @@ const ProductList = () => {
     };
 
     return (
-        <div className='px-3 md:px-5 space-y-10 flex flex-col items-center'>
+        <div className='px-3 md:px-16 lg:px-28 space-y-10 flex flex-col'>
             <input
                 type="text"
                 placeholder="Search products by name..."
