@@ -33,46 +33,20 @@ export const StoreProvider = ({ children, passedStore }) => {
             { name: 'Pants' }
         ],
         products: [
-            // {
-            //     id: 1,
-            //     name: 'Watch1',
-            //     image: 'https://cdn4.ethoswatches.com/the-watch-guide/wp-content/uploads/2020/01/Parmigiani-Fleurier-Toric-Chronometer-Michel-Vintage-Inspired-Watch-Retro-Nostalgic-1-1.jpg?tr=q-70',
-            //     categories: ['Men'],
-            //     subcategories: ['Watch'],
-            //     sizes: ['S', 'M', 'L'],
-            //     variants: [
-            //         { type: 'Color', option: 'Black', prices: [50, 60, 70] },
-            //         { type: 'Color', option: 'White', prices: [55, 65, 75] },
-            //         { type: 'Color', option: 'Red', prices: [60, 70, 80] }
-            //     ]
-            // },
-            // {
-            //     id: 2,
-            //     name: 'Watch2',
-            //     image: 'https://i.etsystatic.com/8887640/r/il/630e09/5842875807/il_fullxfull.5842875807_poyj.jpg',
-            //     categories: ['Men'],
-            //     subcategories: ['Watch'],
-            //     sizes: ['S', 'M', 'L'],
-            //     variants: [
-            //         { type: 'Color', option: 'Black', prices: [50, 60, 70] },
-            //         { type: 'Color', option: 'White', prices: [55, 65, 75] },
-            //         { type: 'Color', option: 'Red', prices: [60, 70, 80] }
-            //     ]
-            // },
             {
-                id: 3,
-                name: 'Watch3',
-                image: 'https://w7.pngwing.com/pngs/416/422/png-transparent-wrist-watch.png',
+                id: 1,
+                name: 'Tshirt',
+                image: 'https://images-na.ssl-images-amazon.com/images/I/714xodINSzL._SLDPMOBCAROUSELAUTOCROP288221_MCnd_AC_SR462,693_.jpg',
                 categories: ['Men'],
                 subcategories: ['Watch'],
                 sizes: ['S', 'M', 'L'],
                 variants: [
-                    { type: 'Image', option: 'https://w7.pngwing.com/pngs/416/422/png-transparent-wrist-watch.png', prices: [50, 60, 70] },
-                    { type: 'Image', option: 'https://w7.pngwing.com/pngs/416/422/png-transparent-wrist-watch.png', prices: [55, 65, 75] },
+                    { type: 'Image', option: 'https://images-na.ssl-images-amazon.com/images/I/714xodINSzL._SLDPMOBCAROUSELAUTOCROP288221_MCnd_AC_SR462,693_.jpg', prices: [50, 60, 70] },
+                    { type: 'Image', option: 'https://images-na.ssl-images-amazon.com/images/I/714xodINSzL._SLDPMOBCAROUSELAUTOCROP288221_MCnd_AC_SR462,693_.jpg', prices: [55, 65, 75] },
                 ]
             }, {
-                id: 4,
-                name: 'Watch4',
+                id: 2,
+                name: 'Watch 2',
                 image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSI4d5te_kUPD-pUQ69hVjP1x1yuS59y-ksjw&s',
                 categories: ['Men'],
                 subcategories: ['Watch'],
@@ -83,57 +57,31 @@ export const StoreProvider = ({ children, passedStore }) => {
                 ]
             },
             {
-                id: 5,
-                name: 'Watch5',
-                image: 'https://d2xamzlzrdbdbn.cloudfront.net/products/5a3c2380-816a-43a9-a34d-88a743874d55_416x416.jpg',
+                id: 3,
+                name: 'Watch 3',
+                image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSI4d5te_kUPD-pUQ69hVjP1x1yuS59y-ksjw&s',
                 categories: ['Men'],
                 subcategories: ['Watch'],
                 sizes: ['S', 'M', 'L'],
                 variants: [
-                    { type: 'Image', option: 'https://d2xamzlzrdbdbn.cloudfront.net/products/5a3c2380-816a-43a9-a34d-88a743874d55_416x416.jpg', prices: [50, 60, 70] },
-                    { type: 'Image', option: 'https://d2xamzlzrdbdbn.cloudfront.net/products/5a3c2380-816a-43a9-a34d-88a743874d55_416x416.jpg', prices: [55, 65, 75] },
+                    { type: 'Image', option: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSI4d5te_kUPD-pUQ69hVjP1x1yuS59y-ksjw&s', prices: [50, 60, 70] },
+                    { type: 'Image', option: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSI4d5te_kUPD-pUQ69hVjP1x1yuS59y-ksjw&s', prices: [55, 65, 75] },
                 ]
             },
-            {
-                id: 6,
-                name: 'Watch6',
-                image: 'https://w7.pngwing.com/pngs/578/800/png-transparent-leather-jacket-sleeve-jacket-textile-leather-black-thumbnail.png',
-                categories: ['Men'],
-                subcategories: ['Watch'],
-                sizes: ['S', 'M', 'L'],
-                variants: [
-                    { type: 'Image', option: 'https://w7.pngwing.com/pngs/578/800/png-transparent-leather-jacket-sleeve-jacket-textile-leather-black-thumbnail.png', prices: [50, 60, 70] },
-                    { type: 'Image', option: 'https://w7.pngwing.com/pngs/578/800/png-transparent-leather-jacket-sleeve-jacket-textile-leather-black-thumbnail.png', prices: [55, 65, 75] },
-                ]
-            },
-            // {
-            //     id: 7,
-            //     name: 'Product 2 - Jacket',
-            //     image: 'https://img4.dhresource.com/webp/m/0x0/f3/albu/km/y/03/8527bf64-ccfa-4ba8-869d-d27318be5fe5.jpg',
-            //     categories: ['Women'],
-            //     subcategories: ['Jacket'],
-            //     sizes: ['S', 'M', 'L'],
-            //     variants: [
-            //         { type: 'Color', option: 'Blue', prices: [70, 80, 90] },
-            //         { type: 'Color', option: 'Green', prices: [75, 85, 95] },
-            //         { type: 'Color', option: 'Yellow', prices: [80, 90, 100] }
-            //     ]
-            // },
-            // {
-            //     id: 8,
-            //     name: 'Product 3 - Pants',
-            //     image: 'https://urbanwearoutsiders.com/cdn/shop/products/H1fe8973abaae4b30aa2e18a0a3e8bec3V.jpg?v=1660239498',
-            //     categories: ['Unisex'],
-            //     subcategories: ['Pants'],
-            //     sizes: ['S', 'M', 'L'],
-            //     variants: [
-            //         { type: 'Color', option: 'Black', prices: [40, 45, 50] },
-            //         { type: 'Color', option: 'Gray', prices: [45, 50, 55] },
-            //         { type: 'Color', option: 'Navy', prices: [50, 55, 60] }
-            //     ]
-            // },
 
-            // Add more products here...
+            {
+                id: 4,
+                name: 'Jacket',
+                image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTLCLvpX4ylAWPf6d_wrhuuVxlm_bLG4niZsw&s',
+                categories: ['Men'],
+                subcategories: ['Watch'],
+                sizes: ['S', 'M', 'L'],
+                variants: [
+                    { type: 'Image', option: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTLCLvpX4ylAWPf6d_wrhuuVxlm_bLG4niZsw&s', prices: [50, 60, 70] },
+                    { type: 'Image', option: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTLCLvpX4ylAWPf6d_wrhuuVxlm_bLG4niZsw&s', prices: [55, 65, 75] },
+                ]
+            },
+
         ]
         ,
         color: {
@@ -162,12 +110,15 @@ export const StoreProvider = ({ children, passedStore }) => {
             },
             productSection: "ffffff",
             productListColor: { // Define productListColor object
-                productBackground: "ffffff",
-                backgroundColor: '#fefbfb',
-                priceColor: "B5A297",
+                headerColor: "#ffffff",
+                productBackground: "#B6947D",
+                priceColor: "#6C6C6C",
                 textColor: '#4F3100',
-                borderColor: '#4F3100',
-                buttonBackgroundColor: '#ffffff'
+                borderColor: '#BFBFBF',
+                buttonBgColor: '#ffffff',
+                heartColor: "4F3100",
+                buttonTextColor: '#4F3100',
+                buttonBgColorOnHover: "#6C6C6C"
             },
             footerColor: {
                 background: '#333333',

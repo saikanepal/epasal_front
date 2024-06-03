@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useStore } from '../../Theme/Theme1/T1Context';
 import ProductList1 from './ProductList1';
+import { IoIosArrowForward } from "react-icons/io";
+import { Link } from 'react-router-dom';
+
 
 const ProductList = () => {
     const { store, setStore } = useStore();
@@ -38,20 +41,22 @@ const ProductList = () => {
     };
 
     return (
-        <div className='px-3 md:px-16 lg:px-28 space-y-10 flex flex-col'>
-            <input
-                type="text"
-                placeholder="Search products by name..."
-                className="px-4 py-2 mb-4 border border-gray-300 rounded-md focus:outline-none"
-                value={searchQuery}
-                onChange={handleSearchQueryChange}
-            />
-            <ProductList1
-                products={filteredProducts}
-                productListColor={productListColor}
-                handleDeleteProduct={handleDeleteProduct}
-            />
-        </div>
+        <>
+            <div className='space-y-10 flex items-center flex-col'>
+                <h1 className="text-3xl font-semibold">Featured Products</h1>
+                <ProductList1
+                    products={filteredProducts}
+                    productListColor={productListColor}
+                    handleDeleteProduct={handleDeleteProduct}
+                />
+            </div>
+            <Link>
+                <button className="w-full flex items-center justify-end font-semibold pt-6 px-4 transition ease-in duration-200 border-nore focus:outline-none">
+                    <span>View More</span> <IoIosArrowForward />
+                </button>
+            </Link>
+        </>
+
     );
 };
 

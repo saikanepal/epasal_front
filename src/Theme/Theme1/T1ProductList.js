@@ -3,7 +3,7 @@ import ProductList from '../../Components/ProductList/ProductList'
 
 const T1ProductList = () => {
     return (
-        <div>
+        <div className='px-8 md:px-10'>
             <ProductList />
         </div>
     )
