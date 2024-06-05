@@ -35,52 +35,82 @@ export const StoreProvider = ({ children, passedStore }) => {
         products: [
             {
                 id: 1,
-                name: 'Tshirt',
-                image: 'https://images-na.ssl-images-amazon.com/images/I/714xodINSzL._SLDPMOBCAROUSELAUTOCROP288221_MCnd_AC_SR462,693_.jpg',
-                categories: ['Men'],
-                subcategories: ['Watch'],
-                sizes: ['S', 'M', 'L'],
-                variants: [
-                    { type: 'Image', option: 'https://images-na.ssl-images-amazon.com/images/I/714xodINSzL._SLDPMOBCAROUSELAUTOCROP288221_MCnd_AC_SR462,693_.jpg', prices: [50, 60, 70] },
-                    { type: 'Image', option: 'https://images-na.ssl-images-amazon.com/images/I/714xodINSzL._SLDPMOBCAROUSELAUTOCROP288221_MCnd_AC_SR462,693_.jpg', prices: [55, 65, 75] },
-                ]
-            }, {
-                id: 2,
-                name: 'Watch 2',
-                image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSI4d5te_kUPD-pUQ69hVjP1x1yuS59y-ksjw&s',
-                categories: ['Men'],
-                subcategories: ['Watch'],
-                sizes: ['S', 'M', 'L'],
-                variants: [
-                    { type: 'Image', option: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSI4d5te_kUPD-pUQ69hVjP1x1yuS59y-ksjw&s', prices: [50, 60, 70] },
-                    { type: 'Image', option: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSI4d5te_kUPD-pUQ69hVjP1x1yuS59y-ksjw&s', prices: [55, 65, 75] },
-                ]
-            },
-            {
-                id: 3,
-                name: 'Watch 3',
-                image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSI4d5te_kUPD-pUQ69hVjP1x1yuS59y-ksjw&s',
-                categories: ['Men'],
-                subcategories: ['Watch'],
-                sizes: ['S', 'M', 'L'],
-                variants: [
-                    { type: 'Image', option: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSI4d5te_kUPD-pUQ69hVjP1x1yuS59y-ksjw&s', prices: [50, 60, 70] },
-                    { type: 'Image', option: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSI4d5te_kUPD-pUQ69hVjP1x1yuS59y-ksjw&s', prices: [55, 65, 75] },
-                ]
-            },
-
-            {
-                id: 4,
                 name: 'Jacket',
                 image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTLCLvpX4ylAWPf6d_wrhuuVxlm_bLG4niZsw&s',
                 categories: ['Men'],
                 subcategories: ['Watch'],
                 sizes: ['S', 'M', 'L'],
-                variants: [
-                    { type: 'Image', option: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTLCLvpX4ylAWPf6d_wrhuuVxlm_bLG4niZsw&s', prices: [50, 60, 70] },
-                    { type: 'Image', option: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTLCLvpX4ylAWPf6d_wrhuuVxlm_bLG4niZsw&s', prices: [55, 65, 75] },
+                variant: [
+                    {
+                        name: "Size",
+                        options: [
+                            {
+                                name: "Small",
+                                price: 1100,
+                                image: {
+                                    imageId: "img123",
+                                    imageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTLCLvpX4ylAWPf6d_wrhuuVxlm_bLG4niZsw&s"
+                                },
+                                discount: 5
+                            }
+                        ]
+                    },
+                    {
+                        name: "Size",
+                        options: [
+                            {
+                                name: "Small",
+                                price: 800,
+                                image: {
+                                    imageId: "img123",
+                                    imageUrl: "https://images-na.ssl-images-amazon.com/images/I/714xodINSzL._SLDPMOBCAROUSELAUTOCROP288221_MCnd_AC_SR462,693_.jpg"
+                                },
+                                discount: 5
+                            }
+                        ]
+                    },
+
                 ]
             },
+            {
+                id: 1,
+                name: 'Watch',
+                image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSI4d5te_kUPD-pUQ69hVjP1x1yuS59y-ksjw&s',
+                categories: ['Men'],
+                subcategories: ['Watch'],
+                sizes: ['S', 'M', 'L'],
+                variant: [
+                    {
+                        name: "Size",
+                        options: [
+                            {
+                                name: "Small",
+                                price: 2000,
+                                image: {
+                                    imageId: "img123",
+                                    imageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSI4d5te_kUPD-pUQ69hVjP1x1yuS59y-ksjw&s"
+                                },
+                                discount: 5
+                            }
+                        ]
+                    },
+                    {
+                        name: "Size",
+                        options: [
+                            {
+                                name: "Small",
+                                price: 2500,
+                                image: {
+                                    imageId: "img123",
+                                    imageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSI4d5te_kUPD-pUQ69hVjP1x1yuS59y-ksjw&s"
+                                },
+                                discount: 5
+                            }
+                        ]
+                    },
+                ]
+            }
+
 
         ]
         ,
@@ -110,7 +140,7 @@ export const StoreProvider = ({ children, passedStore }) => {
             },
             productSection: "ffffff",
             productListColor: { // Define productListColor object
-                headerColor: "#ffffff",
+                headerColor: "#000000",
                 productBackground: "#B6947D",
                 priceColor: "#6C6C6C",
                 textColor: '#4F3100',

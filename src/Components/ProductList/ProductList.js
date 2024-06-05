@@ -1,37 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import { useStore } from '../../Theme/Theme1/T1Context';
-import ProductList1 from './ProductList1';
 import { IoIosArrowForward } from "react-icons/io";
 import { Link } from 'react-router-dom';
+import ProductListCard1 from './ProductListCard1';
 
 
-const ProductList = () => {
-    const { store, setStore } = useStore();
-    const { products } = store;
-    const { productListColor } = store.color;
-
-    // Set initial state for search query
-    const [searchQuery, setSearchQuery] = useState('');
+const ProductList = ({ productListProps, productListType }) => {
+    const { products, productColor, setStore } = productListProps
 
     // Filtered products state
     const [filteredProducts, setFilteredProducts] = useState(products);
 
-    // Function to handle search query change
-    const handleSearchQueryChange = (e) => {
-        setSearchQuery(e.target.value);
-    };
-
     // Delayed filtering function
     useEffect(() => {
-        const timeoutId = setTimeout(() => {
-            const filtered = products.filter(product =>
-                product.name.toLowerCase().includes(searchQuery.toLowerCase())
-            );
-            setFilteredProducts(filtered);
-        }, 1000);
-
-        return () => clearTimeout(timeoutId);
-    }, [searchQuery, products]);
+        setFilteredProducts(products.slice(0, 4));
+    }, [products]);
 
     const handleDeleteProduct = (productId) => {
         setStore(prevStore => ({
@@ -40,22 +22,41 @@ const ProductList = () => {
         }));
     };
 
+    const renderProductList = () => {
+        switch (productListType) {
+            case 'ProductList1':
+                return (
+                    <div className='space-y-10 flex items-center relative flex-col'>
+                        <h1 style={{ color: productColor.headerColor }} className="text-3xl font-semibold">Featured Products</h1>
+                        <div style={{ backgroundColor: productColor.productBackground }}>
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-x-10 gap-y-12 lg:gap-10 ">
+                                {filteredProducts.map(product => (
+                                    <ProductListCard1
+                                        key={product.id}
+                                        product={product}
+                                        productListProps={productListProps}
+                                        handleDeleteProduct={handleDeleteProduct}
+                                    />
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                );
+            // Add more cases for other product list types
+            default:
+                return null;
+        }
+    };
     return (
-        <>
-            <div className='space-y-10 flex items-center flex-col'>
-                <h1 className="text-3xl font-semibold">Featured Products</h1>
-                <ProductList1
-                    products={filteredProducts}
-                    productListColor={productListColor}
-                    handleDeleteProduct={handleDeleteProduct}
-                />
-            </div>
+
+        <div className=''>
+            {renderProductList()}
             <Link>
-                <button className="w-full flex items-center justify-end font-semibold pt-6 px-4 transition ease-in duration-200 border-nore focus:outline-none">
+                <button className="flex items-center absolute right-10 font-semibold pt-6 px-4 transition ease-in duration-200 border-nore focus:outline-none">
                     <span>View More</span> <IoIosArrowForward />
                 </button>
             </Link>
-        </>
+        </div>
 
     );
 };
