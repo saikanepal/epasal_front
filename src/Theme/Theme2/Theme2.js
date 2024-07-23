@@ -1,6 +1,6 @@
 import React, { Component, useEffect, useState } from "react";
-import { StoreProvider, useStore } from "./T1Context";
-import T1Navbar from "./T1Navbar";
+import { StoreProvider, useStore } from "./T2Context";
+import T2Navbar from "./T1Navbar";
 import AboutPage from "./T1HeroSection";
 import ColorPicker from "./ColorPicker";
 import StoreHeader from "./StoreHeader";
@@ -27,26 +27,26 @@ import {
   sortableKeyboardCoordinates,
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
-import T1SubProduct from "./SubProduct/T1SubProduct";
+import T2SubProduct from "./SubProduct/T2SubProduct";
 import T1ProductList from './T1ProductList';
-import Editor from "../../Components/Editor/Editor";
 import T1ThirdBanner from "./T1ThirdBanner";
 import T1NewProducts from "./T1NewProducts";
 import T1SecondaryBanner from "./T1SecondaryBanner";
+import Editor2 from "../../Components/Editor/Editor2";
 
 const EStore = ({ Passedstore }) => {
   const [tasks, setTasks] = useState([
     // { id: 1, component: <StoreHeader /> },
-    { id: 2, component: <T1Navbar navbarType='Navbar1'/> },
-    { id: 3, component: <AboutPage heroSectionType="HeroSection1"/> },
-    { id: 4, component: <Editor /> },
-    { id: 5, component: <T1SubProduct subProductType = 'Category1'/> },
-    { id: 6, component: <T1ThirdBanner thirdProductType='ThirdBanner1'/> },
-    { id: 7, component: <T1NewProducts categoryType = 'default'/> },
+    { id: 2, component: <T2Navbar navbarType='Navbar2'/> },
+    { id: 3, component: <AboutPage heroSectionType="HeroSection2"/> },
+    { id: 4, component: <Editor2 /> },
+    { id: 5, component: <T2SubProduct subProductType = 'Category2'/> },
+    { id: 6, component: <T1ThirdBanner thirdProductType='ThirdBanner2'/> },
+    { id: 7, component: <T1NewProducts categoryType = 'Modern Minimalistic'/> },
 
-    { id: 8, component: <T1SecondaryBanner /> },
+    { id: 8, component: <T1SecondaryBanner secondaryBannerType='SecondaryBanner2'/> },
     { id: 9, component: <T1ProductList /> },
-    { id: 10, component: <OfferBanner offerBannerType = "offer1"/> },
+    { id: 10, component: <OfferBanner offerBannerType = "offer2"/> },
     { id: 11, component: <Footer /> },
     { id: 12, component: <ModernReactPlayer /> },
 

@@ -1,15 +1,16 @@
 import React from "react";
 import SecondaryBanner1 from "./SecondaryBanner1";
+import SecondaryBanner2 from "./SecondaryBanner2";
 
 const SecondaryBanner = (props) => {
-  const { previewMode } = props;
+  const { previewMode ,secondaryBannerType} = props;
 
   const renderBanner = () => {
-    switch (previewMode) {
-      case true:
+    switch (secondaryBannerType) {
+      case 'SecondaryBanner1':
         return <SecondaryBanner1 {...props} />;
-      case false:
-        return <SecondaryBanner1 {...props} />;
+      case 'SecondaryBanner2':
+        return <SecondaryBanner2 {...props} />;
       default:
         return <SecondaryBanner1 {...props} />;
     }

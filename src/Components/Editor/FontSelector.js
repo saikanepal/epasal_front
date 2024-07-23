@@ -1,5 +1,5 @@
 import React from "react";
-import { useStore } from "../../Theme/Theme1/T1Context";
+import { useStore } from "../../Theme/Theme2/T2Context";
 
 const FontSelector = ({ section }) => {
     const { store, updateFont } = useStore();

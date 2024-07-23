@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useStore } from '../../Theme/Theme1/T1Context';
+import { useStore } from '../../Theme/Theme2/T2Context';
 import ProductForm from '../../Theme/Theme2/SubProduct/ProductForm';
 import ImageDrop from './ImageDrop';
 import { RxCrossCircled } from "react-icons/rx";
@@ -27,7 +27,7 @@ const fonts = [
 // Handle file import
 
 
-const Editor = () => {
+const Editor2 = () => {
   const { store, setStore } = useStore();
   const [openType, setOpenType] = useState(1);
   const [categoryData, setCategoryData] = useState('');
@@ -1746,7 +1746,7 @@ const Editor = () => {
   );
 };
 
-export default Editor;
+export default Editor2;
 
 
 var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
