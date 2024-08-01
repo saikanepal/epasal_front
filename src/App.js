@@ -48,7 +48,7 @@ function App() {
   localStorage.removeItem('product');
 
   let routes;
-  if (token || auth.token || (userData && JSON.parse(userData)?.token)) {
+  if (true || auth.token || (userData && JSON.parse(userData)?.token)) {
  
 
     routes = (

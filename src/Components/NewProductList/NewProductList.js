@@ -8,6 +8,7 @@ import useFetch from '../../Hooks/useFetch';
 import { toast } from 'react-toastify';
 import { AuthContext } from '../../Hooks/AuthContext';
 import Loader from '../Loading/Loading';
+import NewProductListCard4 from './NewProductLIstCard4';
 const NewProductList = ({ productListProps, productListType, storeName }) => {
     const initialProducts = [];
     const { products, productColor, setStore, store } = productListProps
@@ -81,7 +82,7 @@ const NewProductList = ({ productListProps, productListType, storeName }) => {
                         <div>
                             <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-5 md:gap-x-10 gap-y-8 md:gap-y-12 lg:gap-10 h-full">
                                 {filteredProducts.map((product, i) => (
-                                    (product?.id || product?._id) && <NewProductListCard
+                                    (product?.id || product?._id) && <NewProductListCard4
                                         key={product.id}
                                         product={product}
                                         productListProps={productListProps}
@@ -123,6 +124,27 @@ const NewProductList = ({ productListProps, productListType, storeName }) => {
                             <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-5 md:gap-x-10 gap-y-8 md:gap-y-12 lg:gap-10  ">
                                 {filteredProducts.map((product, i) => (
                                     (product?.id || product?._id) && <NewProductListCard2
+                                        key={product.id}
+                                        product={product}
+                                        productListProps={productListProps}
+                                        handleRemoveProduct={handleRemoveProduct}
+                                        store={store}
+
+                                    />
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                );
+            // Add more cases for other product list types
+            case 'Animation':
+                return (
+                    <div className='space-y-5 md:space-y-10 py-20 w-full flex items-center flex-col px-3 md:px-3' style={{ backgroundColor: productColor.backgroundColor }}>
+                        <h1 style={{ color: productColor.headerColor }} className="text-3xl font-semibold">New Products</h1>
+                        <div style={{}} className=''>
+                            <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-5 md:gap-x-10 gap-y-8 md:gap-y-12 lg:gap-10  ">
+                                {filteredProducts.map((product, i) => (
+                                    (product?.id || product?._id) && <NewProductListCard4
                                         key={product.id}
                                         product={product}
                                         productListProps={productListProps}
