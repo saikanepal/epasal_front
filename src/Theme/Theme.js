@@ -4,7 +4,8 @@ import { Helmet } from 'react-helmet';
 import useFetch from '../Hooks/useFetch';
 import { AuthContext } from '../Hooks/AuthContext';
 import { StoreProvider, useStore } from "./ThemeContext";
-import Theme1 from './Theme2/Theme1';
+import Theme1 from './Theme1/Theme1';
+import Theme2 from './Theme2/Theme2';
 const Theme = (passedStore = { passedStore }) => {
   const [activeTheme, setActiveTheme] = useState(1);
   const [themeNumber, setThemeNumber] = useState(1);
@@ -30,10 +31,12 @@ useEffect(() => {
       try {
         const responseData = await sendRequest(`store/get/${storeID}`);
         console.log(responseData.store.logo.logoUrl);
+        console.log(responseData.store.activeTheme,"response data")
         if (responseData && responseData.store) {
           setStoreName(storeID);
           // Update this line to access the logo URL correctly
           setStoreLogoUrl(responseData.store.logo.logoUrl);
+          setActiveTheme(responseData.store.activeTheme);
         }
       } catch (err) {
         console.error('Error fetching store data:', err);
@@ -52,7 +55,11 @@ useEffect(() => {
         <title>{storeName}</title>
        
       </Helmet>
-      <Theme1 useStore={useStore}/>
+      {
+        activeTheme===1 && <Theme1 useStore={useStore}/> ||
+        activeTheme===2 && <Theme2 useStore={useStore} /> ||
+        <Theme1 useStore={useStore}/>
+      }
       </StoreProvider>
     </div>
   );

@@ -67,6 +67,7 @@ export const StoreProvider = ({ children, passedStore }) => {
         subcategories: ["Category 1"],
         rating: 2.5,
         count: 0,
+       activeTheme:1,
         variant: [
           {
             name: "Color",
