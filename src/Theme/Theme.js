@@ -4,7 +4,7 @@ import { Helmet } from 'react-helmet';
 import useFetch from '../Hooks/useFetch';
 import { AuthContext } from '../Hooks/AuthContext';
 import { StoreProvider, useStore } from "./ThemeContext";
-import Theme1 from './Theme2/Theme2';
+import Theme1 from './Theme2/Theme1';
 
 const Theme = (passedStore = { passedStore }) => {
   const [activeTheme, setActiveTheme] = useState(1);
