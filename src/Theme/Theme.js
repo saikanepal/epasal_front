@@ -4,7 +4,7 @@ import { Helmet } from 'react-helmet';
 import useFetch from '../Hooks/useFetch';
 import { AuthContext } from '../Hooks/AuthContext';
 import { StoreProvider, useStore } from "./ThemeContext";
-import Theme1 from './Theme2/Theme1';
+import Theme2 from './Theme2/Theme2';
 
 const Theme = (passedStore = { passedStore }) => {
   const [activeTheme, setActiveTheme] = useState(1);
@@ -53,7 +53,7 @@ const Theme = (passedStore = { passedStore }) => {
           <title>{storeName}</title>
 
         </Helmet>
-        <Theme1 useStore={useStore} />
+        <Theme2 useStore={useStore} />
       </StoreProvider>
     </div>
   );
