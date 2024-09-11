@@ -1,9 +1,9 @@
-import React, {Component, useState, useEffect } from "react";
+import React, { Component, useState, useEffect } from "react";
 
-import T1Navbar from "./T1Navbar";
+import T2Navbar from "./T2Navbar";
 import AboutPage from "./T1HeroSection";
 import ColorPicker from "./ColorPicker";
-import StoreHeader from "./StoreHeader";
+// import StoreHeader from "./StoreHeader";
 import CategorySelector from "./T1Category";
 import { useMediaQuery } from "react-responsive";
 import OfferBanner from "./T1OfferBanner";
@@ -23,7 +23,7 @@ import T1SecondaryBanner from "./T1SecondaryBanner";
 
 const EStore = ({ useStore }) => {
   const [tasks, setTasks] = useState([
-    { id: 2, component: <T1Navbar /> },
+    { id: 2, component: <T2Navbar /> },
     { id: 3, component: <AboutPage /> },
     { id: 4, component: null },
     { id: 5, component: <T1SubProduct /> },
@@ -68,7 +68,7 @@ const EStore = ({ useStore }) => {
     });
   };
 
-  const { store, isLoading,setStore } = useStore();
+  const { store, isLoading, setStore } = useStore();
   const { previewMode } = store;
   const { fetchedFromBackend } = store;
 
@@ -261,7 +261,7 @@ const EStore = ({ useStore }) => {
   } else {
     return (
       store && (
-        <div className="h-full overflow-auto" style={{ backgroundColor: store?.color?.backgroundThemeColor||'' }}>
+        <div className="h-full overflow-auto" style={{ backgroundColor: store?.color?.backgroundThemeColor || '' }}>
           {isOverlayActive && !instructionsCompleted && renderOverlay()}
           <DndContext sensors={sensors} collisionDetection={closestCorners} onDragEnd={handleDragEnd}>
             <SortableContext disabled={true} items={tasks} strategy={horizontalListSortingStrategy}>
@@ -270,22 +270,22 @@ const EStore = ({ useStore }) => {
                   <Task id={tasks[index].id} component={tasks[index].component} />
                 </div>
               ))}
-    <ModernReactPlayer store={store}/>
+              <ModernReactPlayer store={store} />
 
             </SortableContext>
           </DndContext>
 
-          <SaveStoreButton  store={store} setStore={setStore}/>
+          <SaveStoreButton store={store} setStore={setStore} />
         </div>
       )
     );
   }
 };
 
-const EStoreWithStoreProvider = ({StoreProvider,useStore}) => {
+const EStoreWithStoreProvider = ({ StoreProvider, useStore }) => {
 
   return (
-      <EStore StoreProvider={StoreProvider} useStore={useStore}/>
+    <EStore StoreProvider={StoreProvider} useStore={useStore} />
   );
 };
 

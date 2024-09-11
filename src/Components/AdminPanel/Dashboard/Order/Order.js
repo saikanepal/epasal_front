@@ -36,7 +36,7 @@ const Order = ({ store }) => {
                     Authorization: 'Bearer ' + auth.token,
                 }
             );
-            
+
             if (responseData.orders.length === 0) {
                 setHasMore(false);
             } else {
@@ -110,7 +110,7 @@ const Order = ({ store }) => {
                 updateData.deliveryCode = deliveryCode;
             }
             updateData.storeID = store._id;
-          
+
             const response = await sendRequest(
                 `order/update/${store._id}/${orderId}?storeId=${store._id}`,
                 'PUT',
@@ -288,11 +288,12 @@ const Order = ({ store }) => {
                                     <h3 className="text-md font-semibold">Order Details</h3>
                                 </div>
                                 <div>
-                                    {order.cart.map((item, index) => (
 
+                                    {order.cart.map((item, index) => (
+                                        item.product &&
                                         <div key={item.product._id} className="mb-4">
                                             <p className="font-medium">{`Product: ${item.productName || item.product.name}`}</p>
-                                            <p className="text-gray-600">{`Product ID: ${item.product._id}`}</p>
+                                            <p className="text-gray-600">{`Product ID: ${item.product.id}`}</p>
                                             <p className="text-gray-600">{`Quantity: ${item.count}`}</p>
                                             {item.selectedVariant.map((variant, idx) => (
                                                 <div key={idx} className="text-gray-600">
@@ -313,35 +314,39 @@ const Order = ({ store }) => {
                                         <p className="text-gray-600">{`Final Amount: Nrs ${order.totalPrice}`}</p>
                                     </div>
                                 </div>
-                            </div>
+                            </div >
                         )}
-                    </div>
+                    </div >
                 ))}
-                {hasMore && (
-                    <div className="flex justify-center mt-4">
-                        <button
-                            onClick={loadMoreOrders}
-                            disabled={isLoading}
-                            className="px-4 py-2 bg-blue-500 text-white rounded"
-                        >
-                            {isLoading ? 'Loading...' : 'Load More Orders'}
-                        </button>
-                    </div>
-                )}
-                {error && (
-                    <div className="fixed bottom-0 left-0 right-0 p-4 bg-red-500 text-white text-center">
-                        {error.message || 'An error occurred'}
-                        <button onClick={onCloseError} className="ml-4 px-2 py-1 bg-red-700 rounded">
-                            Close
-                        </button>
-                    </div>
-                )}
+                {
+                    hasMore && (
+                        <div className="flex justify-center mt-4">
+                            <button
+                                onClick={loadMoreOrders}
+                                disabled={isLoading}
+                                className="px-4 py-2 bg-blue-500 text-white rounded"
+                            >
+                                {isLoading ? 'Loading...' : 'Load More Orders'}
+                            </button>
+                        </div>
+                    )
+                }
+                {
+                    error && (
+                        <div className="fixed bottom-0 left-0 right-0 p-4 bg-red-500 text-white text-center">
+                            {error.message || 'An error occurred'}
+                            <button onClick={onCloseError} className="ml-4 px-2 py-1 bg-red-700 rounded">
+                                Close
+                            </button>
+                        </div>
+                    )
+                }
                 <DeliveryCodeModal
                     isOpen={showDeliveryCodeModal}
                     onClose={handleModalClose}
                     onSubmit={handleModalSubmit}
                 />
-            </div>
+            </div >
     );
 };
 

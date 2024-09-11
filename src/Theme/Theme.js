@@ -4,7 +4,8 @@ import { Helmet } from 'react-helmet';
 import useFetch from '../Hooks/useFetch';
 import { AuthContext } from '../Hooks/AuthContext';
 import { StoreProvider, useStore } from "./ThemeContext";
-import Theme1 from './Theme2/Theme1';
+import Theme1 from './Theme2/Theme2';
+
 const Theme = (passedStore = { passedStore }) => {
   const [activeTheme, setActiveTheme] = useState(1);
   const [themeNumber, setThemeNumber] = useState(1);
@@ -13,18 +14,18 @@ const Theme = (passedStore = { passedStore }) => {
   const { isLoading, error, sendRequest, onCloseError } = useFetch();
   const [storeName, setStoreName] = useState('');
   const [storeLogoUrl, setStoreLogoUrl] = useState('');
- 
 
 
-useEffect(() => {
-  if (storeLogoUrl) {
-    const link = document.querySelector("link[rel*='icon']") || document.createElement('link');
-    link.type = 'image/jpeg';
-    link.rel = 'shortcut icon';
-    link.href = storeLogoUrl;
-    document.getElementsByTagName('head')[0].appendChild(link);
-  }
-}, [storeLogoUrl]);
+
+  useEffect(() => {
+    if (storeLogoUrl) {
+      const link = document.querySelector("link[rel*='icon']") || document.createElement('link');
+      link.type = 'image/jpeg';
+      link.rel = 'shortcut icon';
+      link.href = storeLogoUrl;
+      document.getElementsByTagName('head')[0].appendChild(link);
+    }
+  }, [storeLogoUrl]);
   useEffect(() => {
     const fetchStoreData = async () => {
       try {
@@ -48,11 +49,11 @@ useEffect(() => {
   return (
     <div className='overflow-x-hidden'>
       <StoreProvider passedStore={passedStore} >
-      <Helmet>
-        <title>{storeName}</title>
-       
-      </Helmet>
-      <Theme1 useStore={useStore}/>
+        <Helmet>
+          <title>{storeName}</title>
+
+        </Helmet>
+        <Theme1 useStore={useStore} />
       </StoreProvider>
     </div>
   );
