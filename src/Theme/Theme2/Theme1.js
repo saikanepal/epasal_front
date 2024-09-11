@@ -1,9 +1,9 @@
 import React, { Component, useState, useEffect } from "react";
 
-import T2Navbar from "./T2Navbar";
+import T1Navbar from "./12Navbar";
 import AboutPage from "./T1HeroSection";
 import ColorPicker from "./ColorPicker";
-// import StoreHeader from "./StoreHeader";
+import StoreHeader from "./StoreHeader";
 import CategorySelector from "./T1Category";
 import { useMediaQuery } from "react-responsive";
 import OfferBanner from "./T1OfferBanner";
@@ -23,7 +23,7 @@ import T1SecondaryBanner from "./T1SecondaryBanner";
 
 const EStore = ({ useStore }) => {
   const [tasks, setTasks] = useState([
-    { id: 2, component: <T2Navbar /> },
+    { id: 2, component: <T1Navbar /> },
     { id: 3, component: <AboutPage /> },
     { id: 4, component: null },
     { id: 5, component: <T1SubProduct /> },
