@@ -18,6 +18,13 @@ const Category = ({ categoryType,activeTheme, ...props }) => {
                 default:
                     return <div>Unknown category type</div>;
             }
+        default:
+            switch (categoryType) {
+                case 'Category1':
+                    return <Category1 {...props} />;
+                default:
+                    return <div>Unknown category type</div>;
+            }
     }
 };
 

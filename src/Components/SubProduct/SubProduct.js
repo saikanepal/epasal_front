@@ -20,6 +20,13 @@ const SubProduct = (props) => {
                 default:
                     return null;
             }
+            default:
+                switch (subProductType) {
+                    case 'Category1':
+                        return <SubProduct1 {...props} />;
+                    default:
+                        return null;
+                }
     }
 };
 
