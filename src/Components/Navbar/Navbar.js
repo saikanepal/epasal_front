@@ -10,30 +10,30 @@ const Navbar = ({ navbarProps, navbarType,onClick,activeTheme }) => {
     const renderNavbar = () => {
 
         
-        switch (activeTheme){
-            case 1:
-                switch (navbarType) {
-                    case 'Navbar1':
+        // switch (activeTheme){
+        //     case 1:
+        //         switch (navbarType) {
+        //             case 'Navbar1':
+        //                 return <Navbar1 {...navbarProps} onClick={onClick} />;
+        //             // case 'Navbar2':
+        //             //     return <Navbar2 {...navbarProps} />;
+        //             // case 'Navbar3':
+        //             //     return <Navbar3 {...navbarProps} />;
+        //             default:
+        //                 return null;
+        //         }
+        //     case 2:
+        //         switch (navbarType) {
+        //             case 'Navbar1':
                         return <Navbar1 {...navbarProps} onClick={onClick} />;
                     // case 'Navbar2':
                     //     return <Navbar2 {...navbarProps} />;
                     // case 'Navbar3':
                     //     return <Navbar3 {...navbarProps} />;
-                    default:
-                        return null;
-                }
-            case 2:
-                switch (navbarType) {
-                    case 'Navbar1':
-                        return <Navbar1 {...navbarProps} onClick={onClick} />;
-                    // case 'Navbar2':
-                    //     return <Navbar2 {...navbarProps} />;
-                    // case 'Navbar3':
-                    //     return <Navbar3 {...navbarProps} />;
-                    default:
-                        return null;
-                }
-        }
+                //     default:
+                //         return null;
+                // }
+        // }
     };
     return <>{renderNavbar()}</>;
 };

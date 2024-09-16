@@ -85,22 +85,22 @@ const Category1 = ({ subCategories, previewMode, color, setSelectedSubCategory, 
 
     return (
         <div className=' px-0'>
-            <div className="relative p-4 pb-0 flex justify-center h-full"
+            <div className="relative pb-0 flex justify-center h-full"
                 style={{ backgroundColor: color.subcategoryColor.background, color: color.subcategoryColor.text }}>
                 <div id='scrollbar2' className="whitespace-nowrap hidden md:flex overflow-x-auto min-h-14 w-full justify-center h-full">
-                    <div className=" mb-4 flex flex-col justify-center overflow-scroll h-full">
+                    <div className=" mb-4 flex flex-col justify-center overflow-scroll h-full gap-4">
                         {subCategories.map((subcategory, index) => (
                             <div key={index} className="relative">
                                 <button
                                     onClick={() => handleSelectSubCategory(subcategory)}
-                                    className={`py-2 px-8 hover:bg-gray-100 ${selectedSubCategory === subcategory ? 'font-extrabold ' : ''}`}
-                                    style={{ borderBottom: `${selectedSubCategory === subcategory ? `solid ${color.subcategoryColor.text} 3px` : ''}` }}
+                                    className={`py-2 px-8 rounded-lg hover:bg-gray-100 w-full ${selectedSubCategory === subcategory ? 'font-extrabold ' : ''}`}
+                                    style={{ backgroundColor: `${selectedSubCategory === subcategory ? color.subProductColor.borderColor : ''}` }}
                                 >
                                     {subcategory.name}
                                 </button>
                                 {(!previewMode) && (
                                     <button
-                                        className="absolute top-0 right-0  focus:outline-none"
+                                        className="absolute top-2 right-2  focus:outline-none"
                                         onClick={() => handleRemoveSubCategory(index)}
                                     >
                                         <svg className="h-4 w-4 fill-current text-red-500" viewBox="0 0 20 20">

@@ -7,7 +7,7 @@ import { StoreProvider, useStore } from "./ThemeContext";
 import Theme1 from './Theme1/Theme1';
 import Theme2 from './Theme2/Theme2';
 const Theme = (passedStore = { passedStore }) => {
-  const [activeTheme, setActiveTheme] = useState(1);
+  const [activeTheme, setActiveTheme] = useState(2);
   const [themeNumber, setThemeNumber] = useState(1);
   const { storeID } = useParams();
   const auth = useContext(AuthContext);
