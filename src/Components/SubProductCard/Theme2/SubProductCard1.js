@@ -123,7 +123,7 @@ const SubProductCard1 = ({ product, handleStyleSelect, handleRemoveProduct, stor
             </div>
             <div className="absolute top-0 left-0 w-full h-full flex" onClick={() => handleProductClick(product)}>
                 <motion.img
-                    className="w-full sm:h-full"
+                    className="w-full h-full"
                     src={product?.image?.imageUrl}
                     alt={product.name}
                     initial={{ opacity: 0, scale: 0.9 }}
@@ -133,7 +133,7 @@ const SubProductCard1 = ({ product, handleStyleSelect, handleRemoveProduct, stor
                 />
             </div>
 
-            <div className="absolute bottom-0 left-0 z-30 px-10 py-4 w-full flex items-end justify-between" >
+            <div className="absolute bottom-0 left-0 z-30 px-5 py-4 w-full flex items-end justify-between" >
                 <div>
                     <div className="font-bold mt-2 md:mt-3 text-[14px]">{truncateName(product.name)}</div>
                     <div className=' flex flex-col gap-0 '>

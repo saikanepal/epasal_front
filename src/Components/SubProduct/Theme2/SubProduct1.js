@@ -87,9 +87,9 @@ const SubProduct1 = ({
         }
     }
     return (
-        <div className='grid grid-cols-4  mb-16' style={{ fontFamily: store?.fonts?.Categories ,backgroundColor: subProductColor.categoryColor}}>
+        <div className='flex mb-16 px-10 gap-10' style={{ fontFamily: store?.fonts?.Categories ,backgroundColor: subProductColor.categoryColor}}>
             <CategorySelector store={store} setSelectedSubCategory={setSelectedSubCategory} removeSubCategory={removeSubCategory} />
-            <div className="px-4 pb-8 overflow-x-scroll col-span-3"
+            <div className="px-4 pb-8 overflow-x-scroll flex-grow"
                 {...events}
                 ref={ref}
             >
@@ -107,10 +107,10 @@ const SubProduct1 = ({
                                 border-radius: 10px;
                             }
                         `}</style> */}
-                    <div className='flex flex-grow justify-between'>
+                    <div className='flex flex-grow justify-around'>
                         <button className='' onClick={e=>handlePaginationValue(e,0)}>
-                            <MdOutlineNavigateBefore className='w-14 h-14 rounded-full' style={{backgroundColor:subProductColor.scrollbarColor, color:subProductColor.categoryColor}}/>
-                            {pageNo} / {Math.ceil(filteredProducts.length/3)}
+                            <MdOutlineNavigateBefore className='w-10 h-10 rounded-full ' style={{backgroundColor:subProductColor.scrollbarColor, color:subProductColor.categoryColor}}/>
+                            
                         </button>
                         <div className='flex'>
                         {paginatedProducts.map((product, index) => (
@@ -127,7 +127,7 @@ const SubProduct1 = ({
                             </div>
                         ))}
                          {(!previewMode || store.isEdit) && (
-                        <div className="flex-none mr-4">
+                        <div className="flex items-center mr-4 h-full">
                             <button onClick={toggleAddProduct} className="flex flex-col items-center justify-center w-32 h-40 border border-dashed border-gray-300 rounded-md hover:bg-gray-50/50 focus:outline-none">
                                 <svg className="w-12 h-12 text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
@@ -138,7 +138,7 @@ const SubProduct1 = ({
                         )}
                         </div>
                         <button className=''>
-                            <MdOutlineNavigateNext  className='w-14 h-14 rounded-full' style={{backgroundColor:subProductColor.scrollbarColor, color:subProductColor.categoryColor}} onClick={e=>handlePaginationValue(e,1)}/>
+                            <MdOutlineNavigateNext  className='w-10 h-10 rounded-full' style={{backgroundColor:subProductColor.scrollbarColor, color:subProductColor.categoryColor}} onClick={e=>handlePaginationValue(e,1)}/>
                         </button>
                     </div>
                    

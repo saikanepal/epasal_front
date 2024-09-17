@@ -87,7 +87,7 @@ const Category1 = ({ subCategories, previewMode, color, setSelectedSubCategory, 
         <div className=' px-0'>
             <div className="relative pb-0 flex justify-center h-full"
                 style={{ backgroundColor: color.subcategoryColor.background, color: color.subcategoryColor.text }}>
-                <div id='scrollbar2' className="whitespace-nowrap hidden md:flex overflow-x-auto min-h-14 w-full justify-center h-full">
+                <div id='scrollbar2' className="whitespace-nowrap hidden md:flex overflow-x-auto min-h-14 w-full h-full">
                     <div className=" mb-4 flex flex-col justify-center overflow-scroll h-full gap-4">
                         {subCategories.map((subcategory, index) => (
                             <div key={index} className="relative">
