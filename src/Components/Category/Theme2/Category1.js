@@ -87,13 +87,13 @@ const Category1 = ({ subCategories, previewMode, color, setSelectedSubCategory, 
         <div className=' px-0'>
             <div className="relative pb-0 flex justify-center h-full"
                 style={{ backgroundColor: color.subcategoryColor.background, color: color.subcategoryColor.text }}>
-                <div id='scrollbar2' className="whitespace-nowrap hidden md:flex overflow-x-auto min-h-14 w-full h-full">
-                    <div className=" mb-4 flex flex-col justify-center overflow-scroll h-full gap-4">
+                <div id='scrollbar2' className="whitespace-nowrap flex overflow-x-scroll min-h-14 h-full">
+                    <div className=" mb-4 flex md:flex-col justify-center overflow-scroll h-full gap-4 ">
                         {subCategories.map((subcategory, index) => (
                             <div key={index} className="relative">
                                 <button
                                     onClick={() => handleSelectSubCategory(subcategory)}
-                                    className={`py-2 px-8 rounded-lg hover:bg-gray-100 w-full ${selectedSubCategory === subcategory ? 'font-extrabold ' : ''}`}
+                                    className={`py-2 px-4 md:px-8 rounded-lg hover:bg-gray-100 w-full ${selectedSubCategory === subcategory ? 'font-extrabold ' : ''}`}
                                     style={{ backgroundColor: `${selectedSubCategory === subcategory ? color.subProductColor.borderColor : ''}` }}
                                 >
                                     {subcategory.name}
@@ -115,16 +115,7 @@ const Category1 = ({ subCategories, previewMode, color, setSelectedSubCategory, 
                         )}
                     </div>
                 </div>
-                <div className='md:hidden flex items-center mb-4'>
-                    <div className='relative'>
-                        {/* <input type='text' placeholder='Search' className='text-center border border-2 border-black rounded' onChange={handleChangeSuggestion} value={inputValue}/>{renderSuggestions()} */}
-                        <select name="category" id="category" className='px-5 py-1' onChange={handleChangeCategory}>
-                            {subCategories.map((n, i) => (
-                                <option value={n.name}>{n.name}</option>
-                            ))}
-                        </select>
-                    </div>
-                </div>
+                
                 {showModal && <AddCategoryModal onClose={handleCloseModal} addSubCategory={addSubCategory}/>}
             </div>
         </div>
