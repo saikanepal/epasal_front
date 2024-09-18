@@ -25,6 +25,7 @@ const SaveStoreButton = ({store,setStore}) => {
             const secondaryBannerData = await uploadImage(store?.secondaryBanner?.secondaryBannerUrl)
             const offerBannerData = await uploadImage(store?.offerBanner?.offerBannerUrl)
             const thirdBannerData = await uploadImage(store?.thirdBanner?.thirdBannerUrl)
+            const thirdSemiBannerData=await uploadImage(store?.thirdBanner?.thirdSemiBannerUrl)
             for (let i = 0; i < store.products.length; i++) {
                 const product = store.products[i];
                 const productImg = await uploadImage(product?.image?.imageUrl);
@@ -99,7 +100,9 @@ const SaveStoreButton = ({store,setStore}) => {
                         offerBannerID: offerBannerData?.id
                     }, thirdBanner: {
                         thirdBannerUrl: thirdBannerData?.img,
-                        thirdBannerID: thirdBannerData?.id
+                        thirdBannerID: thirdBannerData?.id,
+                        thirdSemiBannerUrl: thirdSemiBannerData?.img,
+                        thirdSemiBannerID:thirdSemiBannerData?.id
                     }
                 }
             ))

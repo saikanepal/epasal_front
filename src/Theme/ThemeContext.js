@@ -546,8 +546,12 @@ export const StoreProvider = ({ children, passedStore }) => {
       para3: "",
     },
     secondaryBanner: { secondaryBannerUrl: `${b2}`, secondaryBannerID: '' },
-    thirdBanner: { thirdBannerUrl: `${b1}`, secondaryBannerID: '' },
+    thirdBanner: { thirdBannerUrl: `${b1}`, secondaryBannerID: '', thirdSemiBannerUrl:`${b1}`},
     thirdBannerText: {
+      heading: "",
+      paragraph: "",
+    },
+    thirdSemiBannerText: {
       heading: "",
       paragraph: "",
     },
