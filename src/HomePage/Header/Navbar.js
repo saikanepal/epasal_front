@@ -12,6 +12,7 @@ import { Link as ScrollLink } from 'react-scroll';
 import { IoMdSettings } from "react-icons/io";
 
 const Navbar = ({ navbarImage, setStores, footerRef, subscriptionPlanRef, storeRef }) => {
+    console.log(footerRef, subscriptionPlanRef, "sdadsadasdas")
     const [isRotated, setIsRotated] = useState(false);
     const [isStoreOpen, setIsStoreOpen] = useState(false)
     const [searchHide, setSearchHide] = useState(true)

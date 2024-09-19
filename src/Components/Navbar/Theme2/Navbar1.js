@@ -22,9 +22,9 @@ const Navbar1 = ({
     setIsSidebarOpen,
     setSearchInput,
     setLogoFile,
-    isEdit, fetchedFromBackend, highlightedButtonId, onClick
+    isEdit, fetchedFromBackend, highlightedButtonId, onClick, newProductRef, categoriesRef
 }) => {
-
+    console.log(newProductRef, categoriesRef, "newProductRef,categoriesRef=====")
     const [scrolling, setScrolling] = useState(false);
     const [editableText, setEditableText] = useState("Ecom Template-2");
     const [isSearchClicked, setIsSearchClicked] = useState(false);
@@ -37,6 +37,13 @@ const Navbar1 = ({
 
     const [cartItems, setCartItems] = useState([
     ]);
+
+
+    const linkClass = (path) =>
+        location.pathname === path
+            ? 'bg-blue-500 text-white hover:underline'  // Active link style
+            : 'hover:underline';
+
     useEffect(() => {
         const timer = setTimeout(() => {
             setIsAnimating(false);
@@ -335,8 +342,7 @@ const Navbar1 = ({
 
     return (
         <motion.nav
-            className={`flex flex-col gap-2 items-center pt-2 pb-5 justify-between shadow-md fixed w-screen z-20 transition-all duration-300 ${scrolling ? 'bg-brown-700' : 'bg-transparent'
-                }`}
+            className={`flex flex-col gap-2 items-center pt-2 md:pb-5 justify-between shadow-md fixed w-screen z-10 transition-all duration-300 ${scrolling ? 'bg-brown-700' : 'bg-transparent'}`}
             initial={{ y: -100, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.2, duration: 0.5, type: 'spring', stiffness: 120 }}
@@ -344,175 +350,176 @@ const Navbar1 = ({
                 fontFamily: store?.fonts?.Navbar,
                 backgroundColor: scrolling ? color?.navColor?.backgroundnavColor : 'transparent',
                 color: color.navColor.storeNameTextColor,
-            }}>
-
-            {/* PRAJJWOL CHANGES  */}
-
-            <div className='flex px-20 mb-2 justify-between items-center w-full'>
-                <div className="flex items-center ">
-                    {!isSidebarOpen && (
-                        <button
-                            style={{ color: color.navColor.storeNameTextColor }}
-                            className="block focus:outline-none md:hidden mr-2"
-                            onClick={toggleSidebar}
-                        >
-                            <FiMenu className="h-6 w-6 fill-current" />
-                        </button>
-                    )}
-                    {previewMode ? (
-                        store.logo && (
-                            <img
-                                src={store?.logo?.logoUrl}
-                                alt="Logo"
-                                className="h-12 w-12 rounded-full object-cover mr-4"
-                            />
-                        )
-                    ) : (
-                        <div {...getRootProps()} className="cursor-pointer flex items-center">
-                            <input {...getInputProps()} />
-                            <img
-                                src={store?.logo?.logoUrl || 'https://via.placeholder.com/50'}
-                                alt="Logo"
-                                className="h-12 w-12 rounded-full object-cover mr-4"
-                            />
-
-                        </div>
-                    )}
-                    <span className="text-xl font-bold" onClick={() => navigate('./')}>
-                        {store.name}
-                    </span>
-
-                </div>
-                <div className="mr-[13rem] relative flex  items-center hidden md:flex">
-                    <input
-                        type="text"
-                        value={searchInput}
-                        onChange={handleSearchInputChange}
-                        placeholder="Search"
-                        className={`max-w-xl relative border-none outline-none bg-[#578094] focus:border-none py-1 px-3 rounded-full placeholder-white placeholder:text-sm text-xl`}
-                    />
-                    <FaSearch className="text-lg absolute right-4 cursor-pointer" onClick={handleSearchIconClick} />
-                    {searchItem.length > 0 &&
-                        <ul className='absolute top-10 -left-2 flex flex-col gap-3 w-full px-3 py-3 rounded-b-2xl' style={{
-                            fontFamily: store?.fonts?.Navbar,
-                            backgroundColor: color?.navColor?.backgroundnavColor,
-                            color: color?.navColor?.storeNameTextColor,
-                        }}>
-                            {searchItem.map((n, i) => {
-                                return <li onClick={() => {
-                                    handleProductClick(n)
-                                }} key={i} className='flex items-center gap-4'>
-                                    <img src={n.image.imageUrl} className='w-10 h-10 rounded-full border border-2 border-black ' />
-                                    <div>{n.name}</div>
-                                </li>
-                            })}
-                        </ul>}
-                </div>
-
-
-                <button onClick={handleCartClick} className="relative flex">
-                    <FaShoppingCart className="text-2xl" />
-                    {cartItems.length > 0 && (
-                        <span className="absolute top-0 right-0 transform translate-x-2 -translate-y-2 bg-red-500 rounded-full text-white px-1 py-0.5 text-xs">
-                            {store.cart.length}
-                        </span>
-                    )}
-                </button>
-                {isCartOpen && <CartDropdown cart={store.cart} deleteFromCart={deleteFromCart} backgroundColor={color.navColor.backgroundnavColor} store={store} setStore={setStore} />} {/* Conditionally render the CartDropdown */}
-                {(store.isEdit || !store.fetchedFromBackend) &&
-                    <button
-                        id="navbarButtonId"
-                        onClick={() => {
-                            setStore(prev => ({ ...prev, previewMode: !store.previewMode }));
-                            handleButtonClick();
-
-                        }}
-                        className={` bg-black ${highlightedButtonId === 'navbarButtonId' ? 'bg-yellow-300 border-2 border-red-500 animate-pulse z-50' : ''} hover:bg-white text-white hover:text-black font-bold py-2 px-4 text-sm rounded transition duration-200  ${isAnimating ? 'animate-flashy-border border-2' : 'border-2 border-transparent hover:border-black'
-                            }`}
-                    >
-                        {store.previewMode ? 'Preview Mode' : 'Edit'}
-                    </button>
-                }
-            </div>
-
-            <div>
-                {/* onClick={e => handleClickNavigation(e, categoriesRef)} LEFT TO IMPLEMENT */}
-                <div className={`flex items-center space-x-4 relative ${isSidebarOpen ? 'mr-0' : 'lg:mr-0'}`}>
-                    <div className="hidden md:flex space-x-16 text-base font-semibold">
-                        <Link to={!isEdit && fetchedFromBackend && `/store/products/${store.name}`} className="hover:underline">All Products</Link>
-                        <Link to={!isEdit && fetchedFromBackend && `/store/products/${store.name}/?filter=featured`} className="hover:underline">Featured</Link>
-                        <Link to={!isEdit && fetchedFromBackend && `/store/products/${store.name}/?filter=offers`} className="hover:underline">Offers</Link>
-                        <Link to={!isEdit && fetchedFromBackend && `/store/products/${store.name}/?filter=offers`} className="hover:underline" >New</Link>
-                        <Link to={!isEdit && fetchedFromBackend && `/store/products/${store.name}/?filter=offers`} className="hover:underline">Catogories</Link>
-                    </div>
-
-
-                </div>
-            </div>
-
-            {
-                isSidebarOpen && (
-                    <button
-                        style={{ color: color.navColor.storeNameTextColor }}
-                        className="block focus:outline-none md:hidden absolute right-6"
-                        onClick={toggleSidebar}
-                    >
-                        <FaTimes className="h-6 w-6 fill-current" />
-                    </button>
-                )
-            }
-
-            {
-                isSidebarOpen && (
-                    <div
-                        className="md:hidden fixed top-0 left-0 h-full w-64 text-white shadow-lg z-30"
-                        style={{ backgroundColor: color.navColor.backgroundnavColor }}
-                        ref={sidebarRef}
-                    >
-                        <div className="flex flex-col items-start space-y-4 p-4">
-                            <div className="flex items-center mb-4">
-                                {store.logo && (
+            }}
+        >
+            <div className='flex px-6 md:px-20 md:py-2 md:mb-3 justify-between items-center w-full'>
+                {!scrolling && (
+                    <div className="flex w-full justify-between items-center ">
+                        {!isSidebarOpen && (
+                            <button
+                                style={{ color: color.navColor.storeNameTextColor }}
+                                className="block focus:outline-none md:hidden mr-2"
+                                onClick={toggleSidebar}
+                            >
+                                <FiMenu className="h-6 w-6 fill-current" />
+                            </button>
+                        )}
+                        <div className='flex flex-col md:flex-row gap-2 items-center md:justify-between'>
+                            {previewMode ? (
+                                store.logo && (
                                     <img
                                         src={store?.logo?.logoUrl}
                                         alt="Logo"
-                                        className="h-8 mr-4"
+                                        className="h-12 w-12 rounded-full object-cover"
                                     />
-                                )}
-                                <span className="text-xl font-bold">{store.name}</span>
-                            </div>
-                            <div className="relative flex gap-3 items-center w-full">
-                                <input
-                                    type="text"
-                                    value={searchInput}
-                                    onChange={handleSearchInputChange}
-                                    placeholder="Search"
-                                    className="bg-transparent border-b border-white focus:outline-none placeholder-white text-xl w-full placeholder:text-sm"
-                                />
-                                <FaSearch className="text-2xl cursor-pointer" onClick={handleSearchIconClick} />
-                                {searchItem.length > 0 &&
-                                    <ul className='absolute top-10 -left-2 flex flex-col gap-3 w-full px-3 py-3 rounded-b-2xl' style={{
-                                        fontFamily: store?.fonts?.Navbar,
-                                        backgroundColor: color?.navColor?.backgroundnavColor,
-                                        color: color?.navColor?.storeNameTextColor,
-                                    }}>
-                                        {searchItem.map((n, i) => {
-                                            return <li onClick={() => {
-                                                handleProductClick(n)
-                                            }} key={i} className='flex items-center gap-4'>
-                                                <img src={n.image.imageUrl} className='w-10 h-10 rounded-full border border-2 border-black ' />
+                                )
+                            ) : (
+                                <div {...getRootProps()} className="cursor-pointer flex items-center">
+                                    <input {...getInputProps()} />
+                                    <img
+                                        src={store?.logo?.logoUrl || 'https://via.placeholder.com/50'}
+                                        alt="Logo"
+                                        className="h-12 w-12 rounded-full object-cover mr-4"
+                                    />
+                                </div>
+                            )}
+                            <span className="text-xl font-bold" onClick={() => navigate('./')}>
+                                {store.name}
+                            </span>
+                        </div>
+
+                        <div className="mr-[3rem] w-[450px] relative flex items-center hidden md:flex">
+                            <input
+                                type="text"
+                                value={searchInput}
+                                onChange={handleSearchInputChange}
+                                placeholder="Search"
+                                className={`w-full relative border border-white outline-none bg-transparent focus:border-none py-2 px-3 rounded-full placeholder-white placeholder:text-base text-xl`}
+                            />
+                            <FaSearch className="text-lg absolute right-4 cursor-pointer" onClick={handleSearchIconClick} />
+                            {searchItem.length > 0 && (
+                                <ul className='absolute top-10 -left-2 flex flex-col gap-3 w-full px-3 py-3 rounded-b-2xl' style={{
+                                    fontFamily: store?.fonts?.Navbar,
+                                    backgroundColor: color?.navColor?.backgroundnavColor,
+                                    color: color?.navColor?.storeNameTextColor,
+                                }}>
+                                    {searchItem.map((n, i) => {
+                                        return (
+                                            <li onClick={() => handleProductClick(n)} key={i} className='flex items-center gap-4'>
+                                                <img src={n.image.imageUrl} className='w-10 h-10 rounded-full border border-2 border-black' />
                                                 <div>{n.name}</div>
                                             </li>
-                                        })}
-                                    </ul>}
-                            </div>
-                            <Link to={!isEdit && fetchedFromBackend && `/store/products/${store.name}`} className="hover:underline">All Products</Link>
-                            <Link to={!isEdit && fetchedFromBackend && `/store/products/${store.name}`} className="hover:underline">Featured</Link>
-                            <Link to={!isEdit && fetchedFromBackend && `/store/products/${store.name}`} className="hover:underline">Offers</Link>
+                                        );
+                                    })}
+                                </ul>
+                            )}
+                        </div>
+
+                        <div className='flex items-center gap-8'>
+                            <button onClick={handleCartClick} className="relative flex">
+                                <FaShoppingCart className="text-2xl" />
+                                {cartItems.length > 0 && (
+                                    <span className="absolute top-0 right-0 transform translate-x-2 -translate-y-2 bg-red-500 rounded-full text-white px-1 py-0.5 text-xs">
+                                        {store.cart.length}
+                                    </span>
+                                )}
+                            </button>
+                            {isCartOpen && (
+                                <CartDropdown cart={store.cart} deleteFromCart={deleteFromCart} backgroundColor={color.navColor.backgroundnavColor} store={store} setStore={setStore} />
+                            )}
+                            {(store.isEdit || !store.fetchedFromBackend) && (
+                                <button
+                                    id="navbarButtonId"
+                                    onClick={() => {
+                                        setStore(prev => ({ ...prev, previewMode: !store.previewMode }));
+                                        handleButtonClick();
+                                    }}
+                                    className={`bg-black ${highlightedButtonId === 'navbarButtonId' ? 'bg-yellow-300 border-2 border-red-500 animate-pulse z-50' : ''} hover:bg-white text-white hover:text-black font-bold py-2 px-4 text-sm rounded transition duration-200 ${isAnimating ? 'animate-flashy-border border-2' : 'border-2 border-transparent hover:border-black'}`}
+                                >
+                                    {store.previewMode ? 'Preview Mode' : 'Edit'}
+                                </button>
+                            )}
                         </div>
                     </div>
-                )
-            }
-        </motion.nav >
+
+                )}
+            </div>
+
+            <div>
+                <div className={`flex items-center space-x-4 py-2 relative ${isSidebarOpen ? 'mr-0' : 'lg:mr-0'}`}>
+                    <div className="hidden md:flex space-x-16 text-base font-semibold">
+                        <Link to={!isEdit && fetchedFromBackend && `/store/products/${store.name}`} className={linkClass(`/store/products/${store.name}`)}>All Products</Link>
+                        <Link to={!isEdit && fetchedFromBackend && `/store/products/${store.name}/?filter=featured`} className="hover:underline">Featured</Link>
+                        <Link to={!isEdit && fetchedFromBackend && `/store/products/${store.name}/?filter=offers`} className="hover:underline">Offers</Link>
+                        <Link className="hover:underline">New</Link>
+                        <Link className="hover:underline">Categories</Link>
+                    </div>
+                </div>
+            </div>
+
+            {isSidebarOpen && (
+                <button
+                    style={{ color: color.navColor.storeNameTextColor }}
+                    className="block focus:outline-none md:hidden absolute right-6"
+                    onClick={toggleSidebar}
+                >
+                    <FaTimes className="h-6 w-6 fill-current" />
+                </button>
+            )}
+
+            {isSidebarOpen && (
+                <div
+                    className="md:hidden fixed top-0 left-0 h-full w-64 text-white shadow-lg z-30"
+                    style={{ backgroundColor: color.navColor.backgroundnavColor }}
+                    ref={sidebarRef}
+                >
+                    <div className="flex flex-col items-start space-y-4 p-4">
+                        <div className="flex items-center mb-4">
+                            {store.logo && (
+                                <img
+                                    src={store?.logo?.logoUrl}
+                                    alt="Logo"
+                                    className="h-8 mr-4"
+                                />
+                            )}
+                            <span className="text-xl font-bold">{store.name}</span>
+                        </div>
+                        <div className="relative flex gap-3 items-center w-full">
+                            <input
+                                type="text"
+                                value={searchInput}
+                                onChange={handleSearchInputChange}
+                                placeholder="Search"
+                                className="bg-transparent border-b border-white focus:outline-none placeholder-white text-xl w-full placeholder:text-sm"
+                            />
+                            <FaSearch className="text-2xl cursor-pointer" onClick={handleSearchIconClick} />
+                            {searchItem.length > 0 && (
+                                <ul className='absolute top-10 -left-2 flex flex-col gap-3 w-full px-3 py-3 rounded-b-2xl' style={{
+                                    fontFamily: store?.fonts?.Navbar,
+                                    backgroundColor: color?.navColor?.backgroundnavColor,
+                                    color: color?.navColor?.storeNameTextColor,
+                                }}>
+                                    {searchItem.map((n, i) => {
+                                        return (
+                                            <li onClick={() => handleProductClick(n)} key={i} className='flex items-center gap-4'>
+                                                <img src={n.image.imageUrl} className='w-10 h-10 rounded-full border border-2 border-black' />
+                                                <div>{n.name}</div>
+                                            </li>
+                                        );
+                                    })}
+                                </ul>
+                            )}
+                        </div>
+                        <Link to={!isEdit && fetchedFromBackend && `/store/products/${store.name}`} className="hover:underline">All Products</Link>
+                        <Link to={!isEdit && fetchedFromBackend && `/store/products/${store.name}`} className="hover:underline">Featured</Link>
+                        <Link to={!isEdit && fetchedFromBackend && `/store/products/${store.name}`} className="hover:underline">Offers</Link>
+                        <Link className="hover:underline">New</Link>
+                        <Link className="hover:underline">Categories</Link>
+                    </div>
+                </div>
+            )}
+        </motion.nav>
+
     );
 };
 

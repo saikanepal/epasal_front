@@ -1,5 +1,6 @@
 import React from 'react';
-import HeroSection1 from './HeroSection1';
+// import HeroSection1 from './HeroSection1';
+import HeroSection1 from './Theme2/HeroSection1';
 // import HeroSection2 from './HeroSection2';
 // import HeroSection3 from './HeroSection3';
 

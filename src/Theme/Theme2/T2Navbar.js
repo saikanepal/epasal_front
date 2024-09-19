@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useStore } from '../ThemeContext';
 import Navbar from "../../Components/Navbar/Navbar";
 
-const EStoreNavbar = ({ highlightedButtonId, onClick }) => {
+const EStoreNavbar = ({ highlightedButtonId, onClick, categoriesRef, newProductRef }) => {
     const { store, setStore, addCategory, removeCategory, deleteFromCart } = useStore();
     const { color, previewMode, cartCount, cart, isEdit, fetchedFromBackend } = store;
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -29,6 +29,8 @@ const EStoreNavbar = ({ highlightedButtonId, onClick }) => {
         deleteFromCart,
         isEdit,
         fetchedFromBackend,
+        newProductRef,
+        categoriesRef
     };
     return (
         <Navbar
