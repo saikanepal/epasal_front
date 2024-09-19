@@ -205,7 +205,7 @@ const ThirdBanner1 = ({ previewMode, isEdit, defaultBgImage, storeName, fetchedF
                             className="mt-2 text-[16px] font-normal"
                             style={{ color: color.firstBannerColor.textColor }}
                         >
-                            {thirdSemiBannerText.paragraph ||
+                            {thirdSemiBannerText?.paragraph ||
                             "Step into a realm of refined allure with the latest masterpiece in beauty."}
                         </p>
                         </div>
