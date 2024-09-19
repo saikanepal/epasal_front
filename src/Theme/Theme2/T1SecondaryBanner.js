@@ -2,7 +2,7 @@
 
 import React from "react";
 import { useStore } from "../ThemeContext";
-import SecondaryBanner1 from "../../Components/SecondaryBanner/SecondaryBanner1";
+import SecondaryBanner from "../../Components/SecondaryBanner/SecondaryBanner";
 import secondary from "../../Assets/ImageGroup.png";
 
 const T1SecondaryBanner = () => {
@@ -11,7 +11,7 @@ const T1SecondaryBanner = () => {
   const { previewMode, isEdit ,fetchedFromBackend} = store;
 
   return (
-    <SecondaryBanner1 previewMode={previewMode} isEdit={isEdit} fetchedFromBackend={fetchedFromBackend} defaultBgImage={secondary} store={store} setStore={setStore}/>
+    <SecondaryBanner previewMode={previewMode} isEdit={isEdit} fetchedFromBackend={fetchedFromBackend} defaultBgImage={secondary} store={store} setStore={setStore}/>
   );
 };
 
