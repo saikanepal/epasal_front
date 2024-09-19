@@ -67,6 +67,7 @@ export const StoreProvider = ({ children, passedStore }) => {
         subcategories: ["Category 1"],
         rating: 2.5,
         count: 0,
+       activeTheme:2,
         variant: [
           {
             name: "Color",
@@ -545,8 +546,12 @@ export const StoreProvider = ({ children, passedStore }) => {
       para3: "",
     },
     secondaryBanner: { secondaryBannerUrl: `${b2}`, secondaryBannerID: '' },
-    thirdBanner: { thirdBannerUrl: `${b1}`, secondaryBannerID: '' },
+    thirdBanner: { thirdBannerUrl: `${b1}`, secondaryBannerID: '', thirdSemiBannerUrl:`${b1}`},
     thirdBannerText: {
+      heading: "",
+      paragraph: "",
+    },
+    thirdSemiBannerText: {
       heading: "",
       paragraph: "",
     },

@@ -3,7 +3,7 @@ import { useStore } from '../ThemeContext';
 import Category from '../../Components/Category/Category';
 const CategorySelector = ({store,setSelectedSubCategory, removeSubCategory}) => {
     const {addSubCategory}=useStore();
-    const { subCategories, previewMode, color,isEdit } = store;
+    const { subCategories, previewMode, color,isEdit,activeTheme } = store;
     const categoryType = 'Category1'; // Set the category type here
 
     const categoryProps = {
@@ -14,7 +14,8 @@ const CategorySelector = ({store,setSelectedSubCategory, removeSubCategory}) => 
         setSelectedSubCategory,
         removeSubCategory,
         isEdit,
-        addSubCategory
+        addSubCategory,
+        activeTheme
     };
 
     return <Category {...categoryProps} />;
