@@ -342,7 +342,7 @@ const Navbar1 = ({
 
     return (
         <motion.nav
-            className={`flex flex-col gap-2 items-center pt-2 md:pb-5 justify-between shadow-md fixed w-screen z-10 transition-all duration-300 ${scrolling ? 'bg-brown-700' : 'bg-transparent'}`}
+            className={`flex flex-col gap-2 items-center pt-2 md:pb-5 justify-between shadow-md fixed w-screen z-40 transition-all duration-300 ${scrolling ? 'bg-brown-700' : 'bg-transparent'}`}
             initial={{ y: -100, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.2, duration: 0.5, type: 'spring', stiffness: 120 }}
@@ -352,7 +352,7 @@ const Navbar1 = ({
                 color: color.navColor.storeNameTextColor,
             }}
         >
-            <div className='flex px-6 md:px-20 md:py-2 md:mb-3 justify-between items-center w-full'>
+            <div className={`flex px-6 lg:px-20 ${scrolling ? "" : " md:py-2 md:mb-3"} justify-between items-center w-full`}>
                 {!scrolling && (
                     <div className="flex w-full justify-between items-center ">
                         {!isSidebarOpen && (
@@ -388,7 +388,7 @@ const Navbar1 = ({
                             </span>
                         </div>
 
-                        <div className="mr-[3rem] w-[450px] relative flex items-center hidden md:flex">
+                        <div className="mr-[5rem] md:[420px] lg:w-[450px] relative flex items-center hidden md:flex">
                             <input
                                 type="text"
                                 value={searchInput}
@@ -447,7 +447,7 @@ const Navbar1 = ({
 
             <div>
                 <div className={`flex items-center space-x-4 py-2 relative ${isSidebarOpen ? 'mr-0' : 'lg:mr-0'}`}>
-                    <div className="hidden md:flex space-x-16 text-base font-semibold">
+                    <div className="hidden md:flex space-x-10 lg:space-x-16  font-semibold">
                         <Link to={!isEdit && fetchedFromBackend && `/store/products/${store.name}`} className={linkClass(`/store/products/${store.name}`)}>All Products</Link>
                         <Link to={!isEdit && fetchedFromBackend && `/store/products/${store.name}/?filter=featured`} className="hover:underline">Featured</Link>
                         <Link to={!isEdit && fetchedFromBackend && `/store/products/${store.name}/?filter=offers`} className="hover:underline">Offers</Link>

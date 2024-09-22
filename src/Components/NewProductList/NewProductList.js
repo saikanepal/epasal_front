@@ -7,7 +7,8 @@ import NewProductListCard3 from './NewProductListCard3';
 import useFetch from '../../Hooks/useFetch';
 import { toast } from 'react-toastify';
 import { AuthContext } from '../../Hooks/AuthContext';
-import Loader from '../Loading/Loading';
+import SubProductCard1 from '../SubProductCard/Theme2/SubProductCard1';
+
 const NewProductList = ({ productListProps, productListType, storeName }) => {
     const initialProducts = [];
     const { products, productColor, setStore, store } = productListProps
@@ -79,9 +80,9 @@ const NewProductList = ({ productListProps, productListType, storeName }) => {
                     <div className='space-y-5 md:space-y-10 py-20 w-full flex items-center flex-col px-3 md:px-4  ' style={{ backgroundColor: productColor.backgroundColor }}>
                         <h1 style={{ color: productColor.headerColor }} className="text-3xl font-semibold">New Products</h1>
                         <div>
-                            <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-5 md:gap-x-10 gap-y-8 md:gap-y-12 lg:gap-10 h-full">
+                            <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5  gap-x-5 md:gap-x-10 gap-y-8 md:gap-y-12 lg:gap-10 h-full">
                                 {filteredProducts.map((product, i) => (
-                                    (product?.id || product?._id) && <NewProductListCard
+                                    (product?.id || product?._id) && <SubProductCard1
                                         key={product.id}
                                         product={product}
                                         productListProps={productListProps}
@@ -89,6 +90,7 @@ const NewProductList = ({ productListProps, productListType, storeName }) => {
                                         store={store}
                                         handleDeleteProduct={handleDeleteProduct}
                                         index={i}
+                                        handleAddToCartAnalytics={productListProps.handleAddToCartAnalytics}
                                     />
                                 ))}
                             </div>

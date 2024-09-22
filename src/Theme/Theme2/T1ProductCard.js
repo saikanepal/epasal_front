@@ -16,19 +16,15 @@ import AllProducts from '../../Components/Allproducts/Allproducts';
 const T1ProductCard = () => {
     const { store, setStore } = useStore();
     const { color, products, subCategories, fetchedFromBackend } = store;
+    const navbarProps =
+    {
+        setStore,
+        color,
+        products,
+        subCategories,
 
-    console.log(store)
-    useEffect(() => {
-        const navbarProps =
-        {
-            setStore,
-            color,
-            products,
-            subCategories,
+    };
 
-        };
-
-    }, [])
 
 
     return (
