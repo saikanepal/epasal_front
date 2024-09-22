@@ -354,7 +354,7 @@ const Navbar1 = ({
         >
             <div className={`flex px-6 lg:px-20 ${scrolling ? "" : " md:py-2 md:mb-3"} justify-between items-center w-full`}>
                 {!scrolling && (
-                    <div className="flex w-full justify-between items-center ">
+                    <div className="flex w-full justify-between items-center relative ">
                         {!isSidebarOpen && (
                             <button
                                 style={{ color: color.navColor.storeNameTextColor }}
@@ -388,7 +388,7 @@ const Navbar1 = ({
                             </span>
                         </div>
 
-                        <div className="mr-[5rem] md:[420px] lg:w-[450px] relative flex items-center hidden md:flex">
+                        <div className={`${!isEdit && !previewMode ? "mr-[5rem]" : "ml-[2rem]"} md:[420px] lg:w-[450px] relative flex items-center hidden md:flex`}>
                             <input
                                 type="text"
                                 value={searchInput}
@@ -447,15 +447,31 @@ const Navbar1 = ({
 
             <div>
                 <div className={`flex items-center space-x-4 py-2 relative ${isSidebarOpen ? 'mr-0' : 'lg:mr-0'}`}>
-                    <div className="hidden md:flex space-x-10 lg:space-x-16  font-semibold">
+                    <div className="hidden md:flex space-x-10 lg:space-x-16 font-semibold">
                         <Link to={!isEdit && fetchedFromBackend && `/store/products/${store.name}`} className={linkClass(`/store/products/${store.name}`)}>All Products</Link>
                         <Link to={!isEdit && fetchedFromBackend && `/store/products/${store.name}/?filter=featured`} className="hover:underline">Featured</Link>
                         <Link to={!isEdit && fetchedFromBackend && `/store/products/${store.name}/?filter=offers`} className="hover:underline">Offers</Link>
                         <Link className="hover:underline">New</Link>
                         <Link className="hover:underline">Categories</Link>
                     </div>
+
+                </div>
+                <div className="absolute right-2 md:right-5 lg:right-20 top-5">
+                    {(store.isEdit || !store.fetchedFromBackend) && (
+                        <button
+                            id="navbarButtonId"
+                            onClick={() => {
+                                setStore(prev => ({ ...prev, previewMode: !store.previewMode }));
+                                handleButtonClick();
+                            }}
+                            className={`${scrolling ? "block" : "hidden"} hidden md:block bg-black ${highlightedButtonId === 'navbarButtonId' ? 'bg-yellow-300 border-2 border-red-500 animate-pulse z-50' : ''} hover:bg-white text-white hover:text-black font-bold py-2 px-4 text-sm rounded transition duration-200 ${isAnimating ? 'animate-flashy-border border-2' : 'border-2 border-transparent hover:border-black'}`}
+                        >
+                            {store.previewMode ? 'Preview Mode' : 'Edit'}
+                        </button>
+                    )}
                 </div>
             </div>
+
 
             {isSidebarOpen && (
                 <button

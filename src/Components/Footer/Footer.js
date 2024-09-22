@@ -1,5 +1,6 @@
 import React from 'react';
-import Footer1 from './Footer1';
+// import Footer1 from './Footer1';
+import Footer1 from './Theme2/Footer1';
 
 
 const Footer = ({ footerProps, footerType }) => {

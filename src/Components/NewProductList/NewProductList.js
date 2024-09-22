@@ -7,7 +7,7 @@ import NewProductListCard3 from './NewProductListCard3';
 import useFetch from '../../Hooks/useFetch';
 import { toast } from 'react-toastify';
 import { AuthContext } from '../../Hooks/AuthContext';
-import SubProductCard1 from '../SubProductCard/Theme2/SubProductCard1';
+import NewProductListCard1 from './Theme2/NewProductListCard1';
 
 const NewProductList = ({ productListProps, productListType, storeName }) => {
     const initialProducts = [];
@@ -82,7 +82,7 @@ const NewProductList = ({ productListProps, productListType, storeName }) => {
                         <div>
                             <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5  gap-x-5 md:gap-x-10 gap-y-8 md:gap-y-12 lg:gap-10 h-full">
                                 {filteredProducts.map((product, i) => (
-                                    (product?.id || product?._id) && <SubProductCard1
+                                    (product?.id || product?._id) && <NewProductListCard1
                                         key={product.id}
                                         product={product}
                                         productListProps={productListProps}

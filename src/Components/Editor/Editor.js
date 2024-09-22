@@ -29,7 +29,7 @@ const fonts = [
 
 
 const Editor = ({ handleDesignClick, handleContentClick, currentStep, instructionsCompleted }) => {
-  const { store, setStore,updateFont } = useStore();
+  const { store, setStore, updateFont } = useStore();
   const [openType, setOpenType] = useState(1);
   const [categoryData, setCategoryData] = useState('');
   const { color } = store;
@@ -1394,7 +1394,7 @@ const Editor = ({ handleDesignClick, handleContentClick, currentStep, instructio
   return (
     <AnimatePresence>
       {(!store.fetchedFromBackend && !store.previewMode) || store?.isEdit ? navHide ? !previewMode && (
-        <motion.div key='first' initial={{ x: 20 }} exit={{ x: 500 }} transition={{ duration: 0.3 }} animate={{ x: 0 }} className='fixed top-0 right-0 w-80 h-screen overflow-y-scroll bg-white z-20 border-2 border-gray-200 text-gray-600'>
+        <motion.div key='first' initial={{ x: 20 }} exit={{ x: 500 }} transition={{ duration: 0.3 }} animate={{ x: 0 }} className='fixed top-0 right-0 w-80 h-screen overflow-y-scroll bg-white z-50 border-2 border-gray-200 text-gray-600'>
           {/* <h1 className=' mt-[20px] text-[#6A6A6A] text-xl font-bold border-b-2 border-black pb-4 w-full px-4 font-Poppins'></h1> */}
           <div className="fixed bg-white z-10">
             <div className=" relative w-[100%] flex px-5 my-5 ">
@@ -1646,8 +1646,8 @@ const Editor = ({ handleDesignClick, handleContentClick, currentStep, instructio
                 <li className='font-semibold border-b-2 border-gray-200 pb-5 font-Poppins hover:bg-gray-50 p-4 rounded-lg shadow-md transition duration-300'>
                   Add Products<br />
                   <Tooltip message="Remove the product by clicking the red cross on the product itself">
-                      <span className='  absolute left-[104px] bottom-[0px] ml-2  flex   text-yellow-600 text-2xl font-bold'>?</span>
-                    </Tooltip>
+                    <span className='  absolute left-[104px] bottom-[0px] ml-2  flex   text-yellow-600 text-2xl font-bold'>?</span>
+                  </Tooltip>
                   <div className='mt-2'>
                     <button className='px-2 text-[12px]  font-Ubuntu border-2 border-gray-300' onClick={handleAddProduct}>Add +</button>
                   </div>
@@ -1691,7 +1691,7 @@ const Editor = ({ handleDesignClick, handleContentClick, currentStep, instructio
 
                 </li>
               </ul>
-              {addProductForm && <ProductForm onClose={() => setAddProductForm(!addProductForm)} store={store} setStore={setStore}/>}
+              {addProductForm && <ProductForm onClose={() => setAddProductForm(!addProductForm)} store={store} setStore={setStore} />}
             </motion.div>
           )}
 
@@ -1792,11 +1792,11 @@ const Editor = ({ handleDesignClick, handleContentClick, currentStep, instructio
             </div>
           )}
           <div className='flex justify-center my-3'>
-            <SaveStoreButton store={store} setStore={setStore}/>
+            <SaveStoreButton store={store} setStore={setStore} />
           </div>
         </motion.div>
       ) : (
-        <motion.button key='second' initial={{ x: -20 }} exit={{ x: 20 }} animate={{ x: 0 }} className='fixed top-0 right-0 mt-24 bg-yellow-400 py-1 rounded-l z-20 text-4xl' onClick={(e) => { e.preventDefault(); setNavHide(true) }}><FaCaretLeft />
+        <motion.button key='second' initial={{ x: -20 }} exit={{ x: 20 }} animate={{ x: 0 }} className='fixed top-0 right-0 mt-24 bg-yellow-400 z-50 py-1 rounded-l text-4xl' onClick={(e) => { e.preventDefault(); setNavHide(true) }}><FaCaretLeft />
         </motion.button>
       ) : !store.fetchedFromBackend && (
         // <button className='fixed top-0 right-10 mt-20 bg-yellow-400 px-4 py-1 rounded z-20' onClick={(e) => { e.preventDefault(); setStore(n => ({ ...n, previewMode: false })) }}>Preview</button>
