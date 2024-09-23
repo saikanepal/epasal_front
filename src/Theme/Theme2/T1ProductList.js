@@ -4,7 +4,7 @@ import { useStore } from '../ThemeContext';
 
 const T1ProductList = () => {
     const { store, setStore, addToCart, isVisitorAddToCart, setIsVisitorAddToCart } = useStore();
-    const { previewMode, featuredProducts, products, isEdit, fetchedFromBackend } = store;
+    const { previewMode, featuredProducts, products, isEdit, fetchedFromBackend, activeTheme } = store;
     const { productListColor } = store.color;
     const productColor = { ...productListColor };
 
@@ -19,7 +19,7 @@ const T1ProductList = () => {
         categoryType = 'default';
     }
 
-    const productListProps = { store, isEdit, productColor, products: featuredProductList, previewMode, setStore, addToCart, store, fetchedFromBackend, isVisitorAddToCart, setIsVisitorAddToCart };
+    const productListProps = { store, isEdit, productColor, products: featuredProductList, previewMode, setStore, addToCart, store, fetchedFromBackend, isVisitorAddToCart, setIsVisitorAddToCart, activeTheme };
 
 
 

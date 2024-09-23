@@ -48,6 +48,7 @@ const Theme = (passedStore = { passedStore }) => {
     fetchStoreData();
   }, [storeID, sendRequest]);
 
+  console.log(activeTheme, "active theme from theme.js")
   return (
     <div className='overflow-x-hidden'>
       <StoreProvider passedStore={passedStore} >

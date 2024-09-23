@@ -76,7 +76,7 @@ const Footer1 = ({
                                 {logo && <img src={logo.logoUrl} alt="Store Logo" className="hidden md:block h-12 w-12 my-4 mx-auto md:mx-0" />}
                             </div>
                         </div>
-                        <div style={{ color: textColor }} className="flex flex-col text-base">
+                        <div style={{ color: textColor }} className="flex flex-col text-sm">
                             <p className="">{store.location}</p>
                             <p className=""> {store.email}</p>
                             <p className="">{store.phoneNumber}</p>
@@ -181,24 +181,24 @@ const Footer1 = ({
                         <div className="mb-4">
                             <span className='font-bold text-lg lg:text-xl'>{store.name}</span>
 
-                            <div style={{ color: textColor }} className="flex mt-2 flex-col text-xs lg:text-base">
+                            <div style={{ color: textColor }} className="flex mt-1 flex-col text-xs lg:text-sm">
                                 <p className="">{store.location}</p>
                                 <p className=""> {store.email}</p>
                                 <p className="">{store.phoneNumber}</p>
                             </div>
-                            <div className="flex mt-2  gap-2 lg:gap-4">
+                            <div className="flex mt-2  gap-2 lg:gap-3">
                                 <>
                                     <a href={newSocialMediaLinks.facebook}>
-                                        <FaFacebook className="text-lg md:text-xl hover:text-blue-500" />
+                                        <FaFacebook className="text-lg md:text-lg hover:text-blue-500" />
                                     </a>
                                     <a href={newSocialMediaLinks.twitter}>
-                                        <FaTwitter className="text-lg md:text-xl hover:text-blue-400" />
+                                        <FaTwitter className="text-lg md:text-lg hover:text-blue-400" />
                                     </a>
                                     <a href={newSocialMediaLinks.instagram}>
-                                        <FaInstagram className="text-lg md:text-xl hover:text-pink-500" />
+                                        <FaInstagram className="text-lg md:text-lg hover:text-pink-500" />
                                     </a>
                                     <a href={newSocialMediaLinks.linkedin}>
-                                        <FaLinkedin className="text-lg md:text-xl hover:text-blue-600" />
+                                        <FaLinkedin className="text-lg md:text-lg hover:text-blue-600" />
                                     </a>
                                 </>
                             </div>

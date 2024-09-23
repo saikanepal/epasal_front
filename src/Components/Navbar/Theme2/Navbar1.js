@@ -388,7 +388,7 @@ const Navbar1 = ({
                             </span>
                         </div>
 
-                        <div className={`${!isEdit && !previewMode ? "mr-[5rem]" : "ml-[2rem]"} md:[420px] lg:w-[450px] relative flex items-center hidden md:flex`}>
+                        <div className={`${isEdit && previewMode && "ml-[5rem]"} mr-[5rem] md:[420px] lg:w-[450px] relative flex items-center hidden md:flex`}>
                             <input
                                 type="text"
                                 value={searchInput}

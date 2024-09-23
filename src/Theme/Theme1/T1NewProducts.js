@@ -5,14 +5,14 @@ import NewProductList from '../../Components/NewProductList/NewProductList';
 
 const T1NewProducts = () => {
     const { store, setStore, addToCart } = useStore();
-    const { previewMode, featuredProducts, products } = store;
+    const { previewMode, featuredProducts, products, activeTheme } = store;
     const { newProductColor } = store.color;
     const productColor = { ...newProductColor };
 
     // Map featured product indices to their actual product objects
     const featuredProductList = products;
 
-    const productListProps = { store, productColor, products: featuredProductList, previewMode, setStore, addToCart };
+    const productListProps = { store, productColor, products: featuredProductList, previewMode, setStore, addToCart, activeTheme };
 
     var categoryType = 'default'
     if (store?.componentSkin[2]?.activeSkin && store?.componentSkin[2]?.activeSkin !== '') {

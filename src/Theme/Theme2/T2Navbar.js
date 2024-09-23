@@ -4,7 +4,7 @@ import Navbar from "../../Components/Navbar/Navbar";
 
 const EStoreNavbar = ({ highlightedButtonId, onClick, categoriesRef, newProductRef }) => {
     const { store, setStore, addCategory, removeCategory, deleteFromCart } = useStore();
-    const { color, previewMode, cartCount, cart, isEdit, fetchedFromBackend,activeTheme } = store;
+    const { color, previewMode, cartCount, cart, isEdit, fetchedFromBackend, activeTheme } = store;
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
     const [newCategory, setNewCategory] = useState('');
     const [searchInput, setSearchInput] = useState('');
@@ -32,6 +32,7 @@ const EStoreNavbar = ({ highlightedButtonId, onClick, categoriesRef, newProductR
         newProductRef,
         categoriesRef
     };
+    console.log(activeTheme, "Grom t2")
     return (
         <Navbar
             navbarProps={navbarProps}

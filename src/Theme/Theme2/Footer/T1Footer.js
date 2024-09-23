@@ -2,7 +2,7 @@ import React from 'react';
 import { useStore } from '../../ThemeContext';
 import Footer from '../../../Components/Footer/Footer';
 const T1Footer = () => {
-    const { store, setStore } = useStore();
+    const { store, setStore, activeTheme } = useStore();
 
     const footerProps = {
         store,
@@ -15,7 +15,8 @@ const T1Footer = () => {
         email: store.email,
         phoneNumber: store.phoneNumber,
         setStore,
-        isEdit:store.isEdit
+        isEdit: store.isEdit,
+        activeTheme
     };
 
     return (

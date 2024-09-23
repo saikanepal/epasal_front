@@ -49,7 +49,7 @@ const T1NewProducts = () => {
     // Map featured product indices to their actual product objects
     const featuredProductList = products;
 
-    const productListProps = { store, productColor, products: featuredProductList, previewMode, setStore, addToCart, isVisitorAddToCart, setIsVisitorAddToCart, setSelectedSubCategory, removeSubCategory, handleAddToCartAnalytics, addSubCategory, useDraggable };
+    const productListProps = { store, productColor, products: featuredProductList, previewMode, setStore, addToCart, isVisitorAddToCart, setIsVisitorAddToCart, setSelectedSubCategory, removeSubCategory, handleAddToCartAnalytics, addSubCategory, useDraggable, activeTheme };
 
     var categoryType = 'default'
     if (store?.componentSkin[2]?.activeSkin && store?.componentSkin[2]?.activeSkin !== '') {
