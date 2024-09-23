@@ -451,7 +451,7 @@ const Navbar1 = ({
                         <Link to={!isEdit && fetchedFromBackend && `/store/products/${store.name}`} className={linkClass(`/store/products/${store.name}`)}>All Products</Link>
                         <Link to={!isEdit && fetchedFromBackend && `/store/products/${store.name}/?filter=featured`} className="hover:underline">Featured</Link>
                         <Link to={!isEdit && fetchedFromBackend && `/store/products/${store.name}/?filter=offers`} className="hover:underline">Offers</Link>
-                        <Link className="hover:underline">New</Link>
+                        <Link className="hover:underline" onClick={e=>handleClickNavigation(e,newProductRef)}>New</Link>
                         <Link className="hover:underline">Categories</Link>
                     </div>
 

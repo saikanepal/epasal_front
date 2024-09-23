@@ -7,7 +7,7 @@ const Footer = ({ footerProps, footerType }) => {
     const { activeTheme } = footerProps;
 
     const renderFooter = () => {
-        switch (2) {
+        switch (activeTheme) {
             case 1:
                 switch (footerType) {
                     case 'Footer1':

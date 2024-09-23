@@ -7,7 +7,7 @@ import NewProductList from '../../Components/NewProductList/NewProductList';
 import useFetch from '../../Hooks/useFetch';
 import { toast } from 'react-toastify';
 
-const T1NewProducts = () => {
+const T1NewProducts = ({newRef}) => {
     const { store, setStore, addToCart, isVisitorAddToCart, setIsVisitorAddToCart, setSelectedSubCategory, removeSubCategory, addSubCategory } = useStore();
     const { previewMode, featuredProducts, products, activeTheme } = store;
     const { newProductColor } = store.color;
@@ -60,7 +60,7 @@ const T1NewProducts = () => {
 
 
     return (
-        <div className=' w-full'>
+        <div className=' w-full' ref={newRef}>
             <NewProductList productListProps={productListProps} productListType={categoryType} />
         </div>
     );

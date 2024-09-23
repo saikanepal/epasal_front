@@ -74,7 +74,7 @@ const NewProductList = ({ productListProps, productListType, storeName }) => {
 
 
     const renderProductList = () => {
-        switch (2) {
+        switch (activeTheme) {
             case 1:
                 switch (productListType) {
                     case 'default':

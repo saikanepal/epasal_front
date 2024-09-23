@@ -7,7 +7,7 @@ const Navbar = ({ navbarProps, navbarType, onClick, activeTheme }) => {
     useEffect(() => {
         console.log(activeTheme, "active heme")
     }, [activeTheme])
-    switch (2) {
+    switch (activeTheme) {
         case 1:
             switch (navbarType) {
                 case 'Navbar1':

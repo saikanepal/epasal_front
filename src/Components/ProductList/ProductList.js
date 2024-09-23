@@ -92,7 +92,7 @@ const ProductList = ({ productListProps, productListType, storeName }) => {
 
     console.log(productListType, "prduct list type")
     const renderProductList = () => {
-        switch (2) {
+        switch (activeTheme) {
             case 1:
                 switch (productListType) {
                     case 'default':

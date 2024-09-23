@@ -22,15 +22,15 @@ import T1NewProducts from "./T1NewProducts";
 import T1SecondaryBanner from "./T1SecondaryBanner";
 
 const EStore = ({ useStore }) => {
-
+  const newRef=useRef(null);
 
   const [tasks, setTasks] = useState([
-    { id: 2, component: <T2Navbar /> },
+    { id: 2, component: <T2Navbar newProductRef={newRef}/> },
     { id: 3, component: <AboutPage /> },
     { id: 4, component: null },
     { id: 5, component: <T1SubProduct /> },
     { id: 6, component: <T1ThirdBanner /> },
-    { id: 7, component: <T1NewProducts /> },
+    { id: 7, component: <T1NewProducts newRef={newRef}/> },
     { id: 8, component: <T1SecondaryBanner /> },
     { id: 9, component: <T1ProductList /> },
     { id: 10, component: <OfferBanner /> },
