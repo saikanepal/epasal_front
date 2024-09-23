@@ -45,7 +45,7 @@ const OfferBanner1 = ({ previewMode, isEdit,fetchedFromBackend, defaultBgImage,s
   return (
     <div className="py-8 mb-16 flex justify-center" style={{
     }}>
-      <div className="w-[95%] flex justify-between">
+      <div className="w-[95%] flex justify-between flex-col-reverse lg:flex-row box-border shadow-xl lg:shadow-none">
       <div>
         <div className=" sm:py-1 md:py-1 lg:py-1 h-full">
           <div
@@ -59,7 +59,7 @@ const OfferBanner1 = ({ previewMode, isEdit,fetchedFromBackend, defaultBgImage,s
               className=" mx-4 my-4 p-4  py-4 h-full"
               style={{ borderColor: color?.offerBannerColor?.textColor }}
             >
-              <Link to={!isEdit && fetchedFromBackend &&  `/store/products/${store.name}`} className="flex flex-col justify-between h-full">
+              <Link to={!isEdit && fetchedFromBackend &&  `/store/products/${store.name}`} className="flex flex-col text-center lg:text-left items-center lg:items-start justify-between h-full">
                 {previewMode ? (
                   <>
                     <div>
@@ -122,7 +122,7 @@ const OfferBanner1 = ({ previewMode, isEdit,fetchedFromBackend, defaultBgImage,s
         </div>
       </div>
       <motion.div
-        className="box-border relative w-[65%] shadow-lg min-h-[300px] sm:h-[600px] md:h-[800px] lg:h-[400px] lg:min-h-[450px] flex flex-col sm:flex-col sm:space-y-5 lg:space-y-0  lg:flex-row md:justify-center items-center   px-3  py-10 text-black  rounded-xl"
+        className="box-border relative min-w-[65%] shadow-none lg:shadow-lg lg:h-[400px] lg:min-h-[450px] flex flex-col sm:flex-col sm:space-y-5 lg:space-y-0  lg:flex-row md:justify-center items-center   px-3  py-10 text-black  rounded-xl"
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
@@ -140,7 +140,7 @@ const OfferBanner1 = ({ previewMode, isEdit,fetchedFromBackend, defaultBgImage,s
 
         <div className="flex">
 
-                <div className=" w-2/3">
+                <div className=" w-full lg:w-2/3">
                 <input {...getInputPropsBackground()} />
                 <div className=" h-full ">
                     <img
@@ -150,7 +150,7 @@ const OfferBanner1 = ({ previewMode, isEdit,fetchedFromBackend, defaultBgImage,s
                     />
                 </div>
                 </div>
-                <div>
+                <div className="hidden lg:block">
                 {previewMode ? (
                   <>
                       <p
