@@ -7,10 +7,11 @@ import NewProductListCard3 from './NewProductListCard3';
 import useFetch from '../../Hooks/useFetch';
 import { toast } from 'react-toastify';
 import { AuthContext } from '../../Hooks/AuthContext';
-import Loader from '../Loading/Loading';
+import Theme2NewProductListCard1 from './Theme2/NewProductListCard1';
+
 const NewProductList = ({ productListProps, productListType, storeName }) => {
     const initialProducts = [];
-    const { products, productColor, setStore, store } = productListProps
+    const { products, productColor, setStore, store, activeTheme } = productListProps
     const navigate = useNavigate();
     const { sendRequest, isLoading } = useFetch();
     const handleExploreClick = (e) => {
@@ -73,91 +74,262 @@ const NewProductList = ({ productListProps, productListType, storeName }) => {
 
 
     const renderProductList = () => {
-        switch (productListType) {
-            case 'default':
-                return (
-                    <div className='space-y-5 md:space-y-10 py-20 w-full flex items-center flex-col px-3 md:px-4  ' style={{ backgroundColor: productColor.backgroundColor }}>
-                        <h1 style={{ color: productColor.headerColor }} className="text-3xl font-semibold">New Products</h1>
-                        <div>
-                            <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-5 md:gap-x-10 gap-y-8 md:gap-y-12 lg:gap-10 h-full">
-                                {filteredProducts.map((product, i) => (
-                                    (product?.id || product?._id) && <NewProductListCard
-                                        key={product.id}
-                                        product={product}
-                                        productListProps={productListProps}
-                                        handleRemoveProduct={handleRemoveProduct}
-                                        store={store}
-                                        handleDeleteProduct={handleDeleteProduct}
-                                        index={i}
-                                    />
-                                ))}
+        switch (2) {
+            case 1:
+                switch (productListType) {
+                    case 'default':
+                        return (
+                            <div className='space-y-5 md:space-y-10 py-20 w-full flex items-center flex-col px-3 md:px-4  ' style={{ backgroundColor: productColor.backgroundColor }}>
+                                <h1 style={{ color: productColor.headerColor }} className="text-3xl font-semibold">New Products</h1>
+                                <div>
+                                    <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 2xl:grid-cols-5  gap-x-5 md:gap-x-10 gap-y-8 md:gap-y-12 lg:gap-10 h-full">
+                                        {filteredProducts.map((product, i) => (
+                                            (product?.id || product?._id) && <NewProductListCard
+                                                key={product.id}
+                                                product={product}
+                                                productListProps={productListProps}
+                                                handleRemoveProduct={handleRemoveProduct}
+                                                store={store}
+                                                handleDeleteProduct={handleDeleteProduct}
+                                                index={i}
+                                                handleAddToCartAnalytics={productListProps.handleAddToCartAnalytics}
+                                            />
+                                        ))}
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                );
-            case 'Modern Minimalistic':
-                return (
-                    <div className='space-y-5 md:space-y-10 py-20 w-full flex items-center flex-col px-3 md:px-3 ' style={{ backgroundColor: productColor.backgroundColor }}>
-                        <h1 style={{ color: productColor.headerColor }} className="text-3xl font-semibold">New Products</h1>
-                        <div style={{}} className=''>
-                            <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-5 md:gap-x-10 gap-y-8 md:gap-y-12 lg:gap-10 ">
-                                {filteredProducts.map((product, i) => (
-                                    (product?.id || product?._id) && <NewProductListCard3
-                                        key={product.id}
-                                        product={product}
-                                        productListProps={productListProps}
-                                        handleRemoveProduct={handleRemoveProduct}
-                                        store={store}
+                        );
+                    case 'Modern Minimalistic':
+                        return (
+                            <div className='space-y-5 md:space-y-10 py-20 w-full flex items-center flex-col px-3 md:px-3 ' style={{ backgroundColor: productColor.backgroundColor }}>
+                                <h1 style={{ color: productColor.headerColor }} className="text-3xl font-semibold">New Products</h1>
+                                <div style={{}} className=''>
+                                    <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-5 md:gap-x-10 gap-y-8 md:gap-y-12 lg:gap-10 ">
+                                        {filteredProducts.map((product, i) => (
+                                            (product?.id || product?._id) && <NewProductListCard3
+                                                key={product.id}
+                                                product={product}
+                                                productListProps={productListProps}
+                                                handleRemoveProduct={handleRemoveProduct}
+                                                store={store}
 
-                                    />
-                                ))}
+                                            />
+                                        ))}
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                );
-            case 'Slider':
-                return (
-                    <div className='space-y-5 md:space-y-10 py-20 w-full flex items-center flex-col px-3 md:px-3' style={{ backgroundColor: productColor.backgroundColor }}>
-                        <h1 style={{ color: productColor.headerColor }} className="text-3xl font-semibold">New Products</h1>
-                        <div style={{}} className=''>
-                            <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-5 md:gap-x-10 gap-y-8 md:gap-y-12 lg:gap-10  ">
-                                {filteredProducts.map((product, i) => (
-                                    (product?.id || product?._id) && <NewProductListCard2
-                                        key={product.id}
-                                        product={product}
-                                        productListProps={productListProps}
-                                        handleRemoveProduct={handleRemoveProduct}
-                                        store={store}
+                        );
+                    case 'Slider':
+                        return (
+                            <div className='space-y-5 md:space-y-10 py-20 w-full flex items-center flex-col px-3 md:px-3' style={{ backgroundColor: productColor.backgroundColor }}>
+                                <h1 style={{ color: productColor.headerColor }} className="text-3xl font-semibold">New Products</h1>
+                                <div style={{}} className=''>
+                                    <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-5 md:gap-x-10 gap-y-8 md:gap-y-12 lg:gap-10  ">
+                                        {filteredProducts.map((product, i) => (
+                                            (product?.id || product?._id) && <NewProductListCard2
+                                                key={product.id}
+                                                product={product}
+                                                productListProps={productListProps}
+                                                handleRemoveProduct={handleRemoveProduct}
+                                                store={store}
 
-                                    />
-                                ))}
+                                            />
+                                        ))}
+                                    </div>
+                                </div>
+                            </div>
+                        );
+                    // Add more cases for other product list types
+                    default:
+                        <div className='space-y-5 md:space-y-10 py-20 w-full flex items-center flex-col' style={{ backgroundColor: productColor.backgroundColor }}>
+                            <h1 style={{ color: productColor.headerColor }} className="text-3xl font-semibold">New Products</h1>
+                            <div style={{}} className=''>
+                                <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-8 gap-y-12 lg:gap-10 ">
+                                    {filteredProducts.map((product, i) => (
+                                        (product?.id || product?._id) && <NewProductListCard
+                                            key={product.id}
+                                            product={product}
+                                            productListProps={productListProps}
+                                            handleRemoveProduct={handleRemoveProduct}
+                                            store={store}
+
+                                        />
+                                    ))}
+                                </div>
                             </div>
                         </div>
-                    </div>
-                );
-            // Add more cases for other product list types
+                }
+            case 2:
+                switch (productListType) {
+                    case 'default':
+                        return (
+                            <div className='space-y-5 md:space-y-10 py-20 w-full flex items-center flex-col px-3 md:px-4  ' style={{ backgroundColor: productColor.backgroundColor }}>
+                                <h1 style={{ color: productColor.headerColor }} className="text-3xl font-semibold">New Products</h1>
+                                <div>
+                                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5  gap-x-5 md:gap-x-10 gap-y-8 md:gap-y-12 lg:gap-10 h-full">
+                                        {filteredProducts.map((product, i) => (
+                                            (product?.id || product?._id) && <Theme2NewProductListCard1
+                                                key={product.id}
+                                                product={product}
+                                                productListProps={productListProps}
+                                                handleRemoveProduct={handleRemoveProduct}
+                                                store={store}
+                                                handleDeleteProduct={handleDeleteProduct}
+                                                index={i}
+                                                handleAddToCartAnalytics={productListProps.handleAddToCartAnalytics}
+                                            />
+                                        ))}
+                                    </div>
+                                </div>
+                            </div>
+                        );
+                    case 'Modern Minimalistic':
+                        return (
+                            <div className='space-y-5 md:space-y-10 py-20 w-full flex items-center flex-col px-3 md:px-3 ' style={{ backgroundColor: productColor.backgroundColor }}>
+                                <h1 style={{ color: productColor.headerColor }} className="text-3xl font-semibold">New Products</h1>
+                                <div style={{}} className=''>
+                                    <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-5 md:gap-x-10 gap-y-8 md:gap-y-12 lg:gap-10 ">
+                                        {filteredProducts.map((product, i) => (
+                                            (product?.id || product?._id) && <NewProductListCard3
+                                                key={product.id}
+                                                product={product}
+                                                productListProps={productListProps}
+                                                handleRemoveProduct={handleRemoveProduct}
+                                                store={store}
+
+                                            />
+                                        ))}
+                                    </div>
+                                </div>
+                            </div>
+                        );
+                    case 'Slider':
+                        return (
+                            <div className='space-y-5 md:space-y-10 py-20 w-full flex items-center flex-col px-3 md:px-3' style={{ backgroundColor: productColor.backgroundColor }}>
+                                <h1 style={{ color: productColor.headerColor }} className="text-3xl font-semibold">New Products</h1>
+                                <div style={{}} className=''>
+                                    <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-5 md:gap-x-10 gap-y-8 md:gap-y-12 lg:gap-10  ">
+                                        {filteredProducts.map((product, i) => (
+                                            (product?.id || product?._id) && <NewProductListCard2
+                                                key={product.id}
+                                                product={product}
+                                                productListProps={productListProps}
+                                                handleRemoveProduct={handleRemoveProduct}
+                                                store={store}
+
+                                            />
+                                        ))}
+                                    </div>
+                                </div>
+                            </div>
+                        );
+                    // Add more cases for other product list types
+                    default:
+                        <div className='space-y-5 md:space-y-10 py-20 w-full flex items-center flex-col' style={{ backgroundColor: productColor.backgroundColor }}>
+                            <h1 style={{ color: productColor.headerColor }} className="text-3xl font-semibold">New Products</h1>
+                            <div style={{}} className=''>
+                                <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-x-8 gap-y-12 lg:gap-10 ">
+                                    {filteredProducts.map((product, i) => (
+                                        (product?.id || product?._id) && <NewProductListCard
+                                            key={product.id}
+                                            product={product}
+                                            productListProps={productListProps}
+                                            handleRemoveProduct={handleRemoveProduct}
+                                            store={store}
+
+                                        />
+                                    ))}
+                                </div>
+                            </div>
+                        </div>
+                }
             default:
-                <div className='space-y-5 md:space-y-10 py-20 w-full flex items-center flex-col' style={{ backgroundColor: productColor.backgroundColor }}>
-                    <h1 style={{ color: productColor.headerColor }} className="text-3xl font-semibold">New Products</h1>
-                    <div style={{}} className=''>
-                        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-x-8 gap-y-12 lg:gap-10 ">
-                            {filteredProducts.map((product, i) => (
-                                (product?.id || product?._id) && <NewProductListCard
-                                    key={product.id}
-                                    product={product}
-                                    productListProps={productListProps}
-                                    handleRemoveProduct={handleRemoveProduct}
-                                    store={store}
+                switch (productListType) {
+                    case 'default':
+                        return (
+                            <div className='space-y-5 md:space-y-10 py-20 w-full flex items-center flex-col px-3 md:px-4  ' style={{ backgroundColor: productColor.backgroundColor }}>
+                                <h1 style={{ color: productColor.headerColor }} className="text-3xl font-semibold">New Products</h1>
+                                <div>
+                                    <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 2xl:grid-cols-5  gap-x-5 md:gap-x-10 gap-y-8 md:gap-y-12 lg:gap-10 h-full">
+                                        {filteredProducts.map((product, i) => (
+                                            (product?.id || product?._id) && <NewProductListCard
+                                                key={product.id}
+                                                product={product}
+                                                productListProps={productListProps}
+                                                handleRemoveProduct={handleRemoveProduct}
+                                                store={store}
+                                                handleDeleteProduct={handleDeleteProduct}
+                                                index={i}
+                                                handleAddToCartAnalytics={productListProps.handleAddToCartAnalytics}
+                                            />
+                                        ))}
+                                    </div>
+                                </div>
+                            </div>
+                        );
+                    case 'Modern Minimalistic':
+                        return (
+                            <div className='space-y-5 md:space-y-10 py-20 w-full flex items-center flex-col px-3 md:px-3 ' style={{ backgroundColor: productColor.backgroundColor }}>
+                                <h1 style={{ color: productColor.headerColor }} className="text-3xl font-semibold">New Products</h1>
+                                <div style={{}} className=''>
+                                    <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-5 md:gap-x-10 gap-y-8 md:gap-y-12 lg:gap-10 ">
+                                        {filteredProducts.map((product, i) => (
+                                            (product?.id || product?._id) && <NewProductListCard3
+                                                key={product.id}
+                                                product={product}
+                                                productListProps={productListProps}
+                                                handleRemoveProduct={handleRemoveProduct}
+                                                store={store}
 
-                                />
-                            ))}
+                                            />
+                                        ))}
+                                    </div>
+                                </div>
+                            </div>
+                        );
+                    case 'Slider':
+                        return (
+                            <div className='space-y-5 md:space-y-10 py-20 w-full flex items-center flex-col px-3 md:px-3' style={{ backgroundColor: productColor.backgroundColor }}>
+                                <h1 style={{ color: productColor.headerColor }} className="text-3xl font-semibold">New Products</h1>
+                                <div style={{}} className=''>
+                                    <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-5 md:gap-x-10 gap-y-8 md:gap-y-12 lg:gap-10  ">
+                                        {filteredProducts.map((product, i) => (
+                                            (product?.id || product?._id) && <NewProductListCard2
+                                                key={product.id}
+                                                product={product}
+                                                productListProps={productListProps}
+                                                handleRemoveProduct={handleRemoveProduct}
+                                                store={store}
+
+                                            />
+                                        ))}
+                                    </div>
+                                </div>
+                            </div>
+                        );
+                    // Add more cases for other product list types
+                    default:
+                        <div className='space-y-5 md:space-y-10 py-20 w-full flex items-center flex-col' style={{ backgroundColor: productColor.backgroundColor }}>
+                            <h1 style={{ color: productColor.headerColor }} className="text-3xl font-semibold">New Products</h1>
+                            <div style={{}} className=''>
+                                <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-x-8 gap-y-12 lg:gap-10 ">
+                                    {filteredProducts.map((product, i) => (
+                                        (product?.id || product?._id) && <NewProductListCard
+                                            key={product.id}
+                                            product={product}
+                                            productListProps={productListProps}
+                                            handleRemoveProduct={handleRemoveProduct}
+                                            store={store}
+
+                                        />
+                                    ))}
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-        }
-    };
+                }
 
-
+        };
+    }
     return (
 
         <div className='mb-16' style={{ fontFamily: store?.fonts?.NewProduct }}>
@@ -175,6 +347,8 @@ const NewProductList = ({ productListProps, productListType, storeName }) => {
         </div>
 
     );
+
+
 }
 
 export default NewProductList;

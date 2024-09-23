@@ -7,7 +7,8 @@ import { StarIcon } from '@heroicons/react/16/solid';
 import useFetch from '../../../Hooks/useFetch';
 import { useNavigate } from 'react-router-dom';
 import TransparantFilter from '../../../Assets/TransparantFilter.png'
-const SubProductCard1 = ({ product, handleStyleSelect, handleRemoveProduct, store, handleAddToCartAnalytics }) => {
+
+const ProductListCard1 = ({ product, handleStyleSelect, handleRemoveProduct, store, handleAddToCartAnalytics }) => {
     // Component state
     const [selectedStyle, setSelectedStyle] = useState(0);
     const [selectedOption, setSelectedOption] = useState(0)
@@ -94,7 +95,7 @@ const SubProductCard1 = ({ product, handleStyleSelect, handleRemoveProduct, stor
 
     return (
         <motion.div
-            className="  flex flex-col md:flex-row items-center md:text-left w-[288px] h-[360px] rounded-lg overflow-hidden shadow-md cursor-pointer relative " // Add relative class
+            className="  flex flex-col md:flex-row items-center md:text-left w-[320px] h-[380px] rounded-lg overflow-hidden shadow-md cursor-pointer relative " // Add relative class
             whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.98 }}
             style={{ backgroundColor: store.color.subProductColor.backgroundColor, color: store.color.subProductColor.textColor, border: `2px solid ${store.color.subProductColor.borderColor}` }}
@@ -156,4 +157,4 @@ const SubProductCard1 = ({ product, handleStyleSelect, handleRemoveProduct, stor
     )
 }
 
-export default SubProductCard1
+export default ProductListCard1

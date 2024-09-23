@@ -3,14 +3,14 @@ import ProductList from '../../Components/ProductList/ProductList';
 import { useStore } from '../ThemeContext';
 
 const T1ProductList = () => {
-    const { store, setStore, addToCart,isVisitorAddToCart,setIsVisitorAddToCart } = useStore();
-    const { previewMode, featuredProducts, products, isEdit, fetchedFromBackend } = store;
+    const { store, setStore, addToCart, isVisitorAddToCart, setIsVisitorAddToCart } = useStore();
+    const { previewMode, featuredProducts, products, isEdit, fetchedFromBackend, activeTheme } = store;
     const { productListColor } = store.color;
     const productColor = { ...productListColor };
 
     // Map featured product indices to their actual product objects
     const featuredProductList = featuredProducts.map(index => products[index]);
-  
+
 
     var categoryType;
     if (store?.componentSkin[3]?.activeSkin && store?.componentSkin[3]?.activeSkin !== '') {
@@ -19,7 +19,7 @@ const T1ProductList = () => {
         categoryType = 'default';
     }
 
-    const productListProps = { store, isEdit, productColor, products: featuredProductList, previewMode, setStore, addToCart, store, fetchedFromBackend,isVisitorAddToCart,setIsVisitorAddToCart };
+    const productListProps = { store, isEdit, productColor, products: featuredProductList, previewMode, setStore, addToCart, store, fetchedFromBackend, isVisitorAddToCart, setIsVisitorAddToCart, activeTheme };
 
 
 

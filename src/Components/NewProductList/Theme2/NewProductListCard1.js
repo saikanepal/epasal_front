@@ -7,7 +7,7 @@ import { StarIcon } from '@heroicons/react/16/solid';
 import useFetch from '../../../Hooks/useFetch';
 import { useNavigate } from 'react-router-dom';
 import TransparantFilter from '../../../Assets/TransparantFilter.png'
-const SubProductCard1 = ({ product, handleStyleSelect, handleRemoveProduct, store, handleAddToCartAnalytics }) => {
+const NewProductListCard1 = ({ product, handleStyleSelect, handleRemoveProduct, store, handleAddToCartAnalytics }) => {
     // Component state
     const [selectedStyle, setSelectedStyle] = useState(0);
     const [selectedOption, setSelectedOption] = useState(0)
@@ -156,4 +156,4 @@ const SubProductCard1 = ({ product, handleStyleSelect, handleRemoveProduct, stor
     )
 }
 
-export default SubProductCard1
+export default NewProductListCard1

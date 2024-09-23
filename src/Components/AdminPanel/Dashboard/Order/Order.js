@@ -36,7 +36,7 @@ const Order = ({ store }) => {
                     Authorization: 'Bearer ' + auth.token,
                 }
             );
-            
+
             if (responseData.orders.length === 0) {
                 setHasMore(false);
             } else {
@@ -110,7 +110,7 @@ const Order = ({ store }) => {
                 updateData.deliveryCode = deliveryCode;
             }
             updateData.storeID = store._id;
-          
+
             const response = await sendRequest(
                 `order/update/${store._id}/${orderId}?storeId=${store._id}`,
                 'PUT',
@@ -242,13 +242,13 @@ const Order = ({ store }) => {
                                             <span className="block">{new Date(order.updatedAt).toLocaleTimeString()}</span>
                                         </div> */}
                                         </div>
-                                        <h2 className="text-md font-semibold">Order Number : {order._id}</h2>
-                                        <div className="text-gray-600">{`Address: ${order.address}`}</div>
-                                        <div className="text-gray-600">{`Landmark: ${order.landmark}`}</div>
-                                        <div className="text-gray-600">{`Status: ${order.status}`}</div>
+                                        <h2 className="text-md font-semibold">Order Number : {order?._id}</h2>
+                                        <div className="text-gray-600">{`Address: ${order?.address}`}</div>
+                                        <div className="text-gray-600">{`Landmark: ${order?.landmark}`}</div>
+                                        <div className="text-gray-600">{`Status: ${order?.status}`}</div>
                                         <div className="text-gray-600 flex items-center">
                                             {`Phone Number: `}
-                                            <a href={`tel:${order.phoneNumber}`} className="ml-2 text-blue-500 underline">{order.phoneNumber}</a>
+                                            <a href={`tel:${order.phoneNumber}`} className="ml-2 text-blue-500 underline">{order?.phoneNumber}</a>
                                         </div>
                                     </div>
                                 )}
@@ -256,14 +256,14 @@ const Order = ({ store }) => {
                             <div className=' flex justify-end flex-col space-y-4'>
                                 <div className="text-gray-600  font-semibold">
 
-                                    <span className=" block">{new Date(order.updatedAt).toLocaleDateString(undefined, {
+                                    <span className=" block">{new Date(order?.updatedAt).toLocaleDateString(undefined, {
                                         day: 'numeric',
                                         month: 'short'
                                     })}</span>
-                                    <span className="block">{new Date(order.updatedAt).toLocaleTimeString()}</span>
+                                    <span className="block">{new Date(order?.updatedAt).toLocaleTimeString()}</span>
                                 </div>
                                 <div className="text-gray-500 flex justify-end mx-auto  mb-2 text-2xl" onClick={() => toggleExpand(order._id)}>
-                                    {expandedId === order._id ? <FaChevronUp /> : <FaChevronDown />}
+                                    {expandedId === order?._id ? <FaChevronUp /> : <FaChevronDown />}
                                 </div>
                                 <button
                                     onClick={() => toggleEdit(order)}
@@ -289,17 +289,16 @@ const Order = ({ store }) => {
                                 </div>
                                 <div>
                                     {order.cart.map((item, index) => (
-
-                                        <div key={item.product._id} className="mb-4">
-                                            <p className="font-medium">{`Product: ${item.productName || item.product.name}`}</p>
-                                            <p className="text-gray-600">{`Product ID: ${item.product._id}`}</p>
-                                            <p className="text-gray-600">{`Quantity: ${item.count}`}</p>
+                                        <div key={item?.product?._id} className="mb-4">
+                                            <p className="font-medium">{`Product: ${item?.productName || item?.product.name}`}</p>
+                                            <p className="text-gray-600">{`Product ID: ${item?.product?._id}`}</p>
+                                            <p className="text-gray-600">{`Quantity: ${item?.count}`}</p>
                                             {item.selectedVariant.map((variant, idx) => (
                                                 <div key={idx} className="text-gray-600">
-                                                    <p>{`${variant.name}: ${variant.options.name}`}</p>
+                                                    <p>{`${variant?.name}: ${variant?.options?.name}`}</p>
                                                 </div>
                                             ))}
-                                            <p className="text-gray-600">{`Price After Discount: Nrs ${item.price} per unit`}</p>
+                                            <p className="text-gray-600">{`Price After Discount: Nrs ${item?.price} per unit`}</p>
                                             <hr className="w-full border-gray-300 mt-2" />
                                         </div>
                                     ))}
@@ -313,35 +312,39 @@ const Order = ({ store }) => {
                                         <p className="text-gray-600">{`Final Amount: Nrs ${order.totalPrice}`}</p>
                                     </div>
                                 </div>
-                            </div>
+                            </div >
                         )}
-                    </div>
+                    </div >
                 ))}
-                {hasMore && (
-                    <div className="flex justify-center mt-4">
-                        <button
-                            onClick={loadMoreOrders}
-                            disabled={isLoading}
-                            className="px-4 py-2 bg-blue-500 text-white rounded"
-                        >
-                            {isLoading ? 'Loading...' : 'Load More Orders'}
-                        </button>
-                    </div>
-                )}
-                {error && (
-                    <div className="fixed bottom-0 left-0 right-0 p-4 bg-red-500 text-white text-center">
-                        {error.message || 'An error occurred'}
-                        <button onClick={onCloseError} className="ml-4 px-2 py-1 bg-red-700 rounded">
-                            Close
-                        </button>
-                    </div>
-                )}
+                {
+                    hasMore && (
+                        <div className="flex justify-center mt-4">
+                            <button
+                                onClick={loadMoreOrders}
+                                disabled={isLoading}
+                                className="px-4 py-2 bg-blue-500 text-white rounded"
+                            >
+                                {isLoading ? 'Loading...' : 'Load More Orders'}
+                            </button>
+                        </div>
+                    )
+                }
+                {
+                    error && (
+                        <div className="fixed bottom-0 left-0 right-0 p-4 bg-red-500 text-white text-center">
+                            {error.message || 'An error occurred'}
+                            <button onClick={onCloseError} className="ml-4 px-2 py-1 bg-red-700 rounded">
+                                Close
+                            </button>
+                        </div>
+                    )
+                }
                 <DeliveryCodeModal
                     isOpen={showDeliveryCodeModal}
                     onClose={handleModalClose}
                     onSubmit={handleModalSubmit}
                 />
-            </div>
+            </div >
     );
 };
 

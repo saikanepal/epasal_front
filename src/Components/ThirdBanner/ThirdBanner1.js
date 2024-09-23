@@ -5,7 +5,7 @@ import { useDropzone } from "react-dropzone";
 import { useStore } from "../../Theme/ThemeContext"; // Adjust the path as necessary
 import { useImage } from "../../Hooks/useImage";
 import { Link } from "react-router-dom";
-const ThirdBanner1 = ({ previewMode, isEdit, defaultBgImage, storeName, fetchedFromBackend,store,setStore }) => {
+const ThirdBanner1 = ({ previewMode, isEdit, defaultBgImage, storeName, fetchedFromBackend, store, setStore }) => {
   const { color, secondaryBannerText, thirdBannerText } = store;
   const { uploadImage } = useImage();
   const navigate = useNavigate()
