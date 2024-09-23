@@ -374,7 +374,7 @@ const Navbar1 = ({
                     </div>
                 )}
                 <span className="text-xl font-bold" onClick={() => navigate('./')}>
-                    {store.name} 
+                    {store.name}
                 </span>
 
             </div>
@@ -492,8 +492,8 @@ const Navbar1 = ({
                                     </ul>}
                             </div>
                             <Link to={!isEdit && fetchedFromBackend && `/store/products/${store.name}`} className="hover:underline">All Products</Link>
-                            <Link to={!isEdit && fetchedFromBackend && `/store/products/${store.name}`} className="hover:underline">Featured</Link>
-                            <Link to={!isEdit && fetchedFromBackend && `/store/products/${store.name}`} className="hover:underline">Offers</Link>
+                            <Link to={!isEdit && fetchedFromBackend && `/store/products/${store.name}/?filter=featured`} className="hover:underline">Featured</Link>
+                            <Link to={!isEdit && fetchedFromBackend && `/store/products/${store.name}/?filter=offers`} className="hover:underline">Offers</Link>
                         </div>
                     </div>
                 )

@@ -5,7 +5,7 @@ import { AuthContext } from '../../../Hooks/AuthContext';
 import { MdOutlineNavigateNext, MdOutlineNavigateBefore } from "react-icons/md";
 const SubProduct1 = ({
     products, categories, subCategories, previewMode, store, CategorySelector, setStore, AddProduct, ProductCard, useDraggable
-    , addToCart, handleAddToCartAnalytics, setSelectedSubCategory, removeSubCategory }) => {
+    , addToCart, handleAddToCartAnalytics, setSelectedSubCategory, removeSubCategory, categoryRef }) => {
     const ref = useRef();
     const containerRef = useRef(null);
     const { events } = useDraggable(ref);
@@ -87,7 +87,7 @@ const SubProduct1 = ({
         }
     }
     return (
-        <div className='flex flex-col md:flex-row mb-16 px-0 md:px-10 gap-2 md:gap-10 w-screen' style={{ fontFamily: store?.fonts?.Categories, backgroundColor: subProductColor.categoryColor }}>
+        <div ref={categoryRef} className='flex flex-col md:flex-row mb-16 px-0 md:px-10 gap-2 md:gap-10 w-screen' style={{ fontFamily: store?.fonts?.Categories, backgroundColor: subProductColor.categoryColor }}>
             <CategorySelector store={store} setSelectedSubCategory={setSelectedSubCategory} removeSubCategory={removeSubCategory} />
             <div className="px-4 pb-8 overflow-x-scroll flex-grow"
                 {...events}

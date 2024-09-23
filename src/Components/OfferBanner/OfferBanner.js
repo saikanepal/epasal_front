@@ -11,7 +11,7 @@ const OfferBanner = (props) => {
     //   default:
     //     return <OfferBanner1 {...props} />;
     // }
-    return <Theme2OfferBanner1 {...props}/>
+    return <Theme2OfferBanner1 {...props} />
   };
 
   return <>{renderBanner()}</>;

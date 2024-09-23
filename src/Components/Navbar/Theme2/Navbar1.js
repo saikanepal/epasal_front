@@ -22,9 +22,8 @@ const Navbar1 = ({
     setIsSidebarOpen,
     setSearchInput,
     setLogoFile,
-    isEdit, fetchedFromBackend, highlightedButtonId, onClick, newProductRef, categoriesRef
+    isEdit, fetchedFromBackend, highlightedButtonId, onClick, newProductRef, categoryRef
 }) => {
-    console.log(newProductRef, categoriesRef, "newProductRef,categoriesRef=====")
     const [scrolling, setScrolling] = useState(false);
     const [editableText, setEditableText] = useState("Ecom Template-2");
     const [isSearchClicked, setIsSearchClicked] = useState(false);
@@ -451,8 +450,8 @@ const Navbar1 = ({
                         <Link to={!isEdit && fetchedFromBackend && `/store/products/${store.name}`} className={linkClass(`/store/products/${store.name}`)}>All Products</Link>
                         <Link to={!isEdit && fetchedFromBackend && `/store/products/${store.name}/?filter=featured`} className="hover:underline">Featured</Link>
                         <Link to={!isEdit && fetchedFromBackend && `/store/products/${store.name}/?filter=offers`} className="hover:underline">Offers</Link>
-                        <Link className="hover:underline" onClick={e=>handleClickNavigation(e,newProductRef)}>New</Link>
-                        <Link className="hover:underline">Categories</Link>
+                        <Link className="hover:underline" onClick={e => handleClickNavigation(e, newProductRef)}>New</Link>
+                        <Link className="hover:underline" onClick={e => handleClickNavigation(e, categoryRef)}>Categories</Link>
                     </div>
 
                 </div>
@@ -527,10 +526,10 @@ const Navbar1 = ({
                             )}
                         </div>
                         <Link to={!isEdit && fetchedFromBackend && `/store/products/${store.name}`} className="hover:underline">All Products</Link>
-                        <Link to={!isEdit && fetchedFromBackend && `/store/products/${store.name}`} className="hover:underline">Featured</Link>
-                        <Link to={!isEdit && fetchedFromBackend && `/store/products/${store.name}`} className="hover:underline">Offers</Link>
-                        <Link className="hover:underline">New</Link>
-                        <Link className="hover:underline">Categories</Link>
+                        <Link to={!isEdit && fetchedFromBackend && `/store/products/${store.name}/?filter=featured`} className="hover:underline">Featured</Link>
+                        <Link to={!isEdit && fetchedFromBackend && `/store/products/${store.name}/?filter=offers`} className="hover:underline">Offers</Link>
+                        <Link onClick={e => handleClickNavigation(e, newProductRef)} className="hover:underline">New</Link>
+                        <Link onClick={e => handleClickNavigation(e, categoryRef)} className="hover:underline">Categories</Link>
                     </div>
                 </div>
             )}

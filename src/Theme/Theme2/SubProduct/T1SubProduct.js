@@ -8,7 +8,7 @@ import SubProduct from '../../../Components/SubProduct/SubProduct';
 import useFetch from '../../../Hooks/useFetch';
 import { toast } from 'react-toastify';
 
-const T1SubProduct = () => {
+const T1SubProduct = ({ categoryRef }) => {
     const { store, setStore, addToCart, isVisitorAddToCart, setIsVisitorAddToCart, setSelectedSubCategory, removeSubCategory, addSubCategory } = useStore();
     const { products, categories, subCategories, previewMode, activeTheme } = store;
     const { sendRequest } = useFetch();
@@ -50,7 +50,7 @@ const T1SubProduct = () => {
     };
 
     const subProductsProps = {
-        products, addToCart, categories, subCategories, previewMode, store, setStore, subProductType, CategorySelector, AddProduct: ProductForm, ProductCard, useDraggable, handleAddToCartAnalytics, setSelectedSubCategory, removeSubCategory, activeTheme
+        products, addToCart, categories, subCategories, previewMode, store, setStore, subProductType, CategorySelector, AddProduct: ProductForm, ProductCard, useDraggable, handleAddToCartAnalytics, setSelectedSubCategory, removeSubCategory, activeTheme, categoryRef
     };
 
     return (
