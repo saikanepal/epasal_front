@@ -3,7 +3,6 @@ import useFetch from '../../../Hooks/useFetch';
 import { toast } from 'react-toastify';
 import { AuthContext } from '../../../Hooks/AuthContext';
 import { MdOutlineNavigateNext, MdOutlineNavigateBefore } from "react-icons/md";
-
 const SubProduct1 = ({
     products, categories, subCategories, previewMode, store, CategorySelector, setStore, AddProduct, ProductCard, useDraggable
     , addToCart, handleAddToCartAnalytics, setSelectedSubCategory, removeSubCategory }) => {

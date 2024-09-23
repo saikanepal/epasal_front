@@ -83,9 +83,9 @@ const ThirdBanner1 = ({ previewMode, isEdit, defaultBgImage, storeName, fetchedF
 
   return (
     <div className="flex justify-center" >
-      <div className="w-screen md:w-[98%] flex gap-4">
+      <div className="w-[94%] flex gap-4">
         <motion.div
-          className="box-border font-roboto relative shadow-2xl min-h-[300px] sm:min-h-[350px] md:min-h-[400px] lg:min-h-[400px] flex flex-col sm:flex-col md:flex-row lg:flex-row justify-between items-center text-black w-screen md:min-w-[65%] rounded-2xl overflow-hidden border border-gray-200"
+          className="box-border relative shadow-2xl min-h-[300px] sm:min-h-[350px] md:min-h-[400px] lg:min-h-[400px] flex flex-col sm:flex-col md:flex-row lg:flex-row justify-between items-center text-black w-screen md:min-w-[65%] rounded-2xl overflow-hidden border border-gray-200 px-4 md:px-0"
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
@@ -100,7 +100,7 @@ const ThirdBanner1 = ({ previewMode, isEdit, defaultBgImage, storeName, fetchedF
           }}
         >
           <input {...getInputPropsBackground()} />
-          <div className="w-full sm:w-full mx-4 my-4 rounded-2xl overflow-hidden md:w-1/2 lg:w-1/2">
+          <div className="w-full mx-4 my-4 rounded-md overflow-hidden md:w-1/2 lg:w-1/2">
             <img
               src={store?.thirdBanner?.thirdBannerUrl}
               alt="Product"
@@ -157,7 +157,7 @@ const ThirdBanner1 = ({ previewMode, isEdit, defaultBgImage, storeName, fetchedF
                 }}
               >
                 <Link to={!isEdit && fetchedFromBackend && `/store/products/${store.name}`}>
-                  Explore More <span className="text-lg ml-3 my-auto">&gt;</span>
+                  Explore More
                 </Link>
 
               </button>

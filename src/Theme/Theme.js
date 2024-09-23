@@ -36,7 +36,7 @@ const Theme = (passedStore = { passedStore }) => {
           setStoreName(storeID);
           // Update this line to access the logo URL correctly
           setStoreLogoUrl(responseData.store.logo.logoUrl);
-          // setActiveTheme(responseData.store.activeTheme);
+          setActiveTheme(responseData.store.activeTheme);
         }
       } catch (err) {
         console.error('Error fetching store data:', err);
