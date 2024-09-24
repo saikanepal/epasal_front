@@ -1,16 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { TbShoppingBagPlus } from "react-icons/tb";
-import { LiaShippingFastSolid } from "react-icons/lia";
-import { FiClock } from "react-icons/fi";
-import { TbCash } from "react-icons/tb";
-import { MdVerifiedUser } from "react-icons/md";
-import { PiCreditCard } from "react-icons/pi";
 import { StarIcon } from '@heroicons/react/16/solid';
-import ProductReview from './ProductReview';
-import SimilarProducts from './SimilarProducts';
+import ProductReview from '../ProductReview';
 import { useLocation, useNavigate } from 'react-router-dom';
-import Navbar from '../Allproducts/Navbar';
+import Navbar from '../../Allproducts/Navbar';
 import { toast } from 'react-toastify';
+import BreadCrumb from './Breadcrumb';
 
 const ProjectLanding1 = ({ProductLandingProps}) => {
     const {store,setStore,product}=ProductLandingProps
@@ -189,8 +184,10 @@ const ProjectLanding1 = ({ProductLandingProps}) => {
     return (
         <div className="min-h-screen bg-gray-50">
             <Navbar store={store} setStore={setStore} color={store.color} />
+            
             <div className="px-4 py-16 lg:px-14">
-                <div className="mt-4 md:mt-10 flex flex-col gap-10">
+            <BreadCrumb prodName={selectedProduct?.name} storeName={store?.name}/>
+                <div className=" flex flex-col gap-10">
                     <div className="flex flex-col md:flex-row md:gap-8 lg:gap-12">
                         {/* shadow-lg shadow-stone-400 removed */}
                         <div className="w-full flex flex-col gap-8 p-6 bg-white rounded-lg transition-shadow duration-300">
@@ -227,20 +224,12 @@ const ProjectLanding1 = ({ProductLandingProps}) => {
                                     </div>
                                 </div>
                                 <div className="flex flex-col gap-4 w-full">
-                                    <h1 className="text-xl md:text-2xl lg:text-[26px] 2xl:text-4xl font-bold text-[#4F3100] ">{selectedProduct.name}</h1>
-                                    <div className="flex md:justify-start">
-                                        {[...Array(5)].map((_, index) => (
-                                            <StarIcon
-                                                key={index}
-                                                className={`w-5 2xl:w-7 h-5 2xl:h-7 ${index < Math.ceil(selectedProduct.rating) ? 'text-[#dba247]' : 'text-gray-300'} transition-transform duration-300 hover:scale-110`}
-                                            />
-                                        ))}
-                                    </div>
+                                    <h1 className="text-xl md:text-2xl lg:text-[24px] 2xl:text-4xl font-bold text-[#4F3100] ">{selectedProduct.name}</h1>
+                                    
                                     <div className="flex gap-4 items-center">
-                                        <span className="text-xl md:text-2xl lg:text-3xl 2xl:text-4xl font-semibold text-[#383737]">Rs {totalPrice}</span>
+                                        <span className="text-xl md:text-2xl lg:text-[40px] font-semibold text-[#383737]">Rs {totalPrice}</span>
                                         <span className="line-through text-sm md:text-base lg:text-xl 2xl:text-xl text-gray-500">Rs {totalDiscount + totalPrice}</span>
                                     </div>
-                                    <p className="text-sm md:text-base text-gray-600 2xl:text-lg">{selectedProduct.description}</p>
 
                                     <div className="flex flex-row md:flex-col gap-4">
 
