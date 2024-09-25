@@ -12,7 +12,7 @@ const BreadCrumb=({prodName,storeName})=>{
     }
 
     return (
-        <div className="text-gray-400 font-light flex gap-2 mt-4 md:mt-10">
+        <div className="text-gray-400 font-light flex gap-2 mt-4 md:mt-10 ml-6">
             <button onClick={e=>handleNavigation(e,'Home')}>Home</button>/
             <button onClick={e=>handleNavigation(e,"All")}>AllProducts</button>/
             <div>{prodName}</div>

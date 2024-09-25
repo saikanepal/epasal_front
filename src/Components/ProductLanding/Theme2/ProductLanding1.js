@@ -181,6 +181,7 @@ const ProjectLanding1 = ({ProductLandingProps}) => {
         deliveryTime: store.expectedDeliveryTime,
 
     };
+
     return (
         <div className="min-h-screen bg-gray-50">
             <Navbar store={store} setStore={setStore} color={store.color} />
@@ -202,6 +203,29 @@ const ProjectLanding1 = ({ProductLandingProps}) => {
                                                 <img src={selectedProduct.image.imageUrl} alt="Default" className="w-16 h-16 md:w-14 md:h-14 lg:w-24 lg:h-24  rounded-md object-cover transition-transform duration-300 hover:scale-105" />
                                             </div>
                                         )}
+                                        
+                                    </div>
+                                    <div className='md:w-[350px] h-[400px] lg:w-[450px] lg:h-[450px] 2xl:w-[550px] 2xl:h-[550px] overflow-hidden rounded-xl'>
+                                        <img
+                                            src={displayedImage}
+                                            alt={selectedProduct?.name}
+                                            className="w-full h-full object-cover shadow-md hover:shadow-lg transition-shadow duration-300"
+                                        />
+                                    </div>
+                                </div>
+                                <div className="flex flex-col gap-4 w-full">
+                                    <h1 className="text-xl md:text-2xl lg:text-[24px] 2xl:text-4xl font-bold text-[#515151] ">{selectedProduct.name}</h1>
+                                    
+                                    <div className="flex gap-4 items-center">
+                                        <span className="text-xl md:text-2xl lg:text-[40px] font-semibold text-[#515151]">Rs {totalPrice}</span>
+                                        <span className="line-through text-sm md:text-base lg:text-xl 2xl:text-xl text-[#515151]">Rs {totalDiscount + totalPrice}</span>
+                                    </div>
+                                    <div >
+                                    <div className="block text-base lg:text-lg 2xl:text-xl text-[#7A5822] flex gap-4">
+                                        <div>{selectedProduct.variant[0].name}:</div> 
+                                        <div>{selectedProduct.variant[0].options[selectedVariants[0]]?.name || ''}</div>
+                                    </div>
+                                    <div className='flex gap-2'>
                                         {selectedProduct.variant.map((variant, variantIndex) => (
                                             variantIndex === 0 &&
                                             selectedProduct.variant[0].options.map((option, optionIndex) => (
@@ -215,52 +239,32 @@ const ProjectLanding1 = ({ProductLandingProps}) => {
                                             ))
                                         ))}
                                     </div>
-                                    <div className='md:w-[350px] h-[400px] lg:w-[450px] lg:h-[450px] 2xl:w-[550px] 2xl:h-[550px] overflow-hidden rounded-xl'>
-                                        <img
-                                            src={displayedImage}
-                                            alt={selectedProduct?.name}
-                                            className="w-full h-full object-cover shadow-md hover:shadow-lg transition-shadow duration-300"
-                                        />
                                     </div>
-                                </div>
-                                <div className="flex flex-col gap-4 w-full">
-                                    <h1 className="text-xl md:text-2xl lg:text-[24px] 2xl:text-4xl font-bold text-[#4F3100] ">{selectedProduct.name}</h1>
-                                    
-                                    <div className="flex gap-4 items-center">
-                                        <span className="text-xl md:text-2xl lg:text-[40px] font-semibold text-[#383737]">Rs {totalPrice}</span>
-                                        <span className="line-through text-sm md:text-base lg:text-xl 2xl:text-xl text-gray-500">Rs {totalDiscount + totalPrice}</span>
-                                    </div>
-
                                     <div className="flex flex-row md:flex-col gap-4">
 
-                                        {selectedProduct.variant.map((variant, variantIndex) => (
+                                        {selectedProduct.variant.map((variant, variantIndex) => variantIndex!==0 && (
                                             <div className="flex flex-col gap-2 2xl:text-xl" key={variantIndex}>
-                                                <label htmlFor={`variant-${variantIndex}`} className="block text-base lg:text-lg 2xl:text-xl text-[#7A5822]">{variant.name}:</label>
-                                                <select
-                                                    id={`variant-${variantIndex}`}
-                                                    className="flex items-center justify-between w-36 gap-3 border border-gray-500 rounded-xl bg-transparent px-3 2xl:px-4 py-3 "
-                                                    value={selectedVariants[variantIndex] === -1 ? "" : variant.options[selectedVariants[variantIndex]].name}
-                                                    onChange={(e) => handleVariantChange(variantIndex, e.target.value)}
-                                                >
-                                                    <option value="">Select</option>
-                                                    {variant.options.map((option, optionIndex) => (
-                                                        <option key={optionIndex} value={option.name}>{option.name}</option>
+                                                <label htmlFor={`variant-${variantIndex}`} className="block text-base lg:text-lg 2xl:text-xl text-[#7A5822]">{variant?.name}:</label>
+                                                
+                                                <div className='text-white flex gap-2'>
+                                                {variant.options.map((option, optionIndex) => (
+                                                        <button key={optionIndex} value={option.name} onClick={(e) => handleVariantChange(variantIndex, option.name)} className=' px-5 py-2 bg-[#A2A2A2] rounded-lg'>{option?.name}</button>
                                                     ))}
-                                                </select>
+                                                </div>
                                             </div>
                                         ))}
                                         <div className="flex flex-col gap-2">
-                                            <label htmlFor="quantity" className="block text-base     lg:text-lg 2xl:text-xl text-[#7A5822]">Quantity:</label>
-                                            <div className="flex items-center justify-between w-36 gap-3 border border-gray-500 rounded-xl px-3 2xl:px-4 py-1">
+                                            <label htmlFor="quantity" className="block text-base     lg:text-lg 2xl:text-xl text-[#515151]">Quantity:</label>
+                                            <div className="flex items-center justify-between w-36 gap-3 bg-[#A2A2A2] rounded-xl px-3 2xl:px-4 py-1 text-white">
                                                 <button
-                                                    className="text-2xl text-gray-500 focus:outline-none hover:text-gray-700 transition duration-200"
+                                                    className="text-2xl focus:outline-none transition duration-200"
                                                     onClick={decrementQuantity}
                                                 >
                                                     -
                                                 </button>
-                                                <span className="text-base lg:text-lg 2xl:text-xl font-medium text-gray-800">{productCount}</span>
+                                                <span className="text-base lg:text-lg 2xl:text-xl font-medium">{productCount}</span>
                                                 <button
-                                                    className="text-2xl 2xl:text-3xl text-gray-700 focus:outline-none hover:text-gray-900 transition duration-200"
+                                                    className="text-2xl 2xl:text-3xl focus:outline-none transition duration-200"
                                                     onClick={incrementQuantity}
                                                 >
                                                     +
@@ -269,8 +273,8 @@ const ProjectLanding1 = ({ProductLandingProps}) => {
                                         </div>
                                     </div>
 
-                                    <button onClick={handleAddToCart} className="w-full md:w-60 2xl:w-68 font-bold text-lg 2xl:text-xl flex items-center justify-center gap-3 mt-4 2xl:mt-7 px-4 py-2 md:px-6 md:py-2 2xl:py-3 text-[#7A5822] border border-gray-500 rounded-xl hover:bg-[#7A5822] hover:text-white transition duration-300">
-                                        Buy Now
+                                    <button onClick={handleAddToCart} className="w-full md:w-3/4 text-[20px] flex items-center justify-center gap-3 mt-4 2xl:mt-7 py-4  text-white rounded-xl transition duration-300 bg-[#585858]">
+                                        Add to Cart
                                         <TbShoppingBagPlus className="w-6 h-6" />
                                     </button>
                                 </div>
