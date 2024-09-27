@@ -12,6 +12,7 @@ import AllProductCard from './AllProductCard';
 import { motion, AnimatePresence } from 'framer-motion';
 import allproductBanner from '../../Assets/allproductBanner.png'
 import ModernReactPlayer from '../../Theme/Theme1/AudioPlayer/ModernReactPlayer';
+import Theme2Navbar from './Theme2Navbar';
 const AllProducts = () => {
   const [searchParams] = useSearchParams();
   const filter = searchParams.get('filter');
@@ -310,8 +311,12 @@ const AllProducts = () => {
 
   return (
     color && products && store && (
-      <div className="flex flex-col mt-16 ">
-        <Navbar setColor={setColor} store={store} color={color} addToCart={addToCart} deleteFromCart={deleteFromCart} setStore={setStore} />
+      <div className="flex flex-col">
+        {store.activeTheme === 1 ?
+          <Navbar setColor={setColor} store={store} color={color} addToCart={addToCart} deleteFromCart={deleteFromCart} setStore={setStore} />
+          :
+          <Theme2Navbar setColor={setColor} store={store} color={color} addToCart={addToCart} deleteFromCart={deleteFromCart} setStore={setStore} />
+        }
 
         <div className="relative w-full h-[350px] flex justify-center items-center">
           <div
