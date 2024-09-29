@@ -11,10 +11,14 @@ import SimilarProducts from './SimilarProducts';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Navbar from '../Allproducts/Navbar';
 import { toast } from 'react-toastify';
+import Theme2ReviewAndDetails from './Theme2ReviewAndDetails';
+import Theme2Navbar from '../Allproducts/Theme2Navbar';
+import axios from 'axios';
 
 const ProjectLanding1 = () => {
     const navigate = useNavigate();
     const location = useLocation();
+    const [activeTheme, setActiveTheme] = useState(1);
     const { product, store: fetchedStore } = localStorage.getItem('product') || {};
     const [store, setStore] = useState(() => {
         const storeData = localStorage.getItem('store');
@@ -28,7 +32,7 @@ const ProjectLanding1 = () => {
     const [displayedImage, setDisplayedImage] = useState(selectedProduct?.image?.imageUrl);
     const [productCount, setProductCount] = useState(1);
 
-
+    console.log(store)
 
 
 
@@ -151,6 +155,17 @@ const ProjectLanding1 = () => {
         setDisplayedImage(selectedProduct?.image?.imageUrl)
     }
 
+    const fetchActiveTheme = async () => {
+        try {
+            const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}store//getactiveTheme/${store.name}`);
+            const data = response.data;
+            console.log(data.activeTheme);
+            setActiveTheme(data.activeTheme);
+        } catch (error) {
+            console.error("Error fetching data:", error);
+        }
+    };
+
     const calculateTotalDiscount = () => {
         if (!selectedProduct.variant || selectedProduct.variant.length === 0) {
             // Handle products without variants
@@ -189,9 +204,18 @@ const ProjectLanding1 = () => {
         deliveryTime: store.expectedDeliveryTime,
 
     };
+
+    useEffect(() => {
+        fetchActiveTheme();
+    }, []);
     return (
         <div className="min-h-screen bg-gray-50">
-            <Navbar store={store} setStore={setStore} color={store.color} />
+            {activeTheme === 1 ?
+                <Navbar store={store} setStore={setStore} color={store.color} />
+                :
+                <Theme2Navbar store={store} color={store.color} addToCart={store.addToCart} deleteFromCart={store.deleteFromCart} setStore={setStore} />
+            }
+
             <div className="px-4 py-16 lg:px-14">
                 <div className="mt-4 md:mt-10 flex flex-col gap-10">
                     <div className="flex flex-col md:flex-row md:gap-8 lg:gap-12">
@@ -231,14 +255,7 @@ const ProjectLanding1 = () => {
                                 </div>
                                 <div className="flex flex-col gap-4 w-full">
                                     <h1 className="text-xl md:text-2xl lg:text-[26px] 2xl:text-4xl font-bold text-[#4F3100] ">{selectedProduct.name}</h1>
-                                    <div className="flex md:justify-start">
-                                        {[...Array(5)].map((_, index) => (
-                                            <StarIcon
-                                                key={index}
-                                                className={`w-5 2xl:w-7 h-5 2xl:h-7 ${index < Math.ceil(selectedProduct.rating) ? 'text-[#dba247]' : 'text-gray-300'} transition-transform duration-300 hover:scale-110`}
-                                            />
-                                        ))}
-                                    </div>
+
                                     <div className="flex gap-4 items-center">
                                         <span className="text-xl md:text-2xl lg:text-3xl 2xl:text-4xl font-semibold text-[#383737]">Rs {totalPrice}</span>
                                         <span className="line-through text-sm md:text-base lg:text-xl 2xl:text-xl text-gray-500">Rs {totalDiscount + totalPrice}</span>
@@ -292,8 +309,23 @@ const ProjectLanding1 = () => {
                         </div>
 
                     </div>
-                    <div className="flex flex-col gap-6 mt-12">
-                        <ProductReview product={selectedProduct} />
+                    <div className="flex gap-8">
+                        {/* <ProductReview product={selectedProduct} /> */}
+                        <Theme2ReviewAndDetails product={selectedProduct} />
+                        <div className='hidden md:flex flex-col gap-2 '>
+                            <h1 className='whitespace-nowrap mt-2 px-1 font-medium text-base md:text-lg lg:text-xl border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'>Rating</h1>
+                            <div className='flex items-center gap-4'>
+                                <div className="flex md:justify-start">
+                                    {[...Array(5)].map((_, index) => (
+                                        <StarIcon
+                                            key={index}
+                                            className={`w-5 2xl:w-7 h-5 2xl:h-7 ${index < Math.ceil(selectedProduct.rating) ? 'text-[#dba247]' : 'text-gray-300'} transition-transform duration-300 hover:scale-110`}
+                                        />
+                                    ))}
+                                </div>
+                                <h1 className='whitespace-nowrap lg:py-2 px-1 font-medium text-xl'>{Math.ceil(selectedProduct.rating)}</h1>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

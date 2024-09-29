@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { NavLink, useLocation } from 'react-router-dom';
+import { NavLink, useLocation, useSearchParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useDropzone } from 'react-dropzone';
 import { FaShoppingCart, FaSearch, FaTimes } from 'react-icons/fa';
@@ -30,6 +30,7 @@ const Navbar1 = ({
     const location = useLocation();
     const navigate = useNavigate();
     const [isCartOpen, setIsCartOpen] = useState(false);
+    const [searchParams] = useSearchParams(); // Hook to access query parameters
     const sidebarRef = useRef();
     const [searchItem, setSearchItem] = useState([])
     const [isAnimating, setIsAnimating] = useState(true);
@@ -370,6 +371,11 @@ const Navbar1 = ({
         };
     }, [activeSection]);
 
+    const isActiveFilter = (filter) => {
+        return searchParams.get('filter') === filter;
+    };
+
+
     return (
         <motion.nav
             className={`flex flex-col gap-2 items-center pt-2 md:pb-5 justify-between shadow-md fixed w-screen z-40 transition-all duration-300 ${scrolling ? 'bg-brown-700' : 'bg-transparent'}`}
@@ -478,29 +484,23 @@ const Navbar1 = ({
             <div>
                 <div className={`flex items-center space-x-4 py-2 relative ${isSidebarOpen ? 'mr-0' : 'lg:mr-0'}`}>
                     <div className="hidden md:flex space-x-10 lg:space-x-10 font-semibold">
-                        <NavLink
-                            to={!isEdit && fetchedFromBackend && `/store/products/${store.name}`}
-                            className={({ isActive }) => isActive
-                                ? 'py-1 px-6 rounded-lg bg-blue-500 hover:underline'
-                                : 'py-1 px-6 rounded-lg hover:underline' /* Keep same padding when inactive */}>
+                        <Link
+                            to={!store.isEdit && store.fetchedFromBackend && `/store/products/${store.name}`}
+                            className={`py-1 px-6 rounded-lg ${location.pathname === `/store/products/${store.name}` ? 'bg-blue-500' : 'hover:underline'}`}>
                             All Products
-                        </NavLink>
+                        </Link>
 
-                        <NavLink
-                            to={!isEdit && fetchedFromBackend && `/store/products/${store.name}/?filter=featured`}
-                            className={({ isActive }) => isActive
-                                ? 'py-1 px-6 rounded-lg bg-blue-500 hover:underline'
-                                : 'py-1 px-6 rounded-lg hover:underline'}>
+                        <Link
+                            to={!store.isEdit && store.fetchedFromBackend && `/store/products/${store.name}/?filter=featured`}
+                            className={`py-1 px-6 rounded-lg ${isActiveFilter('featured') ? 'bg-blue-500' : 'hover:underline'}`}>
                             Featured
-                        </NavLink>
+                        </Link>
 
-                        <NavLink
-                            to={!isEdit && fetchedFromBackend && `/store/products/${store.name}/?filter=offers`}
-                            className={({ isActive }) => isActive
-                                ? 'py-1 px-6 rounded-lg bg-blue-500 hover:underline'
-                                : 'py-1 px-6 rounded-lg hover:underline'}>
+                        <Link
+                            to={!store.isEdit && store.fetchedFromBackend && `/store/products/${store.name}/?filter=offers`}
+                            className={`py-1 px-6 rounded-lg ${isActiveFilter('offers') ? 'bg-blue-500' : 'hover:underline'}`}>
                             Offers
-                        </NavLink>
+                        </Link>
 
                         {/* Links for non-routing based navigation */}
                         <Link
