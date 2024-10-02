@@ -10,6 +10,7 @@ import EditStore from './EditStore/EditStore.js';
 import Order from './Dashboard/Order/Order.js';
 import Product from "./Product/Product.js";
 import General from "./General/General.js";
+import Theme2General from "./General/Theme2/General.js";
 import Shop from "./Shop/Shop.js";
 import { toast } from "react-toastify";
 import Loading from "../Loading/Loading"
@@ -20,21 +21,21 @@ const Dashboard = () => {
   let location = useLocation();
   let searchParams = new URLSearchParams(location.search);
   let page = searchParams.get('page');
-  const date=new Date();
-  console.log(date,"page")
-  const [dashboardState, setDashboardState] = useState(page ||'General');
+  const date = new Date();
+  console.log(date, "page")
+  const [dashboardState, setDashboardState] = useState(page || 'General');
   const { isLoading, error, sendRequest, onCloseError } = useFetch();
   const [store, setStore] = useState(null); // Initialize store as null
   const { storeName } = useParams();
   const [role, setRole] = useState(null);
-  const {hasOrder,setHasOrder}=useContext(AuthContext)
-  const navigate=useNavigate();
+  const { hasOrder, setHasOrder } = useContext(AuthContext)
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (window.location.pathname.includes("/adminpanel/")) {
       abc();
     }
-}, [window.location.pathname]);
+  }, [window.location.pathname]);
 
 
   const fetchStore = async () => {
@@ -127,7 +128,8 @@ const Dashboard = () => {
       case 'General':
         if (role === 'Admin' || role === 'Owner' || role === 'Staff') {
 
-          return <General store={store} setDashboardState={setDashboardState}></General>
+          // return <General store={store} setDashboardState={setDashboardState}></General>
+          return <Theme2General store={store} setDashboardState={setDashboardState}></Theme2General>
         } else {
           return <Order store={store} />;
         }
@@ -152,7 +154,7 @@ const Dashboard = () => {
           <div className=""> {/* Apply overflow styling here */}
             <SiderBarProvider className="overflow-hidden">
               <DashboardWrapper setDashboardState={setDashboardState} store={store} role={role} hasNotification={hasOrder} setHasNotification={setHasOrder}>
-                <div className="text-black p-2 py-4 mt-8 overflow-hidden">
+                <div className="text-black p-4 px-8 overflow-hidden">
                   {renderDashboardContent(store)}
                 </div>
               </DashboardWrapper>

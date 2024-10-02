@@ -313,7 +313,7 @@ const ProjectLanding1 = () => {
                         {/* <ProductReview product={selectedProduct} /> */}
                         <Theme2ReviewAndDetails product={selectedProduct} />
                         <div className='hidden md:flex flex-col gap-2 '>
-                            <h1 className='whitespace-nowrap mt-2 px-1 font-medium text-base md:text-lg lg:text-xl border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'>Rating</h1>
+                            <h1 className='whitespace-nowrap mt-2 px-1 font-medium text-base md:text-lg border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'>Rating</h1>
                             <div className='flex items-center gap-4'>
                                 <div className="flex md:justify-start">
                                     {[...Array(5)].map((_, index) => (
@@ -323,7 +323,7 @@ const ProjectLanding1 = () => {
                                         />
                                     ))}
                                 </div>
-                                <h1 className='whitespace-nowrap lg:py-2 px-1 font-medium text-xl'>{Math.ceil(selectedProduct.rating)}</h1>
+                                {!selectedProduct.rating === 0 && <h1 className='whitespace-nowrap lg:py-2 px-1 font-medium text-xl'>{Math.ceil(selectedProduct.rating)}</h1>}
                             </div>
                         </div>
                     </div>

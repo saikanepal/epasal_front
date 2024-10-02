@@ -28,7 +28,7 @@ const Theme2Navbar = ({ color, store, addToCart, setStore }) => {
 
     return (
         <motion.nav
-            className={`flex items-center justify-between px-6 py-4 md:py-6 shadow-md fixed w-full z-20 transition-all duration-300 ${scrolling ? 'bg-brown-700' : 'bg-transparent'}`}
+            className={`flex items-center justify-between px-6 py-4 shadow-md fixed w-full z-20 transition-all duration-300 ${scrolling ? 'bg-brown-700' : 'bg-transparent'}`}
             style={{
                 fontFamily: store?.fonts?.Navbar,
                 backgroundColor: color?.navColor?.backgroundnavColor,

@@ -90,7 +90,7 @@ const Theme2ReviewAndDetails = ({ product }) => {
                 <nav className="-mb-px flex space-x-8">
                     <button
                         onClick={() => setActiveTab('details')}
-                        className={`whitespace-nowrap py-4 px-1 border-b-2 font-medium text-base md:text-base lg:text-xl ${activeTab === 'details'
+                        className={`whitespace-nowrap py-4 px-1 border-b-2 font-medium text-base md:text-base ${activeTab === 'details'
                             ? 'border-indigo-500 text-indigo-600'
                             : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
                             }`}
@@ -99,7 +99,7 @@ const Theme2ReviewAndDetails = ({ product }) => {
                     </button>
                     <button
                         onClick={() => setActiveTab('reviews')}
-                        className={`whitespace-nowrap py-4 px-1 border-b-2 font-medium text-base md:text-base lg:text-xl ${activeTab === 'reviews'
+                        className={`whitespace-nowrap py-4 px-1 border-b-2 font-medium text-base md:text-base ${activeTab === 'reviews'
                             ? 'border-indigo-500 text-indigo-600'
                             : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
                             }`}
@@ -124,7 +124,7 @@ const Theme2ReviewAndDetails = ({ product }) => {
                 {activeTab === 'reviews' && (
                     <div className='flex flex-col gap-6'>
                         <div className='w-full flex flex-col gap-6 lg:gap-10'>
-                            <div className="flex flex-col lg:flex-row gap-6 lg:gap-10 bg-white rounded-lg ">
+                            {/* <div className="flex flex-col lg:flex-row gap-6 lg:gap-10 bg-white rounded-lg ">
                                 <div className='flex flex-col items-center gap-3 rounded-lg border border-gray-300 px-5 py-4'>
                                     <div className="flex flex-col items-center">
                                         <div className="text-3xl lg:text-4xl text-gray-900 font-semibold">{parseFloat(averageRating.toFixed(1))}</div>
@@ -170,11 +170,11 @@ const Theme2ReviewAndDetails = ({ product }) => {
                                         ))}
                                     </div>
                                 </div>
-                            </div>
+                            </div> */}
 
                             <button
                                 onClick={() => setIsModalOpen(true)}
-                                className="border border-gray-300 py-2 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 text-gray-700 hover:bg-gray-100 transition duration-300"
+                                className="border text-sm border-gray-300 py-2 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 text-gray-700 hover:bg-gray-100 transition duration-300"
                             >
                                 Write a Review
                             </button>
@@ -248,18 +248,18 @@ const Theme2ReviewAndDetails = ({ product }) => {
                                             {review?.name.charAt(0)}
                                         </span>
                                         <div>
-                                            <div className="text-lg font-medium">{review?.name}</div>
+                                            <div className="text-base font-medium">{review?.name}</div>
                                             <div className="flex items-center">
                                                 {[...Array(5)].map((_, idx) => (
                                                     <StarIcon
                                                         key={idx}
-                                                        className={`w-5 h-5 ${idx < review.rating ? 'text-blue-500' : 'text-gray-300'}`}
+                                                        className={`w-4 h-4 ${idx < review.rating ? 'text-blue-500' : 'text-gray-300'}`}
                                                     />
                                                 ))}
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="mt-3 text-gray-600">
+                                    <div className="mt-3 text-sm text-gray-600">
                                         {review?.description}
                                     </div>
                                 </div>
