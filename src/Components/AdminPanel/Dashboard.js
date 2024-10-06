@@ -154,7 +154,7 @@ const Dashboard = () => {
           <div className=""> {/* Apply overflow styling here */}
             <SiderBarProvider className="overflow-hidden">
               <DashboardWrapper setDashboardState={setDashboardState} store={store} role={role} hasNotification={hasOrder} setHasNotification={setHasOrder}>
-                <div className="text-black p-4 px-8 overflow-hidden">
+                <div className="text-black p-2 md:p-4 md:px-8 overflow-hidden">
                   {renderDashboardContent(store)}
                 </div>
               </DashboardWrapper>

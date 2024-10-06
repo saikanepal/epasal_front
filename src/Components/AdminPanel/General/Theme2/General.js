@@ -189,17 +189,17 @@ const General = ({ store, setDashboardState }) => {
 
     return (
         isLoading ? <Loading /> :
-            <div className="p-6 bg-white rounded-lg shadow-lg w-full">
+            <div className="p-2 md:p-6 bg-white rounded-lg w-full">
                 <div className="flex gap-5 justify-end mb-4">
                     {isEditing && <button
                         type="submit"
-                        className="bg-[#3E813A] text-white px-8 py-2 rounded-md hover:bg-green-700 transition-colors"
+                        className="bg-[#3E813A] text-white px-5 md:px-8 py-2 rounded-md hover:bg-green-700 transition-colors"
                     >
                         Save
                     </button>
                     }
                     <button
-                        className={`${isEditing ? "bg-[#A23728] hover:bg-red-700 " : "bg-blue-600 hover:bg-blue-600 "} text-white px-8 py-2 rounded-md transition-colors`}
+                        className={`${isEditing ? "bg-[#A23728] hover:bg-red-700 " : "bg-blue-600 hover:bg-blue-600 "} text-white px-5 md:px-8 py-2 rounded-md transition-colors`}
                         onClick={() => setIsEditing(!isEditing)}
                     >
                         {isEditing ? 'Cancel' : 'Edit'}
@@ -207,9 +207,9 @@ const General = ({ store, setDashboardState }) => {
                 </div>
                 {isEditing ? (
                     <form onSubmit={handleSubmit}>
-                        <div className='grid grid-cols-2 gap-4'>
+                        <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
                             {/* General Info Section */}
-                            <label className="col-span-2 text-[#E9960C] font-semibold text-lg ">General Info</label>
+                            <label className="col-span-1 md:col-span-2 text-[#E9960C] font-semibold text-lg ">General Info</label>
 
                             {/* First Section */}
                             <div className="shadow-bottom-right p-4 bg-white rounded-lg">
@@ -225,7 +225,7 @@ const General = ({ store, setDashboardState }) => {
                             </div>
 
                             {/* Second Section */}
-                            <div className="shadow-bottom-right p-4 bg-white rounded-lg">
+                            <div className="shadow-bottom-right p-4 flex flex-col bg-white rounded-lg">
                                 <section className="px-2 py-2">
                                     <h2 className="text-base font-semibold text-[#AD7A29] mb-2">Store URL</h2>
                                     <div className="flex items-center space-x-2">
@@ -275,7 +275,7 @@ const General = ({ store, setDashboardState }) => {
                             </div>
 
                             {/* Webpage Info Section */}
-                            <label className="col-span-2 text-[#E9960C] font-semibold text-lg mt-4">Webpage Info</label>
+                            <label className="col-span-1 md:col-span-2 text-[#E9960C] font-semibold text-lg mt-4">Webpage Info</label>
 
                             {/* Delivery Status Section */}
                             <div className="shadow-bottom-right p-4 bg-white rounded-lg">
@@ -437,11 +437,12 @@ const General = ({ store, setDashboardState }) => {
                                 </section>
                             </div>
 
-                            <div className="col-span-2 shadow-bottom-right p-4 bg-white rounded-lg">
+                            {/* Payment Details Section */}
+                            <div className="col-span-1 md:col-span-2 shadow-bottom-right p-4 bg-white rounded-lg">
                                 <section className="px-2 py-2">
                                     <h2 className="text-base font-semibold text-[#AD7A29] mb-2">Payment Details</h2>
-                                    <div className='flex gap-8 '>
-                                        <div className="mb-4 w-[30%]">
+                                    <div className='flex flex-col md:flex-row gap-8 '>
+                                        <div className="mb-4 w-full md:w-[30%]">
                                             <h3 className="text-sm font-semibold text-[#AD7A29] mb-2">eSewa</h3>
                                             <input
                                                 type="text"
@@ -455,7 +456,7 @@ const General = ({ store, setDashboardState }) => {
                                             />
                                             {renderDropzone('esewa', esewaDropzone)}
                                         </div>
-                                        <div className="mb-4 w-[30%]">
+                                        <div className="mb-4 w-full md:w-[30%]">
                                             <h3 className="text-sm font-semibold text-[#AD7A29] mb-2">Khalti</h3>
                                             <input
                                                 type="text"
@@ -469,7 +470,7 @@ const General = ({ store, setDashboardState }) => {
                                             />
                                             {renderDropzone('khalti', khaltiDropzone)}
                                         </div>
-                                        <div className="mb-4 w-[30%]">
+                                        <div className="mb-4 w-full md:w-[30%]">
                                             <h3 className="text-sm font-semibold text-[#AD7A29] mb-2">Bank</h3>
                                             <div className="flex gap-1">
                                                 <input
@@ -501,14 +502,16 @@ const General = ({ store, setDashboardState }) => {
                                 </section>
                             </div>
 
+
+
                         </div>
 
                     </form>
                 ) : (
                     <>
-                        <div className='grid grid-cols-2 gap-4'>
+                        <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
                             {/* General Info Section */}
-                            <label className="col-span-2 text-[#E9960C] font-semibold text-lg ">General Info</label>
+                            <label className="col-span-1 md:col-span-2 text-[#E9960C] font-semibold text-lg ">General Info</label>
 
                             {/* First Section */}
                             <div className="shadow-bottom-right p-4 bg-white rounded-lg">
@@ -562,7 +565,7 @@ const General = ({ store, setDashboardState }) => {
                             </div>
 
                             {/* Webpage Info Section */}
-                            <label className="col-span-2 text-[#E9960C] font-semibold text-lg mt-4">Webpage Info</label>
+                            <label className="col-span-1 md:col-span-2 text-[#E9960C] font-semibold text-lg mt-4">Webpage Info</label>
 
                             {/* Delivery Status Section */}
                             <div className="shadow-bottom-right p-4 bg-white rounded-lg">
@@ -613,9 +616,6 @@ const General = ({ store, setDashboardState }) => {
                             </div>
 
                             {/* Payment Details Section */}
-                            {/* <label className="col-span-1 text-[#E9960C] font-semibold text-lg mb-2">Payment Details</label>
-                            <label className="col-span-1 text-[#E9960C] font-semibold text-lg mb-2">Contact Info</label> */}
-
                             <div className="shadow-bottom-right p-4 bg-white rounded-lg">
                                 <section className="px-2 py-2">
                                     <h2 className="text-base font-semibold text-[#AD7A29] mb-2">Payment Details</h2>
@@ -640,7 +640,7 @@ const General = ({ store, setDashboardState }) => {
 
                             {/* Contact Information Section */}
                             <div className="shadow-bottom-right p-4 bg-white rounded-lg">
-                                <section className="px-2 py-2">
+                                <section className="px-2 py-2 space-y-2">
                                     <h2 className="text-base font-semibold text-[#AD7A29] mb-2">Contact Information</h2>
                                     <p className="text-[15px] text-gray-600">Email: <a href={`mailto:${email}`} className="text-blue-500 hover:underline">{email}</a></p>
                                     <p className="text-[15px] text-gray-600">Location: {location}</p>
