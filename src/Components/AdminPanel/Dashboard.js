@@ -10,7 +10,6 @@ import EditStore from './EditStore/EditStore.js';
 import Order from './Dashboard/Order/Order.js';
 import Product from "./Product/Product.js";
 import General from "./General/General.js";
-import Theme2General from "./General/Theme2/General.js";
 import Shop from "./Shop/Shop.js";
 import { toast } from "react-toastify";
 import Loading from "../Loading/Loading"
@@ -128,8 +127,7 @@ const Dashboard = () => {
       case 'General':
         if (role === 'Admin' || role === 'Owner' || role === 'Staff') {
 
-          // return <General store={store} setDashboardState={setDashboardState}></General>
-          return <Theme2General store={store} setDashboardState={setDashboardState}></Theme2General>
+          return <General store={store} setDashboardState={setDashboardState}></General>
         } else {
           return <Order store={store} />;
         }
