@@ -168,6 +168,7 @@ const ProjectLanding1 = ({ ProductLandingProps }) => {
     };
 
     useEffect(() => {
+        console.log(selectedProduct,"sel pro")
         if (selectedProduct) {
             localStorage.setItem('product', JSON.stringify(selectedProduct));
         }
