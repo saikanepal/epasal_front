@@ -21,6 +21,7 @@ export default function ProductForm({ onClose ,store,setStore}) {
         discount: '',
         inventory: '',
         image: { imageUrl: '' },
+        imageList:[{ imageUrl: '' },{ imageUrl: '' },{ imageUrl: '' }],
         variant: [
             // {
             //     name: '',
@@ -37,7 +38,7 @@ export default function ProductForm({ onClose ,store,setStore}) {
 
 
     const [formState, setFormState] = useState(initialState);
-
+useEffect(()=>{console.log(formState,"formState")},[formState])
 
 
     const handleCategoryChange = (e) => {
@@ -126,8 +127,26 @@ export default function ProductForm({ onClose ,store,setStore}) {
         reader.readAsDataURL(file);
     };
 
-    const handleUploadProductImageClick = () => {
-        document.getElementById('product-image').click();
+    const handleProductImageListUpload = (files,index) => {
+        const file = files[0];
+        const reader = new FileReader();
+        reader.onloadend = () => {
+            //setFormState({ ...formState, imageList[0]: { imageUrl: reader.result } });
+            setFormState(prev=>{
+                const prevData={...prev};
+                prevData.imageList[index].imageUrl=reader.result;
+                return prevData;
+            })
+        };
+        reader.readAsDataURL(file);
+    };
+
+    const handleUploadProductImageClick = (index) => {
+        console.log(index,"inde")
+        if(index!==4)
+            document.getElementById(`product-image-${index}`).click();
+        else
+            document.getElementById('product-image').click();
     };
 
 
@@ -157,19 +176,31 @@ export default function ProductForm({ onClose ,store,setStore}) {
             try {
                 setTempLoading(true);
                 const productImg = await uploadImage(formState?.image?.imageUrl);
-
+                const productImageList2=await uploadImage(formState?.imageList[1]?.imageUrl)
+                const productImageList1=await uploadImage(formState?.imageList[0]?.imageUrl)
+                const productImageList3=await uploadImage(formState?.imageList[2]?.imageUrl)
                 setFormState(prev => ({
                     ...prev,
                     image: {
                         ...prev.image,
                         imageUrl: productImg.img,
                         imageID: productImg.id
-                    }
+                    },
+                    imageList:[{
+                        imageUrl:productImageList1.img,
+                        imageID:productImageList1.id
+                    },{
+                        imageUrl:productImageList2.img,
+                        imageID:productImageList2.id
+                    },{
+                        imageUrl:productImageList3.img,
+                        imageID:productImageList2.id
+                    }]
                 }));
 
                 if (formState.variant.length > 0 && formState.variant[0].options.length > 0) {
                     for (let i = 0; i < formState.variant[0].options.length; i++) {
-                        const optionImage = await uploadImage(formState.variant[0].options[i].image.imageUrl);
+                        const optionImage = await uploadImage(formState.variant[0].options[i]?.image?.imageUrl);
 
                         setFormState(prev => {
                             const newFormState = { ...prev };
@@ -330,19 +361,98 @@ export default function ProductForm({ onClose ,store,setStore}) {
                                             type="button"
                                             // bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline
                                             className="h-[250px] w-full px-2  flex justify-center items-center text-4xl shadow appearance-none border rounded"
-                                            onClick={handleUploadProductImageClick}
+                                            onClick={()=>handleUploadProductImageClick(4)}
                                         >
                                             <FaImage />
                                         </button>
 
                                     </div>
-                                    {formState.image.imageUrl && (
+                                    {formState?.image?.imageUrl && (
                                         <div className="absolute h-[250px] top-7 w-full left-0 z-0 pointer-events-none">
-                                            <img className="rounded w-full h-[250px]" src={formState.image.imageUrl} alt="Product" />
+                                            <img className="rounded w-full h-[250px]" src={formState?.image?.imageUrl} alt="Product" />
                                         </div>
                                     )}
                                 </div>
+                                <div className='grid grid-cols-3 gap-4'>
+                                <div className="relative h-[250px]">
+                                    <label className="block text-gray-700 text-sm font-bold mb-2">Image 1</label>
+                                    <input
+                                        id="product-image-0"
+                                        type="file"
+                                        accept="image/*"
+                                        onChange={(e) => handleProductImageListUpload(e.target.files,0)}
+                                        className="hidden "
+                                    />
+                                    <div className="flex items-center h-[250px] justify-center mb-2">
+                                        <button
+                                            type="button"
+                                            // bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline
+                                            className="h-[250px] w-full px-2  flex justify-center items-center text-4xl shadow appearance-none border rounded"
+                                            onClick={()=>handleUploadProductImageClick(0)}
+                                        >
+                                            <FaImage />
+                                        </button>
 
+                                    </div>
+                                    {formState?.imageList[0]?.imageUrl && (
+                                        <div className="absolute h-[250px] top-7 w-full left-0 z-0 pointer-events-none">
+                                            <img className="rounded w-full h-[250px]" src={formState?.imageList[0]?.imageUrl} alt="Product" />
+                                        </div>
+                                    )}
+                                </div>
+                                <div className="relative h-[250px]">
+                                    <label className="block text-gray-700 text-sm font-bold mb-2">Image 2</label>
+                                    <input
+                                        id="product-image-1"
+                                        type="file"
+                                        accept="image/*"
+                                        onChange={(e) => handleProductImageListUpload(e.target.files,1)}
+                                        className="hidden "
+                                    />
+                                    <div className="flex items-center h-[250px] justify-center mb-2">
+                                        <button
+                                            type="button"
+                                            // bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline
+                                            className="h-[250px] w-full px-2  flex justify-center items-center text-4xl shadow appearance-none border rounded"
+                                            onClick={()=>handleUploadProductImageClick(1)}
+                                        >
+                                            <FaImage />
+                                        </button>
+
+                                    </div>
+                                    {formState?.imageList[1]?.imageUrl && (
+                                        <div className="absolute h-[250px] top-7 w-full left-0 z-0 pointer-events-none">
+                                            <img className="rounded w-full h-[250px]" src={formState?.imageList[1]?.imageUrl} alt="Product" />
+                                        </div>
+                                    )}
+                                </div>
+                                <div className="relative h-[250px]">
+                                    <label className="block text-gray-700 text-sm font-bold mb-2">Image 3</label>
+                                    <input
+                                        id="product-image-2"
+                                        type="file"
+                                        accept="image/*"
+                                        onChange={(e) => handleProductImageListUpload(e.target.files,2)}
+                                        className="hidden "
+                                    />
+                                    <div className="flex items-center h-[250px] justify-center mb-2">
+                                        <button
+                                            type="button"
+                                            // bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline
+                                            className="h-[250px] w-full px-2  flex justify-center items-center text-4xl shadow appearance-none border rounded"
+                                            onClick={()=>handleUploadProductImageClick(2)}
+                                        >
+                                            <FaImage />
+                                        </button>
+
+                                    </div>
+                                    {formState?.imageList[2]?.imageUrl && (
+                                        <div className="absolute h-[250px] top-7 w-full left-0 z-0 pointer-events-none">
+                                            <img className="rounded w-full h-[250px]" src={formState?.imageList[2]?.imageUrl} alt="Product" />
+                                        </div>
+                                    )}
+                                </div>
+                                </div>
 
 
                             </div>

@@ -31,8 +31,8 @@ export const useImage = () => {
                     // If image is a base64 string
                     data = new FormData();
                     data.append("file", image);
-                    data.append('upload_preset', "cgb0zdwq");
-                    data.append("cloud_name", "dcrcc9b4h");
+                    data.append('upload_preset', "bm83atqx");
+                    data.append("cloud_name", "djx7wx2lc");
                 } else {
                     // Invalid string format
                     return {
@@ -47,8 +47,8 @@ export const useImage = () => {
                 // If image is a File object
                 data = new FormData();
                 data.append("file", image);
-                data.append('upload_preset', "cgb0zdwq");
-                data.append("cloud_name", "dcrcc9b4h");
+                data.append('upload_preset', "bm83atqx");
+                data.append("cloud_name", "djx7wx2lc");
             } else {
                 // Invalid file type
                 return {
@@ -56,8 +56,7 @@ export const useImage = () => {
                     id: "",
                 };
             }
-
-            const res = await fetch("https://api.cloudinary.com/v1_1/dcrcc9b4h/image/upload", {
+            const res = await fetch("https://api.cloudinary.com/v1_1/djx7wx2lc/image/upload", {
                 method: 'POST',
                 body: data
             });

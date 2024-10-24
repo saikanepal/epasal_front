@@ -63,6 +63,7 @@ export const StoreProvider = ({ children, passedStore }) => {
         price: 100,
         discount: 10,
         image: { imageUrl: grayshoes, imageID: '' },
+        imageList:[{imageUrl:grayshoes,imageID:''}],
         categories: ["Men"],
         subcategories: ["Category 1"],
         rating: 2.5,

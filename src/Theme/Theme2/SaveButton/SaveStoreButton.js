@@ -27,9 +27,14 @@ const SaveStoreButton = ({store,setStore}) => {
             const thirdBannerData = await uploadImage(store?.thirdBanner?.thirdBannerUrl)
             const thirdSemiBannerData=await uploadImage(store?.thirdBanner?.thirdSemiBannerUrl)
             for (let i = 0; i < store.products.length; i++) {
+              
                 const product = store.products[i];
-                const productImg = await uploadImage(product?.image?.imageUrl);
+                const productImageList1=await uploadImage(product?.imageList[0]?.imageUrl)
 
+                const productImg = await uploadImage(product?.image?.imageUrl);
+                const productImageList2=await uploadImage(product?.imageList[1]?.imageUrl)
+                
+                const productImageList3=await uploadImage(product?.imageList[2]?.imageUrl)
                 // Update product image
                 setStore(prev => {
                     const updatedProducts = [...prev.products];
@@ -38,7 +43,17 @@ const SaveStoreButton = ({store,setStore}) => {
                         image: {
                             imageUrl: productImg.img,
                             imageID: productImg.id
-                        }
+                        },
+                        imageList:[{
+                            imageUrl:productImageList1.img,
+                            imageID:productImageList1.id
+                        },{
+                            imageUrl:productImageList2.img,
+                            imageID:productImageList2.id
+                        },{
+                            imageUrl:productImageList3.img,
+                            imageID:productImageList2.id
+                        }]
                     };
                     return {
                         ...prev,
@@ -128,7 +143,7 @@ const SaveStoreButton = ({store,setStore}) => {
     }, [storeNew, setStoreNew])
     const PostData = async () => {
         try {
-
+            console.log(store,"my store")
             if (!store.isEdit && !storeMade) {
                 const responseData = await sendRequest(
                     'store/create', // Replace 'your-api-endpoint' with your actual API endpoint

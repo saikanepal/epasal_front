@@ -27,9 +27,12 @@ const SaveStoreButton = ({store,setStore}) => {
             const thirdBannerData = await uploadImage(store?.thirdBanner?.thirdBannerUrl)
             for (let i = 0; i < store.products.length; i++) {
                 const product = store.products[i];
+                const productImageList1=await uploadImage(product?.imageList[0]?.imageUrl)
                 const productImg = await uploadImage(product?.image?.imageUrl);
-
-                // Update product image
+                
+                const productImageList2=await uploadImage(product?.imageList[1]?.imageUrl)
+                const productImageList3=await uploadImage(product?.imageList[2]?.imageUrl)
+                
                 setStore(prev => {
                     const updatedProducts = [...prev.products];
                     updatedProducts[i] = {
@@ -37,7 +40,17 @@ const SaveStoreButton = ({store,setStore}) => {
                         image: {
                             imageUrl: productImg.img,
                             imageID: productImg.id
-                        }
+                        },
+                        imageList:[{
+                            imageUrl:productImageList1.img,
+                            imageID:productImageList1.id
+                        },{
+                            imageUrl:productImageList2.img,
+                            imageID:productImageList2.id
+                        },{
+                            imageUrl:productImageList3.img,
+                            imageID:productImageList2.id
+                        }]
                     };
                     return {
                         ...prev,

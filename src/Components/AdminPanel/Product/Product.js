@@ -564,6 +564,17 @@ const Product = ({ store }) => {
                   setImageUrl={(url) => setEditProduct({ ...editProduct, image: { ...editProduct.image, imageUrl: url } })}
                   className="w-10 h-10"
                 />
+                <label className="block text-gray-700 text-sm font-bold mb-2">Image List</label>
+                {
+                  editProduct?.imageList?.map((newProd)=>(
+                    <>
+                      <ProductImageDropzone
+                      imageUrl={newProd?.imageUrl}
+                      //setImageUrl={url=>setEditProduct({...editProduct,ima})}
+                    />
+                    </>
+                  ))
+                }
               </div>
 
               {editProduct.variant.map((variant, variantIndex) => (

@@ -45,7 +45,7 @@ const ProjectLanding1 = ({ProductLandingProps}) => {
 
     const handleVariantChange = (variantIndex, optionName) => {
         const variant = selectedProduct.variant[variantIndex];
-        const optionIndex = variant.options.findIndex(option => option.name === optionName);
+        const optionIndex = variant.options.findIndex(option => option?.name === optionName);
         handleOptionSelect(variantIndex, optionIndex);
     };
 
@@ -61,16 +61,16 @@ const ProjectLanding1 = ({ProductLandingProps}) => {
 
         const cart = JSON.parse(localStorage.getItem('cart')) || [];
         const selectedVariant = selectedProduct.variant.map((variant, index) => ({
-            name: variant.name,
+            name: variant?.name,
             options: {
-                name: variant.options[selectedVariants[index]] ? variant.options[selectedVariants[index]].name : 'default',
-                image: variant.options[selectedVariants[index]]?.image?.imageUrl
+                name: variant?.options[selectedVariants[index]] ? variant?.options[selectedVariants[index]]?.name : 'default',
+                image: variant?.options[selectedVariants[index]]?.image?.imageUrl
             }
         }));
 
         const newCartItem = {
             product: selectedProduct._id || product._id,
-            productName: selectedProduct.name,
+            productName: selectedProduct?.name,
             price: calculateTotalPrice(),
             discountAmount: calculateTotalDiscount(),
             count: productCount,
@@ -116,12 +116,12 @@ const ProjectLanding1 = ({ProductLandingProps}) => {
             const selectedOptionIndex = selectedVariants[0];
             const selectedVariant = selectedProduct.variant[selectedOptionIndex];
 
-            if (selectedVariant && selectedVariant.options && selectedVariant.options[selectedOptionIndex]?.price) {
-                return parseFloat(selectedVariant.options[selectedOptionIndex].price - selectedVariant.options[selectedOptionIndex].discount);
+            if (selectedVariant && selectedVariant?.options && selectedVariant?.options[selectedOptionIndex]?.price) {
+                return parseFloat(selectedVariant?.options[selectedOptionIndex].price - selectedVariant?.options[selectedOptionIndex].discount);
             } else {
                 return selectedProduct.variant.reduce((total, variant, index) => {
                     const selectedOptionIndex = selectedVariants[index];
-                    const selectedOption = variant.options[selectedOptionIndex];
+                    const selectedOption = variant?.options[selectedOptionIndex];
                     const basePrice = parseFloat(selectedProduct.price) || 0;
                     const variantPrice = selectedOption ? parseFloat(selectedOption.price) : 0;
                     const discount = parseFloat(selectedProduct.discount) || 0;
@@ -153,7 +153,7 @@ const ProjectLanding1 = ({ProductLandingProps}) => {
                 // Check if index is 0 (first variant)
                 if (index === 0) {
                     const selectedOptionIndex = selectedVariants[index];
-                    const selectedOption = variant.options[selectedOptionIndex];
+                    const selectedOption = variant?.options[selectedOptionIndex];
                     // Calculate discount based on selected variant option
                     return total + (selectedOption ? parseFloat(selectedOption.discount) || 0 : parseFloat(selectedProduct.discount) || 0);
                 } else {
@@ -193,16 +193,28 @@ const ProjectLanding1 = ({ProductLandingProps}) => {
                         {/* shadow-lg shadow-stone-400 removed */}
                         <div className="w-full flex flex-col gap-8 p-6 bg-white rounded-lg transition-shadow duration-300">
                             <div className="flex flex-col md:flex-row gap-10 lg:gap-16">
-                                <div className="flex flex-col-reverse md:flex-row gap-7 lg:gap-10">
+                                <div className="flex flex-col-reverse gap-7 lg:gap-10">
                                     <div className="flex flex-row md:flex-col gap-3">
-                                        {selectedProduct.image && (
+                                        {selectedProduct?.image && (
                                             <div
-                                                className={`cursor-pointer text-sm lg:text-base ${selectedVariants.every(index => index === -1) ? 'font-bold' : ''} rounded-md`}
+                                                className={`cursor-pointer text-sm lg:text-base ${selectedVariants?.every(index => index === -1) ? 'font-bold' : ''} rounded-md`}
                                                 onClick={changeDefaultImage}
                                             >
-                                                <img src={selectedProduct.image.imageUrl} alt="Default" className="w-16 h-16 md:w-14 md:h-14 lg:w-24 lg:h-24  rounded-md object-cover transition-transform duration-300 hover:scale-105" />
+                                                <img src={selectedProduct?.image?.imageUrl} alt="Default" className="w-16 h-16 md:w-14 md:h-14 lg:w-24 lg:h-24  rounded-md object-cover transition-transform duration-300 hover:scale-105" />
                                             </div>
                                         )}
+                                        {
+                                            selectedProduct?.imageList && (
+                                                selectedProduct?.imageList?.map(listImage=>(
+                                                    <div
+                                                        className={`cursor-pointer text-sm lg:text-base ${selectedVariants?.every(index => index === -1) ? 'font-bold' : ''} rounded-md`}
+                                                        onClick={changeDefaultImage}
+                                                    >
+                                                        <img src={listImage.imageUrl} alt="Default" className="w-16 h-16 md:w-14 md:h-14 lg:w-24 lg:h-24  rounded-md object-cover transition-transform duration-300 hover:scale-105" />
+                                                    </div>
+                                                ))
+                                            )
+                                        }
                                         
                                     </div>
                                     <div className='md:w-[350px] h-[400px] lg:w-[450px] lg:h-[450px] 2xl:w-[550px] 2xl:h-[550px] overflow-hidden rounded-xl'>
@@ -214,7 +226,7 @@ const ProjectLanding1 = ({ProductLandingProps}) => {
                                     </div>
                                 </div>
                                 <div className="flex flex-col gap-4 w-full">
-                                    <h1 className="text-xl md:text-2xl lg:text-[24px] 2xl:text-4xl font-bold text-[#515151] ">{selectedProduct.name}</h1>
+                                    <h1 className="text-xl md:text-2xl lg:text-[24px] 2xl:text-4xl font-bold text-[#515151] ">{selectedProduct?.name}</h1>
                                     
                                     <div className="flex gap-4 items-center">
                                         <span className="text-xl md:text-2xl lg:text-[40px] font-semibold text-[#515151]">Rs {totalPrice}</span>
@@ -222,19 +234,19 @@ const ProjectLanding1 = ({ProductLandingProps}) => {
                                     </div>
                                     <div >
                                     <div className="block text-base lg:text-lg 2xl:text-xl text-[#7A5822] flex gap-4">
-                                        <div>{selectedProduct.variant[0].name}:</div> 
-                                        <div>{selectedProduct.variant[0].options[selectedVariants[0]]?.name || ''}</div>
+                                        <div>{selectedProduct.variant[0]?.name}:</div> 
+                                        <div>{selectedProduct.variant[0]?.options[selectedVariants[0]]?.name || ''}</div>
                                     </div>
                                     <div className='flex gap-2'>
                                         {selectedProduct.variant.map((variant, variantIndex) => (
                                             variantIndex === 0 &&
-                                            selectedProduct.variant[0].options.map((option, optionIndex) => (
+                                            selectedProduct.variant[0]?.options.map((option, optionIndex) => (
                                                 <div
                                                     key={`${variantIndex}-${optionIndex}`}
                                                     className={`cursor-pointer text-sm lg:text-base ${selectedVariants[variantIndex] === optionIndex ? 'font-bold' : ''} rounded-md`}
                                                     onClick={() => handleOptionSelect(variantIndex, optionIndex)}
                                                 >
-                                                    {option?.image?.imageUrl && <img src={option?.image?.imageUrl} alt={option.name} className="w-16 h-16 lg:w-20 lg:h-20 rounded-md object-cover transition-transform duration-300 hover:scale-105" />}
+                                                    {option?.image?.imageUrl && <img src={option?.image?.imageUrl} alt={option?.name} className="w-16 h-16 lg:w-20 lg:h-20 rounded-md object-cover transition-transform duration-300 hover:scale-105" />}
                                                 </div>
                                             ))
                                         ))}
@@ -247,8 +259,8 @@ const ProjectLanding1 = ({ProductLandingProps}) => {
                                                 <label htmlFor={`variant-${variantIndex}`} className="block text-base lg:text-lg 2xl:text-xl text-[#7A5822]">{variant?.name}:</label>
                                                 
                                                 <div className='text-white flex gap-2'>
-                                                {variant.options.map((option, optionIndex) => (
-                                                        <button key={optionIndex} value={option.name} onClick={(e) => handleVariantChange(variantIndex, option.name)} className=' px-5 py-2 bg-[#A2A2A2] rounded-lg'>{option?.name}</button>
+                                                {variant?.options?.map((option, optionIndex) => (
+                                                        <button key={optionIndex} value={option?.name} onClick={(e) => handleVariantChange(variantIndex, option?.name)} className=' px-5 py-2 bg-[#A2A2A2] rounded-lg'>{option?.name}</button>
                                                     ))}
                                                 </div>
                                             </div>
