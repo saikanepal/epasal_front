@@ -8,10 +8,10 @@ import secondary from "../../Assets/ImageGroup.png";
 const T1SecondaryBanner = () => {
   const { store,setStore } = useStore();
 
-  const { previewMode, isEdit ,fetchedFromBackend} = store;
+  const { previewMode, isEdit ,fetchedFromBackend,theme} = store;
 
   return (
-    <SecondaryBanner previewMode={previewMode} isEdit={isEdit} fetchedFromBackend={fetchedFromBackend} defaultBgImage={secondary} store={store} setStore={setStore}/>
+    <SecondaryBanner theme={theme} previewMode={previewMode} isEdit={isEdit} fetchedFromBackend={fetchedFromBackend} defaultBgImage={secondary} store={store} setStore={setStore}/>
   );
 };
 

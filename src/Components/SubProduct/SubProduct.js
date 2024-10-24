@@ -23,7 +23,7 @@ const SubProduct = (props) => {
             default:
                 switch (subProductType) {
                     case 'Category1':
-                        return <Theme2SubProduct1 {...props} />;
+                        return <SubProduct1 {...props} />;
                     default:
                         return null;
                 }
