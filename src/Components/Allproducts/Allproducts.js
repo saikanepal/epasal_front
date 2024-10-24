@@ -49,6 +49,11 @@ const AllProducts = () => {
       const data = response.data;
       console.log(data.activeTheme);
       setActiveTheme(data.activeTheme);
+      setStore(prev=>{
+        const prevData={...prev};
+        prevData.activeTheme=data?.activeTheme;
+        return prevData;
+      })
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -533,6 +538,7 @@ const AllProducts = () => {
                     product={product}
                     addToCart={addToCart}
                     store={store}
+                
                   />
                 ))}
               </div>

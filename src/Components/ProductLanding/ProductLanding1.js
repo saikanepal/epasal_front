@@ -20,7 +20,11 @@ const ProjectLanding1 = ({ ProductLandingProps }) => {
     const navigate = useNavigate();
     const location = useLocation();
 
-    const [selectedProduct, setSelectedProduct] = useState(product);
+    const [selectedProduct, setSelectedProduct] = useState(() => {
+        const storedProduct = localStorage.getItem('product');
+        return product || (storedProduct ? JSON.parse(storedProduct) : null);
+    });
+
     const [selectedVariants, setSelectedVariants] = useState(selectedProduct?.variant.map(() => -1) || []);
     const [displayedImage, setDisplayedImage] = useState(selectedProduct?.image?.imageUrl);
     const [productCount, setProductCount] = useState(1);

@@ -9,11 +9,14 @@ const ProductLanding = () => {
         return fetchedStore || (storeData ? JSON.parse(storeData) : null);
     });
     const ProductLandingProps = { product, store, setStore }
+    useEffect(()=>{console.log(store,"store")},[store])
     switch (store.activeTheme) {
         case 1:
             return <ProductLanding1 ProductLandingProps={ProductLandingProps} />
         case 2:
-            return <ProductLanding1 ProductLandingProps={ProductLandingProps} />
+            return <Theme2ProductLanding1 ProductLandingProps={ProductLandingProps} />
+        default:
+            return <div> Hi</div>
 
     }
 }
