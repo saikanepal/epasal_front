@@ -21,6 +21,7 @@ const AllProductCard = ({ product, store }) => {
 
 
     const handleProductClick = (product) => {
+        console.log(product,store)
         localStorage.setItem('product', JSON.stringify(product));
         localStorage.setItem('store', JSON.stringify(store));
 

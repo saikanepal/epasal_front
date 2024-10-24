@@ -5,10 +5,10 @@ import offerBanner from "../../Assets/offerbanner.webp";
 
 const T1OfferBanner = () => {
   const { store,setStore } = useStore();
-  const { previewMode,isEdit ,fetchedFromBackend,theme } = store;
+  const { previewMode,isEdit ,fetchedFromBackend,activeTheme } = store;
 
   return (
-    <OfferBanner theme={theme} previewMode={previewMode} isEdit={isEdit} fetchedFromBackend={fetchedFromBackend} defaultBgImage={offerBanner} store={store} setStore={setStore}/>
+    <OfferBanner activeTheme={activeTheme} previewMode={previewMode} isEdit={isEdit} fetchedFromBackend={fetchedFromBackend} defaultBgImage={offerBanner} store={store} setStore={setStore}/>
   );
 };
 
