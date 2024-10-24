@@ -20,21 +20,21 @@ const Dashboard = () => {
   let location = useLocation();
   let searchParams = new URLSearchParams(location.search);
   let page = searchParams.get('page');
-  const date=new Date();
-  console.log(date,"page")
-  const [dashboardState, setDashboardState] = useState(page ||'General');
+  const date = new Date();
+  console.log(date, "page")
+  const [dashboardState, setDashboardState] = useState(page || 'General');
   const { isLoading, error, sendRequest, onCloseError } = useFetch();
   const [store, setStore] = useState(null); // Initialize store as null
   const { storeName } = useParams();
   const [role, setRole] = useState(null);
-  const {hasOrder,setHasOrder}=useContext(AuthContext)
-  const navigate=useNavigate();
+  const { hasOrder, setHasOrder } = useContext(AuthContext)
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (window.location.pathname.includes("/adminpanel/")) {
       abc();
     }
-}, [window.location.pathname]);
+  }, [window.location.pathname]);
 
 
   const fetchStore = async () => {
@@ -152,7 +152,7 @@ const Dashboard = () => {
           <div className=""> {/* Apply overflow styling here */}
             <SiderBarProvider className="overflow-hidden">
               <DashboardWrapper setDashboardState={setDashboardState} store={store} role={role} hasNotification={hasOrder} setHasNotification={setHasOrder}>
-                <div className="text-black p-2 py-4 mt-8 overflow-hidden">
+                <div className="text-black p-2 md:p-4 md:px-8 overflow-hidden">
                   {renderDashboardContent(store)}
                 </div>
               </DashboardWrapper>

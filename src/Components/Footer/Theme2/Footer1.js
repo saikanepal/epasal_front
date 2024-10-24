@@ -237,7 +237,7 @@ const Footer1 = ({
 
 
                 </div>
-                <div className='w-full flex justify-center text-lg mt-16'>
+                <div className='w-full flex justify-center text-sm md:text-base lg:text-lg mt-16'>
                     <p>
                         &copy; Brought To You By <a href="/" target="_blank" className=" underline hover:text-orange-200">Shop At Banau</a>, By <a href="https://www.saikanepal.com" target="_blank" className=" underline hover:text-blue-300">Saika Nepal</a> @ {new Date().getFullYear()}
                     </p>

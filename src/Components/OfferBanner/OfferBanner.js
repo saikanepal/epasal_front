@@ -7,11 +7,11 @@ const OfferBanner = (props) => {
   const renderBanner = () => {
     switch (activeTheme){
       case 1:
-        return <OfferBanner1 {...props}/>;
+        return <OfferBanner1 {...props} />;
       case 2:
-        return <Theme2OfferBanner1 {...props}/>;
+        return <Theme2OfferBanner1 {...props} />;
       default:
-        return <OfferBanner1 {...props}/>;
+        return <OfferBanner1 {...props} />;
     }
   };
 

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { useLocation } from 'react-router-dom';
+import { NavLink, useLocation, useSearchParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useDropzone } from 'react-dropzone';
 import { FaShoppingCart, FaSearch, FaTimes } from 'react-icons/fa';
@@ -22,18 +22,19 @@ const Navbar1 = ({
     setIsSidebarOpen,
     setSearchInput,
     setLogoFile,
-    isEdit, fetchedFromBackend, highlightedButtonId, onClick, newProductRef, categoriesRef
+    isEdit, fetchedFromBackend, highlightedButtonId, onClick, newProductRef, categoryRef
 }) => {
-    console.log(newProductRef, categoriesRef, "newProductRef,categoriesRef=====")
     const [scrolling, setScrolling] = useState(false);
     const [editableText, setEditableText] = useState("Ecom Template-2");
     const [isSearchClicked, setIsSearchClicked] = useState(false);
     const location = useLocation();
     const navigate = useNavigate();
     const [isCartOpen, setIsCartOpen] = useState(false);
+    const [searchParams] = useSearchParams(); // Hook to access query parameters
     const sidebarRef = useRef();
     const [searchItem, setSearchItem] = useState([])
     const [isAnimating, setIsAnimating] = useState(true);
+    const [activeSection, setActiveSection] = useState(null); // Track manually clicked sections
 
     const [cartItems, setCartItems] = useState([
     ]);
@@ -331,14 +332,49 @@ const Navbar1 = ({
         else fetchProducts();
     };
 
-    const handleClickNavigation = (e, myRef) => {
+    const handleClickNavigation = (e, myRef, section) => {
         e.preventDefault();
+        setActiveSection(section);
         myRef.current.scrollIntoView({ behavior: "smooth" })
     }
 
-    // const deleteFromCart = (itemToDelete) => {
-    //     setCartItems(cartItems.filter(item => item.id !== itemToDelete.id));
-    // };
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        // Set active section when the section comes into view
+                        if (entry.target === newProductRef.current) {
+                            setActiveSection('new');
+                        } else if (entry.target === categoryRef.current) {
+                            setActiveSection('categories');
+                        }
+                    } else {
+                        // Remove active state when scrolling out of the section
+                        if (entry.target === newProductRef.current && activeSection === 'new') {
+                            setActiveSection(null);
+                        } else if (entry.target === categoryRef.current && activeSection === 'categories') {
+                            setActiveSection(null);
+                        }
+                    }
+                });
+            },
+            { threshold: 0.5 } // Trigger when 50% of the section is in view
+        );
+
+        if (newProductRef.current) observer.observe(newProductRef.current);
+        if (categoryRef.current) observer.observe(categoryRef.current);
+
+        return () => {
+            if (newProductRef.current) observer.unobserve(newProductRef.current);
+            if (categoryRef.current) observer.unobserve(categoryRef.current);
+        };
+    }, [activeSection]);
+
+    const isActiveFilter = (filter) => {
+        return searchParams.get('filter') === filter;
+    };
+
 
     return (
         <motion.nav
@@ -447,12 +483,42 @@ const Navbar1 = ({
 
             <div>
                 <div className={`flex items-center space-x-4 py-2 relative ${isSidebarOpen ? 'mr-0' : 'lg:mr-0'}`}>
-                    <div className="hidden md:flex space-x-10 lg:space-x-16 font-semibold">
-                        <Link to={!isEdit && fetchedFromBackend && `/store/products/${store.name}`} className={linkClass(`/store/products/${store.name}`)}>All Products</Link>
-                        <Link to={!isEdit && fetchedFromBackend && `/store/products/${store.name}/?filter=featured`} className="hover:underline">Featured</Link>
-                        <Link to={!isEdit && fetchedFromBackend && `/store/products/${store.name}/?filter=offers`} className="hover:underline">Offers</Link>
-                        <Link className="hover:underline" onClick={e=>handleClickNavigation(e,newProductRef)}>New</Link>
-                        <Link className="hover:underline">Categories</Link>
+                    <div className="hidden md:flex space-x-10 lg:space-x-10 font-semibold">
+                        <Link
+                            to={!store.isEdit && store.fetchedFromBackend && `/store/products/${store.name}`}
+                            className={`py-1 px-6 rounded-lg ${location.pathname === `/store/products/${store.name}` ? 'bg-blue-500' : 'hover:underline'}`}>
+                            All Products
+                        </Link>
+
+                        <Link
+                            to={!store.isEdit && store.fetchedFromBackend && `/store/products/${store.name}/?filter=featured`}
+                            className={`py-1 px-6 rounded-lg ${isActiveFilter('featured') ? 'bg-blue-500' : 'hover:underline'}`}>
+                            Featured
+                        </Link>
+
+                        <Link
+                            to={!store.isEdit && store.fetchedFromBackend && `/store/products/${store.name}/?filter=offers`}
+                            className={`py-1 px-6 rounded-lg ${isActiveFilter('offers') ? 'bg-blue-500' : 'hover:underline'}`}>
+                            Offers
+                        </Link>
+
+                        {/* Links for non-routing based navigation */}
+                        <Link
+                            onClick={e => handleClickNavigation(e, newProductRef, 'new')}
+                            className={activeSection === 'new'
+                                ? 'py-1 px-6 rounded-lg bg-blue-500 hover:underline'
+                                : 'py-1 px-6 rounded-lg hover:underline'}>
+                            New
+                        </Link>
+
+                        <Link
+                            onClick={e => handleClickNavigation(e, categoryRef, 'categories')}
+                            className={activeSection === 'categories'
+                                ? 'py-1 px-6 rounded-lg bg-blue-500 hover:underline'
+                                : 'py-1 px-6 rounded-lg hover:underline'}>
+                            Categories
+                        </Link>
+
                     </div>
 
                 </div>
@@ -526,11 +592,47 @@ const Navbar1 = ({
                                 </ul>
                             )}
                         </div>
-                        <Link to={!isEdit && fetchedFromBackend && `/store/products/${store.name}`} className="hover:underline">All Products</Link>
-                        <Link to={!isEdit && fetchedFromBackend && `/store/products/${store.name}`} className="hover:underline">Featured</Link>
-                        <Link to={!isEdit && fetchedFromBackend && `/store/products/${store.name}`} className="hover:underline">Offers</Link>
-                        <Link className="hover:underline">New</Link>
-                        <Link className="hover:underline">Categories</Link>
+                        <NavLink
+                            to={!isEdit && fetchedFromBackend && `/store/products/${store.name}`}
+                            className={({ isActive }) => isActive
+                                ? 'py-1 px-6 rounded-lg bg-blue-500 hover:underline'
+                                : 'py-1 px-6 rounded-lg hover:underline' /* Keep same padding when inactive */}>
+                            All Products
+                        </NavLink>
+
+                        <NavLink
+                            to={!isEdit && fetchedFromBackend && `/store/products/${store.name}/?filter=featured`}
+                            className={({ isActive }) => isActive
+                                ? 'py-1 px-6 rounded-lg bg-blue-500 hover:underline'
+                                : 'py-1 px-6 rounded-lg hover:underline'}>
+                            Featured
+                        </NavLink>
+
+                        <NavLink
+                            to={!isEdit && fetchedFromBackend && `/store/products/${store.name}/?filter=offers`}
+                            className={({ isActive }) => isActive
+                                ? 'py-1 px-6 rounded-lg bg-blue-500 hover:underline'
+                                : 'py-1 px-6 rounded-lg hover:underline'}>
+                            Offers
+                        </NavLink>
+
+                        {/* Links for non-routing based navigation */}
+                        <Link
+                            onClick={e => handleClickNavigation(e, newProductRef, 'new')}
+                            className={activeSection === 'new'
+                                ? 'py-1 px-6 rounded-lg bg-blue-500 hover:underline'
+                                : 'py-1 px-6 rounded-lg hover:underline'}>
+                            New
+                        </Link>
+
+                        <Link
+                            onClick={e => handleClickNavigation(e, categoryRef, 'categories')}
+                            className={activeSection === 'categories'
+                                ? 'py-1 px-6 rounded-lg bg-blue-500 hover:underline'
+                                : 'py-1 px-6 rounded-lg hover:underline'}>
+                            Categories
+                        </Link>
+
                     </div>
                 </div>
             )}

@@ -6,12 +6,15 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import Navbar from '../../Allproducts/Navbar';
 import { toast } from 'react-toastify';
 import BreadCrumb from './Breadcrumb';
+import Theme2ReviewAndDetails from '../Theme2ReviewAndDetails';
+import Theme2Navbar from '../../Allproducts/Theme2Navbar';
 
-const ProjectLanding1 = ({ProductLandingProps}) => {
-    const {store,setStore,product}=ProductLandingProps
+
+const ProjectLanding1 = ({ ProductLandingProps }) => {
+    const { store, setStore, product } = ProductLandingProps
     const navigate = useNavigate();
     const location = useLocation();
-    
+
     const [selectedProduct, setSelectedProduct] = useState(() => {
         const storedProduct = localStorage.getItem('product');
         return product || (storedProduct ? JSON.parse(storedProduct) : null);
@@ -185,10 +188,10 @@ const ProjectLanding1 = ({ProductLandingProps}) => {
 
     return (
         <div className="min-h-screen bg-gray-50">
-            <Navbar store={store} setStore={setStore} color={store.color} />
-            
+            <Theme2Navbar store={store} color={store.color} addToCart={store.addToCart} deleteFromCart={store.deleteFromCart} setStore={setStore} />
+
             <div className="px-4 py-16 lg:px-14">
-            <BreadCrumb prodName={selectedProduct?.name} storeName={store?.name}/>
+                <BreadCrumb prodName={selectedProduct?.name} storeName={store?.name} />
                 <div className=" flex flex-col gap-10">
                     <div className="flex flex-col md:flex-row md:gap-8 lg:gap-12">
                         {/* shadow-lg shadow-stone-400 removed */}
@@ -206,7 +209,7 @@ const ProjectLanding1 = ({ProductLandingProps}) => {
                                         )}
                                         {
                                             selectedProduct?.imageList && (
-                                                selectedProduct?.imageList?.map(listImage=>(
+                                                selectedProduct?.imageList?.map(listImage => (
                                                     <div
                                                         className={`cursor-pointer text-sm lg:text-base ${selectedVariants?.every(index => index === -1) ? 'font-bold' : ''} rounded-md`}
                                                         onClick={changeDefaultImage}
@@ -216,7 +219,7 @@ const ProjectLanding1 = ({ProductLandingProps}) => {
                                                 ))
                                             )
                                         }
-                                        
+
                                     </div>
                                     <div className='md:w-[350px] h-[400px] lg:w-[450px] lg:h-[450px] 2xl:w-[550px] 2xl:h-[550px] overflow-hidden rounded-xl'>
                                         <img
@@ -228,39 +231,39 @@ const ProjectLanding1 = ({ProductLandingProps}) => {
                                 </div>
                                 <div className="flex flex-col gap-4 w-full">
                                     <h1 className="text-xl md:text-2xl lg:text-[24px] 2xl:text-4xl font-bold text-[#515151] ">{selectedProduct?.name}</h1>
-                                    
+
                                     <div className="flex gap-4 items-center">
                                         <span className="text-xl md:text-2xl lg:text-[40px] font-semibold text-[#515151]">Rs {totalPrice}</span>
                                         <span className="line-through text-sm md:text-base lg:text-xl 2xl:text-xl text-[#515151]">Rs {totalDiscount + totalPrice}</span>
                                     </div>
                                     <div >
-                                    <div className="block text-base lg:text-lg 2xl:text-xl text-[#7A5822] flex gap-4">
-                                        <div>{selectedProduct.variant[0]?.name}:</div> 
-                                        <div>{selectedProduct.variant[0]?.options[selectedVariants[0]]?.name || ''}</div>
-                                    </div>
-                                    <div className='flex gap-2'>
-                                        {selectedProduct.variant.map((variant, variantIndex) => (
-                                            variantIndex === 0 &&
-                                            selectedProduct.variant[0]?.options.map((option, optionIndex) => (
-                                                <div
-                                                    key={`${variantIndex}-${optionIndex}`}
-                                                    className={`cursor-pointer text-sm lg:text-base ${selectedVariants[variantIndex] === optionIndex ? 'font-bold' : ''} rounded-md`}
-                                                    onClick={() => handleOptionSelect(variantIndex, optionIndex)}
-                                                >
-                                                    {option?.image?.imageUrl && <img src={option?.image?.imageUrl} alt={option?.name} className="w-16 h-16 lg:w-20 lg:h-20 rounded-md object-cover transition-transform duration-300 hover:scale-105" />}
-                                                </div>
-                                            ))
-                                        ))}
-                                    </div>
+                                        <div className="block text-base lg:text-lg 2xl:text-xl text-[#7A5822] flex gap-4">
+                                            <div>{selectedProduct.variant[0]?.name}:</div>
+                                            <div>{selectedProduct.variant[0]?.options[selectedVariants[0]]?.name || ''}</div>
+                                        </div>
+                                        <div className='flex gap-2'>
+                                            {selectedProduct.variant.map((variant, variantIndex) => (
+                                                variantIndex === 0 &&
+                                                selectedProduct.variant[0]?.options.map((option, optionIndex) => (
+                                                    <div
+                                                        key={`${variantIndex}-${optionIndex}`}
+                                                        className={`cursor-pointer text-sm lg:text-base ${selectedVariants[variantIndex] === optionIndex ? 'font-bold' : ''} rounded-md`}
+                                                        onClick={() => handleOptionSelect(variantIndex, optionIndex)}
+                                                    >
+                                                        {option?.image?.imageUrl && <img src={option?.image?.imageUrl} alt={option?.name} className="w-16 h-16 lg:w-20 lg:h-20 rounded-md object-cover transition-transform duration-300 hover:scale-105" />}
+                                                    </div>
+                                                ))
+                                            ))}
+                                        </div>
                                     </div>
                                     <div className="flex flex-row md:flex-col gap-4">
 
-                                        {selectedProduct.variant.map((variant, variantIndex) => variantIndex!==0 && (
+                                        {selectedProduct.variant.map((variant, variantIndex) => variantIndex !== 0 && (
                                             <div className="flex flex-col gap-2 2xl:text-xl" key={variantIndex}>
                                                 <label htmlFor={`variant-${variantIndex}`} className="block text-base lg:text-lg 2xl:text-xl text-[#7A5822]">{variant?.name}:</label>
-                                                
+
                                                 <div className='text-white flex gap-2'>
-                                                {variant?.options?.map((option, optionIndex) => (
+                                                    {variant?.options?.map((option, optionIndex) => (
                                                         <button key={optionIndex} value={option?.name} onClick={(e) => handleVariantChange(variantIndex, option?.name)} className=' px-5 py-2 bg-[#A2A2A2] rounded-lg'>{option?.name}</button>
                                                     ))}
                                                 </div>
@@ -295,9 +298,22 @@ const ProjectLanding1 = ({ProductLandingProps}) => {
                         </div>
 
                     </div>
-                    <div className="flex flex-col gap-6 mt-12">
-                        <ProductReview product={selectedProduct} />
-                    </div>
+                    <div className="flex gap-8">
+                        <Theme2ReviewAndDetails product={selectedProduct} />
+                        <div className='hidden md:flex flex-col gap-2 '>
+                            <h1 className='whitespace-nowrap mt-2 px-1 font-medium text-base md:text-lg border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'>Rating</h1>
+                            <div className='flex items-center gap-4'>
+                                <div className="flex md:justify-start">
+                                    {[...Array(5)].map((_, index) => (
+                                        <StarIcon
+                                            key={index}
+                                            className={`w-5 2xl:w-7 h-5 2xl:h-7 ${index < Math.ceil(selectedProduct.rating) ? 'text-[#dba247]' : 'text-gray-300'} transition-transform duration-300 hover:scale-110`}
+                                        />
+                                    ))}
+                                </div>
+                                {!selectedProduct.rating === 0 && <h1 className='whitespace-nowrap lg:py-2 px-1 font-medium text-xl'>{Math.ceil(selectedProduct.rating)}</h1>}
+                            </div>
+                        </div>                    </div>
                 </div>
             </div>
         </div>

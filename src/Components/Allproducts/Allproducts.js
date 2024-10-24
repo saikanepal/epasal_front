@@ -12,6 +12,7 @@ import AllProductCard from './AllProductCard';
 import { motion, AnimatePresence } from 'framer-motion';
 import allproductBanner from '../../Assets/allproductBanner.png'
 import ModernReactPlayer from '../../Theme/Theme1/AudioPlayer/ModernReactPlayer';
+import Theme2Navbar from './Theme2Navbar';
 const AllProducts = () => {
   const [searchParams] = useSearchParams();
   const filter = searchParams.get('filter');
@@ -32,6 +33,7 @@ const AllProducts = () => {
   const [maxPrice, setMaxPrice] = useState(1000);
   const [name, setName] = useState(''); // State for the name filter input
   const [isFilterVisible, setIsFilterVisible] = useState(false); // State for filter visibility
+  const [activeTheme, setActiveTheme] = useState(null);
 
 
   useEffect(() => {
@@ -41,6 +43,16 @@ const AllProducts = () => {
   }, [store?.name, store?.fetchedFromBackend]);
 
 
+  const fetchActiveTheme = async () => {
+    try {
+      const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}store//getactiveTheme/${storeName}`);
+      const data = response.data;
+      console.log(data.activeTheme);
+      setActiveTheme(data.activeTheme);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
 
   const fetchProducts = async () => {
     try {
@@ -294,6 +306,7 @@ const AllProducts = () => {
   useEffect(() => {
     if (storeName) {
       fetchProducts();
+      fetchActiveTheme();
     }
   }, [storeName, page, productFilter]); // Dependency includes storeName and page for initial fetch
 
@@ -306,12 +319,16 @@ const AllProducts = () => {
     return <Loader />
   }
 
-
+  console.log(store, "helloss")
 
   return (
     color && products && store && (
-      <div className="flex flex-col mt-16 ">
-        <Navbar setColor={setColor} store={store} color={color} addToCart={addToCart} deleteFromCart={deleteFromCart} setStore={setStore} />
+      <div className="flex flex-col">
+        {activeTheme === 1 ?
+          <Navbar setColor={setColor} store={store} color={color} addToCart={addToCart} deleteFromCart={deleteFromCart} setStore={setStore} />
+          :
+          <Theme2Navbar setColor={setColor} store={store} color={color} addToCart={addToCart} deleteFromCart={deleteFromCart} setStore={setStore} />
+        }
 
         <div className="relative w-full h-[350px] flex justify-center items-center">
           <div

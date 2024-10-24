@@ -9,9 +9,9 @@ import banau from '../../Assets/banau.png';
 import { AuthContext } from "../../Hooks/AuthContext";
 import useFetch from "../../Hooks/useFetch";
 // import { store } from "./Dashboard/Home/homeStore";
-const SideBar = ({ setDashboardState, role,hasNotification,setHasNotification,PendingOrderToView ,store}) => {
+const SideBar = ({ setDashboardState, role, hasNotification, setHasNotification, PendingOrderToView, store }) => {
   const navigate = useNavigate();
-  
+
   const { open, setOpen } = useSiderBar();
   const { isLoading, error, sendRequest, onCloseError } = useFetch();
   const auth = useContext(AuthContext);
@@ -31,9 +31,8 @@ const SideBar = ({ setDashboardState, role,hasNotification,setHasNotification,Pe
     ...(role === 'Admin' || role === 'Owner' ? [{ name: "Edit Store", link: "/adminpanel", icon: MdEdit }] : []),
 
   ];
-  const resetOrderList=async()=>{
-    if(hasNotification!==0)
-    {
+  const resetOrderList = async () => {
+    if (hasNotification !== 0) {
       console.log("data send");
       await sendRequest(
         `order/refreshOrder/${store._id}`,
@@ -45,11 +44,11 @@ const SideBar = ({ setDashboardState, role,hasNotification,setHasNotification,Pe
         }
       );
     }
-    
+
   }
-  useEffect(()=>{
+  useEffect(() => {
     setHasNotification(store.pendingViewOrder)
-  },[])
+  }, [])
   return (
     <section className="flex gap-6 relative">
       <div
@@ -57,7 +56,7 @@ const SideBar = ({ setDashboardState, role,hasNotification,setHasNotification,Pe
           min-h-screen
           h-full
          w-full
-        sm:w-[250px] 
+        lg:w-[250px]
 
           bg-white
           relative
@@ -69,42 +68,42 @@ const SideBar = ({ setDashboardState, role,hasNotification,setHasNotification,Pe
           shadow-lg
         `}
       >
-        <div className=" flex fixed font-Roboto flex-col  h-full  bg-slate-100 sm:bg-white ">
+        <div className=" flex fixed font-Roboto flex-col  h-full  bg-slate-100 md:bg-white ">
           <div>
-          <div className="py-2 flex justify-center flex-row">
-  <Link to="/">
-    <img src={banau} className="h-10 mt-7" alt="Logo" />
-  </Link>
-</div>
-            
+            <div className="py-2 flex justify-center flex-row">
+              <Link to="/">
+                <img src={banau} className="h-10 mt-7" alt="Logo" />
+              </Link>
+            </div>
+
             <Link
-  onClick={() => {
-    setDashboardState("Shop");
-  }}
-  className={`flex mt-0 w-[80%] sm:w-4/5 items-center ml-10 text-sm gap-4 font-medium p-3 border border-gray-300 hover:border-green-500 rounded-md transition-colors duration-200 mt-10`}
->
-  {React.createElement(MdShop2, { size: 20 })}
-  <span className=" text-sm font-Poppins ml-2">Banau Shop</span>
-</Link>
+              onClick={() => {
+                setDashboardState("Shop");
+              }}
+              className={`flex mt-0 w-[80%] md:w-4/5 items-center ml-10 text-sm gap-4 font-medium p-3 border border-gray-300 hover:border-green-500 rounded-md transition-colors duration-200 mt-10`}
+            >
+              {React.createElement(MdShop2, { size: 20 })}
+              <span className=" text-sm font-Poppins ml-2">Banau Shop</span>
+            </Link>
 
 
 
-           
+
 
             <div className="my-[40px] flex flex-col justify-center gap-1 text-gray-700">
               {menus.map((menu, i) => (
                 <Link
                   key={i}
-                  onClick={()=> {
+                  onClick={() => {
                     setDashboardState(menu.name)
-                    if(menu.name==='Order'){
+                    if (menu.name === 'Order') {
                       setHasNotification(0);
                       resetOrderList()
                     }
                   }}
                   className={`flex relative w-40 items-center ml-12 text-lg gap-4  font-Poppins p-2 hover:bg-orange-100 rounded-md transition-colors duration-200 ${menu.margin ? "mt-" : ""}`}
                 >
-                  {menu.name==='Order' && hasNotification>0?<div className="absolute w-4 h-4 rounded-full bg-orange-500 top-4 right-0 text-center text-xs text-white">{hasNotification}</div>:''}
+                  {menu.name === 'Order' && hasNotification > 0 ? <div className="absolute w-4 h-4 rounded-full bg-orange-500 top-4 right-0 text-center text-xs text-white">{hasNotification}</div> : ''}
                   {React.createElement(menu.icon, { size: 20 })}
                   <span className="pl-0 m-2">{menu.name}</span>
                 </Link>

@@ -11,21 +11,21 @@ import SimilarProducts from './SimilarProducts';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Navbar from '../Allproducts/Navbar';
 import { toast } from 'react-toastify';
+import Theme2ReviewAndDetails from './Theme2ReviewAndDetails';
+import Theme2Navbar from '../Allproducts/Theme2Navbar';
+import axios from 'axios';
 
-const ProjectLanding1 = ({ProductLandingProps}) => {
-    const {store,setStore,product}=ProductLandingProps
+const ProjectLanding1 = ({ ProductLandingProps }) => {
+    const { store, setStore, product } = ProductLandingProps
     const navigate = useNavigate();
     const location = useLocation();
-    
-    const [selectedProduct, setSelectedProduct] = useState(() => {
-        const storedProduct = localStorage.getItem('product');
-        return product || (storedProduct ? JSON.parse(storedProduct) : null);
-    });
+
+    const [selectedProduct, setSelectedProduct] = useState(product);
     const [selectedVariants, setSelectedVariants] = useState(selectedProduct?.variant.map(() => -1) || []);
     const [displayedImage, setDisplayedImage] = useState(selectedProduct?.image?.imageUrl);
     const [productCount, setProductCount] = useState(1);
 
-
+    console.log(store)
 
 
 
@@ -148,6 +148,15 @@ const ProjectLanding1 = ({ProductLandingProps}) => {
         setDisplayedImage(selectedProduct?.image?.imageUrl)
     }
 
+    const fetchActiveTheme = async () => {
+        try {
+            const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}store//getactiveTheme/${store.name}`);
+            const data = response.data;
+        } catch (error) {
+            console.error("Error fetching data:", error);
+        }
+    };
+
     const calculateTotalDiscount = () => {
         if (!selectedProduct.variant || selectedProduct.variant.length === 0) {
             // Handle products without variants
@@ -186,6 +195,10 @@ const ProjectLanding1 = ({ProductLandingProps}) => {
         deliveryTime: store.expectedDeliveryTime,
 
     };
+
+    useEffect(() => {
+        fetchActiveTheme();
+    }, []);
     return (
         <div className="min-h-screen bg-gray-50">
             <Navbar store={store} setStore={setStore} color={store.color} />
@@ -228,14 +241,7 @@ const ProjectLanding1 = ({ProductLandingProps}) => {
                                 </div>
                                 <div className="flex flex-col gap-4 w-full">
                                     <h1 className="text-xl md:text-2xl lg:text-[26px] 2xl:text-4xl font-bold text-[#4F3100] ">{selectedProduct.name}</h1>
-                                    <div className="flex md:justify-start">
-                                        {[...Array(5)].map((_, index) => (
-                                            <StarIcon
-                                                key={index}
-                                                className={`w-5 2xl:w-7 h-5 2xl:h-7 ${index < Math.ceil(selectedProduct.rating) ? 'text-[#dba247]' : 'text-gray-300'} transition-transform duration-300 hover:scale-110`}
-                                            />
-                                        ))}
-                                    </div>
+
                                     <div className="flex gap-4 items-center">
                                         <span className="text-xl md:text-2xl lg:text-3xl 2xl:text-4xl font-semibold text-[#383737]">Rs {totalPrice}</span>
                                         <span className="line-through text-sm md:text-base lg:text-xl 2xl:text-xl text-gray-500">Rs {totalDiscount + totalPrice}</span>
