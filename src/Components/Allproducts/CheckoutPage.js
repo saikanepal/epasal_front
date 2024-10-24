@@ -15,7 +15,7 @@ const CheckoutPage = ({ cart, onClose, deleteItem, store, setStore }) => {
     const [email, setEmail] = useState('');
     const [address, setAddress] = useState('');
     const [landmark, setLandmark] = useState('');
-    const expectedDeliveryPrice = store?.expectedDeliveryPrice || 10;
+    const expectedDeliveryPrice = store?.expectedDeliveryPrice || 100;
     const [discount, setDiscount] = useState(0);
     const [orderResponse, setOrderResponse] = useState(null);
     const [isOrderSubmit,setIsOrderSubmit]=useState(false)
@@ -222,7 +222,7 @@ const CheckoutPage = ({ cart, onClose, deleteItem, store, setStore }) => {
                             </div>
                             <div className="mt-4">
                                 <div className="flex justify-between">
-                                    <p className="text-sm font-medium">Discount</p>
+                                    <p className="text-sm font-medium">Promo Discount</p>
                                     <p className="text-sm">-रु {totalPrice * (discount / 100)}</p>
                                 </div>
                                 <div className="flex justify-between mt-8">

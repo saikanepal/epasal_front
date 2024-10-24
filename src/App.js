@@ -29,7 +29,7 @@ const Allproducts = React.lazy(() => import('./Components/Allproducts/Allproduct
 const SettingPage = React.lazy(() => import('./Components/SettingsPage/SettingPage'));
 const PrivacyPolicy = React.lazy(() => import('./HomePage/PrivacyOverlay'));
 const TermsAndConditions = React.lazy(() => import('./HomePage/TermsAndConditions'));
-const ProjectLanding1 = React.lazy(() => import('./Components/ProductLanding/ProductLanding1'));
+const ProjectLanding = React.lazy(() => import('./Components/ProductLanding/ProductLanding'));
 
 function App() {
   const { isLoading, error, sendRequest, onCloseError } = useFetch();
@@ -69,7 +69,7 @@ function App() {
         <Route path="/googleoauthv1" element={<GoogleOAuthCustom />} />
         <Route path="/esewa/:field" element={<EsewaRouteComponent />} />
         <Route path="/adminhome" element={<Home />} />
-        <Route path="/productlanding" element={<ProjectLanding1 />} />
+        <Route path="/productlanding" element={<ProjectLanding />} />
         <Route path="/settings" element={<SettingPage />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
@@ -92,7 +92,7 @@ function App() {
         <Route path="/store/products/:storeName" element={<Allproducts />} />
         <Route path="/esewa/:field" element={<EsewaRouteComponent />} />
         <Route path="/googleoauth" element={<GoogleOAuth />} />
-        <Route path="/productlanding" element={<ProjectLanding1 />} />
+        <Route path="/productlanding" element={<ProjectLanding />} />
         <Route path="/adminpanel/:storeName" element={<Dashboard />} />
         <Route path="*" element={<Navigate to="/login" />} />
       </React.Fragment>
